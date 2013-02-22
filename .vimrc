@@ -2,6 +2,9 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Always show the statusline
+set laststatus=2
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -25,8 +28,9 @@ set smarttab
 
 " encoding
 let &termencoding=&encoding
-set fileencoding=gbk
-set fileencodings=utf-8,gbk,ucs-bom,cp936
+set fileencoding=cp936
+"set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileencodings=cp936,ucs-bom,utf-8
 
 set updatetime=100
 
@@ -119,11 +123,15 @@ Bundle 'taglist.vim'
 Bundle 'winmanager'
 Bundle 'minibufexpl.vim'
 Bundle 'genutils'
-Bundle 'lookupfile'
+"Bundle 'lookupfile'
 Bundle 'echofunc.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdcommenter'
+"Bundle 'Command-T'
+" required by FuzzyFinder
+Bundle 'L9' 
+Bundle 'FuzzyFinder'
 
 filetype plugin indent on     " required!
 " Brief help
@@ -189,7 +197,8 @@ if filereadable("tags")
     set tags=tags
 endif
 
-map <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . && cscope -Rbq && fntag &<CR>
+"map <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . && cscope -Rbq && fntag &<CR>
+map <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . && cscope -Rbq
 
 " minibufexpl settings
 let g:miniBufExplMapCTabSwitchBufs=1
@@ -224,17 +233,17 @@ nmap <F10> :ts<cr>
 let g:EchoFuncKeyPrev="<C-p>" 
 let g:EchoFuncKeyNext="<C-n>"
 
-" lookupfile setting
-let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
-let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
-let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
-let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
-let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
-if filereadable("./filenametags")                "设置tag文件的名字
-    let g:LookupFile_TagExpr = '"./filenametags"'
-endif
+"" lookupfile settings
+"let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
+"let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
+"let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
+"let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
+"let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+"if filereadable("./filenametags")                "设置tag文件的名字
+    "let g:LookupFile_TagExpr = '"./filenametags"'
+"endif
 
-" DoxygenToolkit setting
+" DoxygenToolkit settings
 "let g:DoxygenToolkit_briefTag_pre="@Synopsis  " 
 "let g:DoxygenToolkit_paramTag_pre="@Param " 
 let g:DoxygenToolkit_returnTag="@Returns   " 
@@ -247,4 +256,18 @@ map <F2>a :DoxAuthor
 map <F2>f :Dox
 map <F2>b :DoxBlock
 map <F2>c O/** */<Left><Left>
+
+" FuzzyFinder settings
+let g:fuf_modesDisable = []
+let g:fuf_mrufile_maxItem = 400
+let g:fuf_mrucmd_maxItem = 400
+nnoremap <silent> <leader>f :FufCoverageFile<CR>
+nnoremap <silent> <leader>F :FufCoverageFile!<CR>
+nnoremap <silent> <leader>t :FufTag<CR>
+nnoremap <silent> <leader>T :FufTag!<CR>
+nnoremap <silent> <leader>r :FufMruFileInCwd<CR>
+nnoremap <silent> <leader>R :FufMruFileInCwd!<CR>
+nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
+nnoremap <silent> <leader>b :FufBookmarkFile<CR>
+nnoremap <silent> <leader>B :FufBookmarkFile!<CR>
 
