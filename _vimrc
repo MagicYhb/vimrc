@@ -1,3 +1,4 @@
+" Global settings
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -100,6 +101,7 @@ if !exists(":DiffOrig")
                 \ | wincmd p | diffthis
 endif
 
+
 " Vundle
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 filetype off                   " required!
@@ -118,20 +120,24 @@ Bundle 'stlrefvim'
 Bundle 'a.vim'
 Bundle 'c.vim'
 Bundle 'OmniCppComplete'
+"Bundle 'clang-complete'
 Bundle 'grep.vim'
 Bundle 'taglist.vim'
 Bundle 'winmanager'
-Bundle 'minibufexpl.vim'
+"Bundle 'minibufexpl.vim'
+"Bundle "bufexplorer.zip"
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'genutils'
-"Bundle 'lookupfile'
 Bundle 'echofunc.vim'
 Bundle 'DoxygenToolkit.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdcommenter'
+"Bundle 'lookupfile'
 "Bundle 'Command-T'
 " required by FuzzyFinder
 Bundle 'L9' 
 Bundle 'FuzzyFinder'
+Bundle 'snipMate'
+"Bundle 'code_complete'
 
 filetype plugin indent on     " required!
 " Brief help
@@ -148,6 +154,7 @@ if $TERM!="linux"
     if has("gui_running") 
         set t_Co=256 
         set term=xterm-256color
+        set guifont=Monaco
     endif
     colors peaksea 
     set background=dark 
@@ -161,10 +168,13 @@ nmap <F7> :cn<cr>
 " Set the language in help files
 set helplang=cn
 
-" winmanager & taglist settings
+" taglist settings
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
-let g:winManagerWindowLayout='FileExplorer|TagList'
+
+" winmanager settings
+"let g:winManagerWindowLayout='FileExplorer|TagList'
+let g:winManagerWindowLayout='TagList'
 nmap wm :WMToggle<cr>
 
 " cscope settings
@@ -197,15 +207,14 @@ if filereadable("tags")
     set tags=tags
 endif
 
-"map <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . && cscope -Rbq && fntag &<CR>
-map <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . && cscope -Rbq
+map <F11> :!update_tags &<CR>
 
 " minibufexpl settings
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplMapWindowNavVim=1
-let g:miniBufExplMapWindowNavArrows=1
-let g:miniBufExplModSelTarget=1
-let g:miniBufExplForceSyntaxEnable = 1
+"let g:miniBufExplMapCTabSwitchBufs=1
+"let g:miniBufExplMapWindowNavVim=1
+"let g:miniBufExplMapWindowNavArrows=1
+"let g:miniBufExplModSelTarget=1
+"let g:miniBufExplForceSyntaxEnable = 1
 
 " c.vim settings
 nnoremap <silent> <F12> :A<CR>
@@ -262,12 +271,11 @@ let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem = 400
 nnoremap <silent> <leader>f :FufCoverageFile<CR>
-nnoremap <silent> <leader>F :FufCoverageFile!<CR>
+nnoremap <silent> <leader>F :FufFile<CR>
 nnoremap <silent> <leader>t :FufTag<CR>
-nnoremap <silent> <leader>T :FufTag!<CR>
 nnoremap <silent> <leader>r :FufMruFileInCwd<CR>
-nnoremap <silent> <leader>R :FufMruFileInCwd!<CR>
+nnoremap <silent> <leader>u :FufBuffer<CR>
 nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
 nnoremap <silent> <leader>b :FufBookmarkFile<CR>
-nnoremap <silent> <leader>B :FufBookmarkFile!<CR>
+nnoremap <silent> <leader>d :FufDir<CR>
 

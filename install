@@ -1,0 +1,8 @@
+#!/bin/sh
+
+home=$HOME
+cwd=$(pwd)
+
+ln -sf $cwd/_vimrc $home/.vimrc
+
+exit 0
