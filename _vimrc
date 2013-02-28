@@ -138,6 +138,8 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 "Bundle 'code_complete'
 Bundle 'pright/snipmate.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
 
 filetype plugin indent on     " required!
 " Brief help
