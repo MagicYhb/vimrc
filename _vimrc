@@ -118,7 +118,7 @@ Bundle 'peaksea'
 Bundle 'pright/vimcdoc'
 Bundle 'stlrefvim'
 Bundle 'a.vim'
-Bundle 'c.vim'
+Bundle 'pright/c.vim'
 Bundle 'OmniCppComplete'
 "Bundle 'clang-complete'
 Bundle 'grep.vim'
@@ -136,8 +136,8 @@ Bundle 'scrooloose/nerdcommenter'
 " required by FuzzyFinder
 Bundle 'L9' 
 Bundle 'FuzzyFinder'
-Bundle 'snipMate'
 "Bundle 'code_complete'
+Bundle 'pright/snipmate.vim'
 
 filetype plugin indent on     " required!
 " Brief help
