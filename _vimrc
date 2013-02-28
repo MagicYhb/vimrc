@@ -209,7 +209,7 @@ if filereadable("tags")
     set tags=tags
 endif
 
-map <F11> :!update_tags &<CR>
+nnoremap <F11> :!update_tags &<CR>
 
 " minibufexpl settings
 "let g:miniBufExplMapCTabSwitchBufs=1
@@ -236,9 +236,9 @@ let OmniCpp_MayCompleteArrow = 1
 let OmniCpp_MayCompleteScope = 1
 set foldmethod=syntax
 set foldlevel=100
-nmap <F8> :tn<cr>
-nmap <F9> :tp<cr>
-nmap <F10> :ts<cr>
+nnoremap <F8> :tn<cr>
+nnoremap <F9> :tp<cr>
+nnoremap <F10> :ts<cr>
 
 " echofunc settings
 let g:EchoFuncKeyPrev="<C-p>" 
@@ -263,10 +263,10 @@ let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="Jun Xie" 
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
-map <F2>a :DoxAuthor
-map <F2>f :Dox
-map <F2>b :DoxBlock
-map <F2>c O/** */<Left><Left>
+nnoremap <F2>a :DoxAuthor
+nnoremap <F2>f :Dox
+nnoremap <F2>b :DoxBlock
+nnoremap <F2>c O/** */<Left><Left>
 
 " FuzzyFinder settings
 let g:fuf_modesDisable = []
@@ -280,4 +280,4 @@ nnoremap <silent> <leader>u :FufBuffer<CR>
 nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
 nnoremap <silent> <leader>b :FufBookmarkFile<CR>
 nnoremap <silent> <leader>d :FufDir<CR>
-
+nnoremap <silent> <leader>] :FufTagWithCursorWord!<CR>
