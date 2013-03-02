@@ -1,3 +1,4 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global settings
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -101,7 +102,7 @@ if !exists(":DiffOrig")
                 \ | wincmd p | diffthis
 endif
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 filetype off                   " required!
@@ -114,32 +115,45 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My bundles
+" color scheme
 Bundle 'peaksea'
+
+" documents
 Bundle 'pright/vimcdoc'
 Bundle 'stlrefvim'
+
+" general utils
+Bundle 'Vimball'
+Bundle 'grep.vim'
+Bundle 'YankRing.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+" genutils(required by lookupfile)
+"Bundle 'genutils'
+"Bundle 'lookupfile'
+"Bundle 'Command-T'
+" L9(required by FuzzyFinder)
+Bundle 'L9' 
+Bundle 'FuzzyFinder'
+
+" programming
 Bundle 'a.vim'
 Bundle 'pright/c.vim'
-Bundle 'OmniCppComplete'
-"Bundle 'clang-complete'
-Bundle 'grep.vim'
-Bundle 'taglist.vim'
-Bundle 'winmanager'
-"Bundle 'minibufexpl.vim'
-"Bundle "bufexplorer.zip"
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'genutils'
 Bundle 'echofunc.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'scrooloose/nerdcommenter'
-"Bundle 'lookupfile'
-"Bundle 'Command-T'
-" required by FuzzyFinder
-Bundle 'L9' 
-Bundle 'FuzzyFinder'
+Bundle 'pright/CCTree'
+Bundle 'pright/stl-tags'
+"Bundle 'clang-complete'
+Bundle 'OmniCppComplete'
 "Bundle 'code_complete'
 Bundle 'pright/snipmate.vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'minibufexpl.vim'
+"Bundle "bufexplorer.zip"
+Bundle 'scrooloose/nerdtree'
+Bundle 'taglist.vim'
+"Bundle 'pright/winmanager--Fox'
 
 filetype plugin indent on     " required!
 " Brief help
@@ -151,6 +165,7 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
 if $TERM!="linux"
     if has("gui_running") 
@@ -162,24 +177,36 @@ if $TERM!="linux"
     set background=dark 
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QuickFix
-nmap <F6> :cp<cr>
-nmap <F7> :cn<cr>
+nnoremap <silent> <F7> :cp<CR>
+nnoremap <silent> <F8> :cn<CR>
 
-" vimcdoc settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimcdoc
 " Set the language in help files
 set helplang=cn
 
-" taglist settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NerdTree
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" taglist
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Right_Window=1
+nnoremap <silent> <F4> :TlistToggle<CR>
 
-" winmanager settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" winmanager
 "let g:winManagerWindowLayout='FileExplorer|TagList'
-let g:winManagerWindowLayout='TagList'
-nmap wm :WMToggle<cr>
+"let g:winManagerOnRightSide=1
+"nnoremap <silent> wm :WMToggle<CR>
 
-" cscope settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope
 if has("cscope")
     set csprg=/usr/bin/cscope
     set csto=0
@@ -204,27 +231,36 @@ nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" ctags settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ctags
+set tags+=~/.vim/bundle/stl-tags/tags
 if filereadable("tags")
-    set tags=tags
+    set tags+=tags
 endif
 
-nnoremap <F11> :!update_tags &<CR>
+nnoremap <silent> <F11> :!update_tags &<CR>
 
-" minibufexpl settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" minibufexpl
 "let g:miniBufExplMapCTabSwitchBufs=1
 "let g:miniBufExplMapWindowNavVim=1
 "let g:miniBufExplMapWindowNavArrows=1
 "let g:miniBufExplModSelTarget=1
 "let g:miniBufExplForceSyntaxEnable = 1
 
-" c.vim settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" a.vim
 nnoremap <silent> <F12> :A<CR>
 
-" grep.vim settings
-nnoremap <silent> <F3> :Grep<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" grep.vim
+nnoremap <silent> <F5> :Rgrep<CR>
+let Grep_Default_Filelist = '*.c *.cpp *.h'
+let Grep_Skip_Files = '*.bak *~'
+let Grep_Default_ptions = '-i'
 
-" OmniCppComplete settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OmniCppComplete
 let OmniCpp_GlobalScopeSearch = 1
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_DisplayMode = 1
@@ -236,15 +272,14 @@ let OmniCpp_MayCompleteArrow = 1
 let OmniCpp_MayCompleteScope = 1
 set foldmethod=syntax
 set foldlevel=100
-nnoremap <F8> :tn<cr>
-nnoremap <F9> :tp<cr>
-nnoremap <F10> :ts<cr>
 
-" echofunc settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" echofunc
 let g:EchoFuncKeyPrev="<C-p>" 
 let g:EchoFuncKeyNext="<C-n>"
 
-"" lookupfile settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" lookupfile
 "let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
 "let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
 "let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
@@ -254,10 +289,11 @@ let g:EchoFuncKeyNext="<C-n>"
     "let g:LookupFile_TagExpr = '"./filenametags"'
 "endif
 
-" DoxygenToolkit settings
-"let g:DoxygenToolkit_briefTag_pre="@Synopsis  " 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DoxygenToolkit
+"let g:DoxygenToolkit_briefTag_pre="@Synopsis " 
 "let g:DoxygenToolkit_paramTag_pre="@Param " 
-let g:DoxygenToolkit_returnTag="@Returns   " 
+"let g:DoxygenToolkit_returnTag="@Returns " 
 "let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
 "let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
 let g:DoxygenToolkit_authorName="Jun Xie" 
@@ -268,7 +304,8 @@ nnoremap <F2>f :Dox
 nnoremap <F2>b :DoxBlock
 nnoremap <F2>c O/** */<Left><Left>
 
-" FuzzyFinder settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FuzzyFinder
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem = 400
@@ -281,3 +318,13 @@ nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
 nnoremap <silent> <leader>b :FufBookmarkFile<CR>
 nnoremap <silent> <leader>d :FufDir<CR>
 nnoremap <silent> <leader>] :FufTagWithCursorWord!<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YankRing
+nnoremap <silent> <F6> :YRShow<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CCTree
+"let g:CCTreeCscopeDb = "cscope.out"
+"nnoremap <silent> <F10> :CCTreeLoadXRefDBFromDisk cctree.out<CR>
+nnoremap <silent> <F10> :CCTreeLoadDB<CR>
