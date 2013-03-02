@@ -313,6 +313,7 @@ nnoremap <silent> <leader>f :FufCoverageFile<CR>
 nnoremap <silent> <leader>F :FufFile<CR>
 nnoremap <silent> <leader>t :FufTag<CR>
 nnoremap <silent> <leader>r :FufMruFileInCwd<CR>
+nnoremap <silent> <leader>R :FufMruFile<CR>
 nnoremap <silent> <leader>u :FufBuffer<CR>
 nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
 nnoremap <silent> <leader>b :FufBookmarkFile<CR>
@@ -326,5 +327,19 @@ nnoremap <silent> <F6> :YRShow<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CCTree
 "let g:CCTreeCscopeDb = "cscope.out"
-"nnoremap <silent> <F10> :CCTreeLoadXRefDBFromDisk cctree.out<CR>
-nnoremap <silent> <F10> :CCTreeLoadDB<CR>
+" using my own command to generate cctree.out because cctree cannot parse the
+" one which ccglue generates.
+nnoremap <silent> <F10> :MyCCTreeLoadXRefDB<CR>
+nnoremap <silent> <C-F10> :MyCCTreeLoadDB<CR>
+
+command! -nargs=0 MyCCTreeLoadXRefDB call MyCCTreeLoadDBFunc(0)
+command! -nargs=0 MyCCTreeLoadDB call MyCCTreeLoadDBFunc(1)
+
+function! MyCCTreeLoadDBFunc(rebuild)
+if a:rebuild==1 || !filereadable("cctree.out")
+    :CCTreeLoadDB cscope.out
+    :CCTreeSaveXRefDB cctree.out
+else
+    :CCTreeLoadXRefDBFromDisk cctree.out
+endif
+endfunction
