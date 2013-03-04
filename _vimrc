@@ -311,9 +311,10 @@ nnoremap <F2>c O/** */<Left><Left>
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem = 400
-nnoremap <silent> <leader>f :FufCoverageFile<CR>
-nnoremap <silent> <leader>F :FufFile<CR>
-nnoremap <silent> <leader>t :FufTag<CR>
+nnoremap <silent> <leader>f :FufFile<CR>
+nnoremap <silent> <leader>F :FufCoverageFile<CR>
+nnoremap <silent> <leader>t :FufBufferTag<CR>
+nnoremap <silent> <leader>T :FufTag<CR>
 nnoremap <silent> <leader>r :FufMruFileInCwd<CR>
 nnoremap <silent> <leader>R :FufMruFile<CR>
 nnoremap <silent> <leader>u :FufBuffer<CR>
