@@ -135,6 +135,7 @@ Bundle 'Lokaltog/vim-powerline'
 " L9(required by FuzzyFinder)
 Bundle 'L9' 
 Bundle 'FuzzyFinder'
+Bundle 'visSum.vim'
 
 " programming
 Bundle 'a.vim'
@@ -152,7 +153,8 @@ Bundle 'tpope/vim-fugitive'
 "Bundle 'minibufexpl.vim'
 "Bundle "bufexplorer.zip"
 Bundle 'scrooloose/nerdtree'
-Bundle 'taglist.vim'
+"Bundle 'taglist.vim'
+Bundle 'Tagbar'
 "Bundle 'pright/winmanager--Fox'
 
 filetype plugin indent on     " required!
@@ -193,11 +195,11 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" taglist
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Use_Right_Window=1
-nnoremap <silent> <F4> :TlistToggle<CR>
+"" taglist
+"let Tlist_Show_One_File=1
+"let Tlist_Exit_OnlyWindow=1
+"let Tlist_Use_Right_Window=1
+"nnoremap <silent> <F4> :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" winmanager
@@ -343,3 +345,8 @@ else
     :CCTreeLoadXRefDBFromDisk cctree.out
 endif
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar
+let g:tagbar_sort = 0
+nnoremap <silent> <F4> :TagbarToggle<CR>
