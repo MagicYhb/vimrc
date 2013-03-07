@@ -145,10 +145,13 @@ Bundle 'DoxygenToolkit.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'pright/CCTree'
 Bundle 'pright/stl-tags'
-"Bundle 'clang-complete'
+Bundle 'pright/mytags'
 Bundle 'OmniCppComplete'
+"Bundle 'clang-complete'
+"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'code_complete'
 Bundle 'pright/snipmate.vim'
+"Bundle 'UltiSnips'
 Bundle 'tpope/vim-fugitive'
 "Bundle 'minibufexpl.vim'
 "Bundle "bufexplorer.zip"
@@ -334,7 +337,7 @@ nnoremap <silent> <F6> :YRShow<CR>
 " using my own command to generate cctree.out because cctree cannot parse the
 " one which ccglue generates.
 nnoremap <silent> <F10> :MyCCTreeLoadXRefDB<CR>
-nnoremap <silent> <C-F10> :MyCCTreeLoadDB<CR>
+nnoremap <silent> <F10>r :MyCCTreeLoadDB<CR>
 
 command! -nargs=0 MyCCTreeLoadXRefDB call MyCCTreeLoadDBFunc(0)
 command! -nargs=0 MyCCTreeLoadDB call MyCCTreeLoadDBFunc(1)
