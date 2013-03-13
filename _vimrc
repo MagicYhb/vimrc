@@ -21,6 +21,9 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
+" relative line number
+set rnu
+
 " tab width
 set tabstop=4
 set shiftwidth=4
@@ -145,6 +148,7 @@ Bundle 'DoxygenToolkit.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'pright/CCTree'
 Bundle 'pright/stl-tags'
+Bundle 'pright/glibc-tags'
 Bundle 'pright/mytags'
 Bundle 'OmniCppComplete'
 "Bundle 'clang-complete'
@@ -240,6 +244,8 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags
 set tags+=~/.vim/bundle/stl-tags/tags
+set tags+=~/.vim/bundle/glibc-tags/tags
+"set tags+=~/.vim/bundle/mytags/hi3716c_sdk50_framework_base.tags
 if filereadable("tags")
     set tags+=tags
 endif
