@@ -128,6 +128,7 @@ Bundle 'stlrefvim'
 " general utils
 Bundle 'Vimball'
 Bundle 'grep.vim'
+"Bundle 'ack.vim'
 Bundle 'YankRing.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
@@ -139,6 +140,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'L9' 
 Bundle 'FuzzyFinder'
 Bundle 'visSum.vim'
+Bundle 'Tabular'
 
 " programming
 Bundle 'a.vim'
@@ -269,7 +271,7 @@ nnoremap <silent> <F12> :A<CR>
 nnoremap <silent> <F5> :Rgrep<CR>
 let Grep_Default_Filelist = '*.c *.cpp *.h'
 let Grep_Skip_Files = '*.bak *~'
-let Grep_Default_ptions = '-i'
+let Grep_Default_Options = '-i'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OmniCppComplete
