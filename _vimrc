@@ -165,6 +165,8 @@ Bundle 'scrooloose/nerdtree'
 "Bundle 'taglist.vim'
 Bundle 'Tagbar'
 "Bundle 'pright/winmanager--Fox'
+Bundle 'elzr/vim-json'
+Bundle 'mattn/zencoding-vim'
 
 filetype plugin indent on     " required!
 " Brief help
