@@ -120,6 +120,7 @@ Bundle 'gmarik/vundle'
 " My bundles
 " color scheme
 Bundle 'peaksea'
+Bundle 'blackboard.vim'
 
 " documents
 Bundle 'pright/vimcdoc'
@@ -180,16 +181,18 @@ filetype plugin indent on     " required!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
-if $TERM!="linux"
-    if has("gui_running") 
-        set t_Co=256 
-        "set term=xterm-256color
-        set term=xterm
-        set guifont=Monaco
-    endif
-    colors peaksea 
-    set background=dark 
+if !has("gui_running") 
+    set t_Co=256 
+    "set term=xterm-256color
+    "set term=xterm
+else
+    set guioptions-=T
+    set guifont=Monaco
+    "colorscheme blackboard
 endif
+
+set background=dark 
+colorscheme peaksea 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QuickFix
