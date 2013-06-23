@@ -206,7 +206,8 @@ set helplang=cn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdTree
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+let NERDTreeWinPos="right"
+nnoremap <silent> <F4> :NERDTreeToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -214,7 +215,7 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 "let Tlist_Show_One_File=1
 "let Tlist_Exit_OnlyWindow=1
 "let Tlist_Use_Right_Window=1
-"nnoremap <silent> <F4> :TlistToggle<CR>
+"nnoremap <silent> <F3> :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" winmanager
@@ -367,4 +368,5 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 let g:tagbar_sort = 0
-nnoremap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_left = 1
+nnoremap <silent> <F3> :TagbarToggle<CR>
