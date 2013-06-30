@@ -142,6 +142,7 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'visSum.vim'
 Bundle 'Tabular'
+Bundle 'terryma/vim-multiple-cursors'
 
 " programming
 Bundle 'a.vim'
