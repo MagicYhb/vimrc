@@ -343,7 +343,8 @@ nnoremap <silent> <leader>d :FufDir<CR>
 nnoremap <silent> <leader>] :FufTagWithCursorWord!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YankRing
+"" YankRing
+let g:yankring_history_file = '.yankring_history'
 nnoremap <silent> <F6> :YRShow<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
