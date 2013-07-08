@@ -182,18 +182,20 @@ filetype plugin indent on     " required!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
-if !has("gui_running") 
-    set t_Co=256 
-    "set term=xterm-256color
-    "set term=xterm
-else
-    set guioptions-=T
-    set guifont=Monaco
-    "colorscheme blackboard
-endif
+if $TERM!="linux"
+    if !has("gui_running") 
+        set t_Co=256 
+        "set term=xterm-256color
+        "set term=xterm
+    else
+        set guioptions-=T
+        set guifont=Monaco
+        "colorscheme blackboard
+    endif
 
-set background=dark 
-colorscheme peaksea 
+    set background=dark 
+    colorscheme peaksea 
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QuickFix
