@@ -143,6 +143,7 @@ Bundle 'FuzzyFinder'
 Bundle 'visSum.vim'
 Bundle 'Tabular'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'kshenoy/vim-signature'
 
 " programming
 Bundle 'a.vim'
