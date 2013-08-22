@@ -44,6 +44,11 @@ set nocp
 
 set ignorecase smartcase
 
+map [[ ?{<CR>w99[{
+map ][ /}<CR>b99]}
+map ]] j0[[%/{<CR>
+map [] k$][%?}<CR>
+
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
