@@ -85,6 +85,9 @@ if has("autocmd")
     augroup vimrcEx
         au!
 
+        " Make the quickfix window open as the bottommost one
+        autocmd FileType qf wincmd J
+
         " For all text files set 'textwidth' to 78 characters.
         autocmd FileType text setlocal textwidth=78
 
@@ -217,8 +220,8 @@ set helplang=cn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdTree
-let NERDTreeWinPos="right"
-nnoremap <silent> <F4> :NERDTreeToggle<CR>
+let NERDTreeWinPos="left"
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -380,5 +383,5 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 let g:tagbar_sort = 0
-let g:tagbar_left = 1
-nnoremap <silent> <F3> :TagbarToggle<CR>
+let g:tagbar_left = 0
+nnoremap <silent> <F4> :TagbarToggle<CR>
