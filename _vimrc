@@ -155,6 +155,7 @@ Bundle 'Tabular'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'kshenoy/vim-signature'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
 
 " programming
 Bundle 'a.vim'
