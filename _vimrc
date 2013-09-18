@@ -154,6 +154,7 @@ Bundle 'visSum.vim'
 Bundle 'Tabular'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'kshenoy/vim-signature'
+Bundle 'tpope/vim-surround'
 
 " programming
 Bundle 'a.vim'
@@ -179,6 +180,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Tagbar'
 "Bundle 'pright/winmanager--Fox'
 Bundle 'elzr/vim-json'
+Bundle 'plasticboy/vim-markdown'
 Bundle 'mattn/zencoding-vim'
 
 filetype plugin indent on     " required!
