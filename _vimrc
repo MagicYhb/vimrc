@@ -154,6 +154,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 
 " programming
+Bundle 'TaskList.vim'
 Bundle 'a.vim'
 Bundle 'pright/c.vim'
 Bundle 'echofunc.vim'
@@ -168,6 +169,7 @@ Bundle 'davidhalter/jedi-vim'
 "Bundle 'clang-complete'
 "Bundle 'Valloric/YouCompleteMe'
 "Bundle 'code_complete'
+Bundle 'pep8'
 Bundle 'pright/snipmate.vim'
 "Bundle 'UltiSnips'
 Bundle 'tpope/vim-fugitive'
@@ -210,8 +212,8 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QuickFix
-nnoremap <silent> <F7> :cp<CR>
-nnoremap <silent> <F8> :cn<CR>
+nnoremap <silent> <leader>n :cn<CR>
+nnoremap <silent> <leader>m :cp<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimcdoc
@@ -385,3 +387,11 @@ endfunction
 let g:tagbar_sort = 0
 let g:tagbar_left = 0
 nnoremap <silent> <F4> :TagbarToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TaskList
+map <leader>v <Plug>TaskList
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pep8
+let g:pep8_map='<leader>8'
