@@ -213,7 +213,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QuickFix
 nnoremap <silent> <leader>n :cn<CR>
-nnoremap <silent> <leader>m :cp<CR>
+nnoremap <silent> <leader>p :cp<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimcdoc
