@@ -2,7 +2,12 @@
 
 home=$HOME
 cwd=$(pwd)
+vundle=$home/.vim/bundle/vundle
 
 ln -sf $cwd/_vimrc $home/.vimrc
+if [ ! -d $vundle ]; then
+    git clone http://github.com/gmarik/vundle.git $vundle
+fi
+vim -c "BundleInstall" +"qall"
 
 exit 0
