@@ -152,6 +152,9 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'kshenoy/vim-signature'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+" webapi-vim(required by gist-vim)
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
 
 " programming
 Bundle 'TaskList.vim'
