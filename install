@@ -2,12 +2,12 @@
 
 home=$HOME
 cwd=$(pwd)
-vundle=$home/.vim/bundle/vundle
+vundle=$home/.vim/bundle/Vundle.vim
 
 ln -sf $cwd/_vimrc $home/.vimrc
 if [ ! -d $vundle ]; then
-    git clone http://github.com/gmarik/vundle.git $vundle
+    git clone https://github.com/gmarik/Vundle.vim.git $vundle
 fi
-vim -c "BundleInstall" +"qall"
+vim -c "PluginInstall" +"qall"
 
 exit 0

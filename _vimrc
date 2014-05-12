@@ -113,17 +113,19 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
-" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-" My bundles
+" My plugins
 " color scheme
 Bundle 'peaksea'
 Bundle 'blackboard.vim'
@@ -186,15 +188,20 @@ Bundle 'elzr/vim-json'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'mattn/zencoding-vim'
 
-filetype plugin indent on     " required!
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" Put your non-Plugin stuff after this line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -319,12 +326,12 @@ let g:EchoFuncKeyNext="<C-n>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lookupfile
-"let g:LookupFile_MinPatLength = 2               "æœ€å°‘è¾“å…¥2ä¸ªå­—ç¬¦æ‰å¼€å§‹æŸ¥æ‰¾
-"let g:LookupFile_PreserveLastPattern = 0        "ä¸ä¿å­˜ä¸Šæ¬¡æŸ¥æ‰¾çš„å­—ç¬¦ä¸²
-"let g:LookupFile_PreservePatternHistory = 1     "ä¿å­˜æŸ¥æ‰¾å†å²
-"let g:LookupFile_AlwaysAcceptFirst = 1          "å›è½¦æ‰“å¼€ç¬¬ä¸€ä¸ªåŒ¹é…é¡¹ç›®
-"let g:LookupFile_AllowNewFiles = 0              "ä¸å…è®¸åˆ›å»ºä¸å­˜åœ¨çš„æ–‡ä»¶
-"if filereadable("./filenametags")                "è®¾ç½®tagæ–‡ä»¶çš„åå­—
+"let g:LookupFile_MinPatLength = 2               "×îÉÙÊäÈë2¸ö×Ö·û²Å¿ªÊ¼²éÕÒ
+"let g:LookupFile_PreserveLastPattern = 0        "²»±£´æÉÏ´Î²éÕÒµÄ×Ö·û´®
+"let g:LookupFile_PreservePatternHistory = 1     "±£´æ²éÕÒÀúÊ·
+"let g:LookupFile_AlwaysAcceptFirst = 1          "»Ø³µ´ò¿ªµÚÒ»¸öÆ¥ÅäÏîÄ¿
+"let g:LookupFile_AllowNewFiles = 0              "²»ÔÊĞí´´½¨²»´æÔÚµÄÎÄ¼ş
+"if filereadable("./filenametags")                "ÉèÖÃtagÎÄ¼şµÄÃû×Ö
     "let g:LookupFile_TagExpr = '"./filenametags"'
 "endif
 
