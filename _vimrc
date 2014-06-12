@@ -21,6 +21,9 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
+" line number
+set nu
+
 " relative line number
 set rnu
 
