@@ -189,7 +189,7 @@ Plugin 'Tagbar'
 "Plugin 'pright/winmanager--Fox'
 Plugin 'elzr/vim-json'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'mattn/zencoding-vim'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
