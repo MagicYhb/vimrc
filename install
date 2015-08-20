@@ -6,7 +6,7 @@ vundle=$home/.vim/bundle/Vundle.vim
 
 ln -sf $cwd/_vimrc $home/.vimrc
 if [ ! -d $vundle ]; then
-    git clone https://github.com/gmarik/Vundle.vim.git $vundle
+    git clone https://github.com/VundleVim/Vundle.vim.git $vundle
 fi
 vim -c "PluginInstall" +"qall"
 

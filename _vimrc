@@ -152,7 +152,8 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'L9' 
 Plugin 'FuzzyFinder'
 Plugin 'visSum.vim'
-Plugin 'Tabular'
+"Plugin 'Tabular'
+Plugin 'junegunn/vim-easy-align'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kshenoy/vim-signature'
 Plugin 'tpope/vim-surround'
@@ -412,3 +413,12 @@ let g:pep8_map='<leader>8'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gist-vim
 let g:gist_detect_filetype = 1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"nmap ga <Plug>(EasyAlign)
