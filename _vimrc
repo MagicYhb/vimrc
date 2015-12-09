@@ -438,5 +438,5 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_c_checkers = []
 let g:syntastic_cpp_checkers = []
 let g:syntastic_java_checkers = []
-let g:syntastic_python_checkers = ['python', 'pep8']
+let g:syntastic_python_checkers = ['python']
 let g:syntastic_sh_checkers = ['sh', 'shellcheck']
