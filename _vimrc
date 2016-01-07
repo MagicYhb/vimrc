@@ -158,6 +158,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kshenoy/vim-signature'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-obsession'
+Plugin 'dhruvasagar/vim-prosession'
 " webapi-vim(required by gist-vim)
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
@@ -440,3 +442,4 @@ let g:syntastic_cpp_checkers = []
 let g:syntastic_java_checkers = []
 let g:syntastic_python_checkers = ['python']
 let g:syntastic_sh_checkers = ['sh', 'shellcheck']
+
