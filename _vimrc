@@ -36,10 +36,10 @@ set smarttab
 
 " encoding
 let &termencoding=&encoding
-"set fileencoding=utf-8
-"set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-set fileencoding=cp936
-set fileencodings=cp936,ucs-bom,utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+"set fileencoding=cp936
+"set fileencodings=cp936,ucs-bom,utf-8
 
 set updatetime=100
 
@@ -333,12 +333,12 @@ let g:EchoFuncKeyNext="<C-n>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lookupfile
-"let g:LookupFile_MinPatLength = 2               "×îÉÙÊäÈë2¸ö×Ö·û²Å¿ªÊ¼²éÕÒ
-"let g:LookupFile_PreserveLastPattern = 0        "²»±£´æÉÏ´Î²éÕÒµÄ×Ö·û´®
-"let g:LookupFile_PreservePatternHistory = 1     "±£´æ²éÕÒÀúÊ·
-"let g:LookupFile_AlwaysAcceptFirst = 1          "»Ø³µ´ò¿ªµÚÒ»¸öÆ¥ÅäÏîÄ¿
-"let g:LookupFile_AllowNewFiles = 0              "²»ÔÊĞí´´½¨²»´æÔÚµÄÎÄ¼ş
-"if filereadable("./filenametags")                "ÉèÖÃtagÎÄ¼şµÄÃû×Ö
+"let g:LookupFile_MinPatLength = 2               "æœ€å°‘è¾“å…¥2ä¸ªå­—ç¬¦æ‰å¼€å§‹æŸ¥æ‰¾
+"let g:LookupFile_PreserveLastPattern = 0        "ä¸ä¿å­˜ä¸Šæ¬¡æŸ¥æ‰¾çš„å­—ç¬¦ä¸²
+"let g:LookupFile_PreservePatternHistory = 1     "ä¿å­˜æŸ¥æ‰¾å†å²
+"let g:LookupFile_AlwaysAcceptFirst = 1          "å›è½¦æ‰“å¼€ç¬¬ä¸€ä¸ªåŒ¹é…é¡¹ç›®
+"let g:LookupFile_AllowNewFiles = 0              "ä¸å…è®¸åˆ›å»ºä¸å­˜åœ¨çš„æ–‡ä»¶
+"if filereadable("./filenametags")                "è®¾ç½®tagæ–‡ä»¶çš„åå­—
     "let g:LookupFile_TagExpr = '"./filenametags"'
 "endif
 
