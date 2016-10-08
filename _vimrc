@@ -44,7 +44,6 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set updatetime=100
 
 set completeopt=longest,menu
-set nocp
 
 set ignorecase smartcase
 
@@ -214,17 +213,17 @@ filetype plugin indent on    " required
 " Color
 if $TERM!="linux"
     if !has("gui_running") 
-        set t_Co=256 
-        "set term=xterm-256color
         "set term=xterm
+        set t_Co=256 
     else
         set guioptions-=T
         set guifont=Monaco
-        "colorscheme blackboard
     endif
 
     set background=dark 
     colorscheme peaksea 
+else
+    colorscheme blackboard
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
