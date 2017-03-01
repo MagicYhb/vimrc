@@ -2,12 +2,13 @@
 
 home=$HOME
 cwd=$(pwd)
-vundle=$home/.vim/bundle/Vundle.vim
+plugm=$home/.vim/autoload/plug.vim
 
 ln -sf $cwd/_vimrc $home/.vimrc
-if [ ! -d $vundle ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git $vundle
+if [ ! -f $plugm ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-vim -c "PluginInstall" +"qall"
+vim -c "PlugInstall" +"qall"
 
 exit 0

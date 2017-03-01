@@ -114,100 +114,78 @@ if !exists(":DiffOrig")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-filetype off                   " required!
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" vim-plug
+call plug#begin('~/.vim/plugged')
 
 " My plugins
 " color scheme
-Plugin 'peaksea'
-Plugin 'blackboard.vim'
+Plug 'peaksea'
+Plug 'blackboard.vim'
 
 " documents
-Plugin 'pright/vimcdoc'
-Plugin 'stlrefvim'
+Plug 'pright/vimcdoc'
+Plug 'stlrefvim'
 
 " general utils
-Plugin 'Vimball'
-Plugin 'grep.vim'
-"Plugin 'ack.vim'
-Plugin 'YankRing.vim'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Lokaltog/vim-powerline'
+Plug 'Vimball'
+Plug 'grep.vim'
+"Plug 'ack.vim'
+Plug 'YankRing.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 " genutils(required by lookupfile)
-"Plugin 'genutils'
-"Plugin 'lookupfile'
-"Plugin 'Command-T'
+"Plug 'genutils'
+"Plug 'lookupfile'
+"Plug 'Command-T'
 " L9(required by FuzzyFinder)
-Plugin 'L9' 
-Plugin 'FuzzyFinder'
-Plugin 'visSum.vim'
-"Plugin 'Tabular'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'kshenoy/vim-signature'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-obsession'
-Plugin 'dhruvasagar/vim-prosession'
+Plug 'L9' 
+Plug 'FuzzyFinder'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'visSum.vim'
+"Plug 'Tabular'
+Plug 'junegunn/vim-easy-align'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'kshenoy/vim-signature'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 " webapi-vim(required by gist-vim)
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 
 " programming
-Plugin 'TaskList.vim'
-Plugin 'a.vim'
-Plugin 'pright/c.vim'
-Plugin 'echofunc.vim'
-Plugin 'DoxygenToolkit.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'pright/CCTree'
-Plugin 'pright/stl-tags'
-Plugin 'pright/glibc-tags'
-Plugin 'pright/mytags'
-Plugin 'OmniCppComplete'
-Plugin 'davidhalter/jedi-vim'
-"Plugin 'clang-complete'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'code_complete'
-Plugin 'pep8'
-Plugin 'pright/snipmate.vim'
-"Plugin 'UltiSnips'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'minibufexpl.vim'
-"Plugin "bufexplorer.zip"
-Plugin 'scrooloose/nerdtree'
-"Plugin 'taglist.vim'
-Plugin 'Tagbar'
-"Plugin 'pright/winmanager--Fox'
-Plugin 'elzr/vim-json'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/syntastic'
+Plug 'TaskList.vim'
+Plug 'a.vim'
+Plug 'pright/c.vim'
+Plug 'echofunc.vim'
+Plug 'DoxygenToolkit.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'pright/CCTree'
+Plug 'pright/stl-tags'
+Plug 'pright/glibc-tags'
+Plug 'pright/mytags'
+Plug 'OmniCppComplete'
+Plug 'davidhalter/jedi-vim'
+"Plug 'clang-complete'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'code_complete'
+Plug 'pep8'
+Plug 'pright/snipmate.vim'
+"Plug 'UltiSnips'
+Plug 'tpope/vim-fugitive'
+"Plug 'minibufexpl.vim'
+"Plug "bufexplorer.zip"
+Plug 'scrooloose/nerdtree'
+"Plug 'taglist.vim'
+Plug 'Tagbar'
+"Plug 'pright/winmanager--Fox'
+Plug 'elzr/vim-json'
+Plug 'plasticboy/vim-markdown'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/syntastic'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
