@@ -102,7 +102,7 @@ if has("autocmd")
     augroup END
 else
     " always set autoindenting on
-    set autoindent		
+    set autoindent
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -132,13 +132,15 @@ Plug 'grep.vim'
 "Plug 'ack.vim'
 Plug 'YankRing.vim'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
+"Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
+Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 " genutils(required by lookupfile)
 "Plug 'genutils'
 "Plug 'lookupfile'
 "Plug 'Command-T'
 " L9(required by FuzzyFinder)
-Plug 'L9' 
+Plug 'L9'
 Plug 'FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'visSum.vim'
@@ -190,16 +192,16 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
 if $TERM!="linux"
-    if !has("gui_running") 
+    if !has("gui_running")
         "set term=xterm
-        set t_Co=256 
+        set t_Co=256
     else
         set guioptions-=T
         set guifont=Monaco
     endif
 
-    set background=dark 
-    colorscheme peaksea 
+    set background=dark
+    colorscheme peaksea
 else
     colorscheme blackboard
 endif
@@ -305,7 +307,7 @@ set foldlevel=100
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " echofunc
-let g:EchoFuncKeyPrev="<C-p>" 
+let g:EchoFuncKeyPrev="<C-p>"
 let g:EchoFuncKeyNext="<C-n>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -321,12 +323,12 @@ let g:EchoFuncKeyNext="<C-n>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DoxygenToolkit
-"let g:DoxygenToolkit_briefTag_pre="@Synopsis " 
-"let g:DoxygenToolkit_paramTag_pre="@Param " 
-"let g:DoxygenToolkit_returnTag="@Returns " 
-"let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
-"let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
-let g:DoxygenToolkit_authorName="Jun Xie" 
+"let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+"let g:DoxygenToolkit_paramTag_pre="@Param "
+"let g:DoxygenToolkit_returnTag="@Returns "
+"let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+"let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Jun Xie"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
 nnoremap <F2>a :DoxAuthor
@@ -420,3 +422,6 @@ let g:syntastic_java_checkers = []
 let g:syntastic_python_checkers = ['python']
 let g:syntastic_sh_checkers = ['sh', 'shellcheck']
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-airline
+let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
