@@ -143,6 +143,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'L9'
 Plug 'FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'visSum.vim'
 "Plug 'Tabular'
 Plug 'junegunn/vim-easy-align'
