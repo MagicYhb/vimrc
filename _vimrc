@@ -129,7 +129,7 @@ Plug 'stlrefvim'
 " general utils
 "Plug 'Vimball'
 "Plug 'grep.vim'
-"Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 Plug 'YankRing.vim'
 Plug 'Lokaltog/vim-easymotion'
 "Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
@@ -502,3 +502,11 @@ nnoremap <silent> <leader>c :History:<CR>
 nnoremap <silent> <leader>u :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+let g:ackhighlight = 1
+nnoremap <F5> :Ack!<Space>
