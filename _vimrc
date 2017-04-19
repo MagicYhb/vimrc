@@ -127,21 +127,17 @@ Plug 'pright/vimcdoc'
 Plug 'stlrefvim'
 
 " general utils
-Plug 'Vimball'
-Plug 'grep.vim'
-"Plug 'ack.vim'
+"Plug 'Vimball'
+"Plug 'grep.vim'
+"Plug 'mileszs/ack.vim'
 Plug 'YankRing.vim'
 Plug 'Lokaltog/vim-easymotion'
 "Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
-" genutils(required by lookupfile)
-"Plug 'genutils'
-"Plug 'lookupfile'
+"Plug 'genutils' | Plug 'lookupfile'
 "Plug 'Command-T'
-" L9(required by FuzzyFinder)
-Plug 'L9'
-Plug 'FuzzyFinder'
+"Plug 'L9' | Plug 'FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'visSum.vim'
@@ -153,9 +149,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
-" webapi-vim(required by gist-vim)
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " programming
 Plug 'TaskList.vim'
@@ -287,10 +281,10 @@ nnoremap <silent> <F12> :A<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep.vim
-nnoremap <silent> <F5> :Rgrep<CR>
-let Grep_Default_Filelist = '*.c *.cpp *.h'
-let Grep_Skip_Files = '*.bak *~'
-let Grep_Default_Options = '-i'
+"nnoremap <silent> <F5> :Rgrep<CR>
+"let Grep_Default_Filelist = '*.c *.cpp *.h'
+"let Grep_Skip_Files = '*.bak *~'
+"let Grep_Default_Options = '-i'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OmniCppComplete
@@ -339,20 +333,20 @@ nnoremap <F2>c O/** */<Left><Left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FuzzyFinder
-let g:fuf_modesDisable = []
-let g:fuf_mrufile_maxItem = 400
-let g:fuf_mrucmd_maxItem = 400
-nnoremap <silent> <leader>f :FufFile<CR>
-nnoremap <silent> <leader>F :FufCoverageFile<CR>
-nnoremap <silent> <leader>t :FufBufferTag<CR>
-nnoremap <silent> <leader>T :FufTag<CR>
-nnoremap <silent> <leader>r :FufMruFileInCwd<CR>
-nnoremap <silent> <leader>R :FufMruFile<CR>
-nnoremap <silent> <leader>u :FufBuffer<CR>
-nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
-nnoremap <silent> <leader>b :FufBookmarkFile<CR>
-nnoremap <silent> <leader>d :FufDir<CR>
-nnoremap <silent> <leader>] :FufTagWithCursorWord!<CR>
+"let g:fuf_modesDisable = []
+"let g:fuf_mrufile_maxItem = 400
+"let g:fuf_mrucmd_maxItem = 400
+"nnoremap <silent> <leader>f :FufFile<CR>
+"nnoremap <silent> <leader>F :FufCoverageFile<CR>
+"nnoremap <silent> <leader>t :FufBufferTag<CR>
+"nnoremap <silent> <leader>T :FufTag<CR>
+"nnoremap <silent> <leader>r :FufMruFileInCwd<CR>
+"nnoremap <silent> <leader>R :FufMruFile<CR>
+"nnoremap <silent> <leader>u :FufBuffer<CR>
+"nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
+"nnoremap <silent> <leader>b :FufBookmarkFile<CR>
+"nnoremap <silent> <leader>d :FufDir<CR>
+"nnoremap <silent> <leader>] :FufTagWithCursorWord!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" YankRing
@@ -426,3 +420,85 @@ let g:syntastic_sh_checkers = ['sh', 'shellcheck']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline
 let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf.vim
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'update_tags'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-p> <plug>(fzf-complete-path)
+imap <c-x><c-f> <plug>(fzf-complete-file)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>t :BTags<CR>
+nnoremap <silent> <leader>T :Tags<CR>
+nnoremap <silent> <leader>r :History<CR>
+nnoremap <silent> <leader>c :History:<CR>
+nnoremap <silent> <leader>u :Buffers<CR>
+nnoremap <silent> <leader>g :Ag<CR>
+nnoremap <silent> <leader>G :Ag!<CR>
