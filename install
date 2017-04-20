@@ -4,6 +4,7 @@ home=$HOME
 cwd=$(pwd)
 plugm=$home/.vim/autoload/plug.vim
 
+ln -sf $cwd/_agignore $home/.agignore
 ln -sf $cwd/_vimrc $home/.vimrc
 if [ ! -f $plugm ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

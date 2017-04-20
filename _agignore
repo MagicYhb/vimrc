@@ -1,0 +1,7 @@
+*.bak
+*~
+.*.swp
+cscope.*out
+cscope.files
+ctags.files
+tags
