@@ -506,7 +506,8 @@ nnoremap <silent> <leader>G :Ag!<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ack.vim
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  "let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
 endif
 let g:ackhighlight = 1
 nnoremap <F5> :Ack!<Space>
