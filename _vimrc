@@ -510,4 +510,4 @@ if executable('ag')
   let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
 endif
 let g:ackhighlight = 1
-nnoremap <F5> :Ack!<Space>
+nnoremap <F5> :Ack!<Space><C-R><C-W>
