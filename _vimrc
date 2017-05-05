@@ -164,7 +164,7 @@ Plug 'pright/stl-tags'
 Plug 'pright/glibc-tags'
 Plug 'pright/mytags'
 Plug 'OmniCppComplete'
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init' }
 "Plug 'clang-complete'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'code_complete'
