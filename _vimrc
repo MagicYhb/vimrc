@@ -147,8 +147,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'kshenoy/vim-signature'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
+Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'benmills/vimux'
 
@@ -314,7 +313,7 @@ let g:EchoFuncKeyNext="<C-n>"
 "let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
 "let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
 "if filereadable("./filenametags")                "设置tag文件的名字
-    "let g:LookupFile_TagExpr = '"./filenametags"'
+"let g:LookupFile_TagExpr = '"./filenametags"'
 "endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -366,12 +365,12 @@ command! -nargs=0 MyCCTreeLoadXRefDB call MyCCTreeLoadDBFunc(0)
 command! -nargs=0 MyCCTreeLoadDB call MyCCTreeLoadDBFunc(1)
 
 function! MyCCTreeLoadDBFunc(rebuild)
-if a:rebuild==1 || !filereadable("cctree.out")
-    :CCTreeLoadDB cscope.out
-    :CCTreeSaveXRefDB cctree.out
-else
-    :CCTreeLoadXRefDBFromDisk cctree.out
-endif
+    if a:rebuild==1 || !filereadable("cctree.out")
+        :CCTreeLoadDB cscope.out
+        :CCTreeSaveXRefDB cctree.out
+    else
+        :CCTreeLoadXRefDBFromDisk cctree.out
+    endif
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -424,30 +423,34 @@ let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf.vim
+" Setting ag as the default source for fzf
+if executable('ag')
+    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+endif
 " This is the default extra key bindings
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
 
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_colors = {
+            \ 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
@@ -471,14 +474,14 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 "   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
 "   :Ag! - Start fzf in fullscreen and display the preview window above
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+            \ call fzf#vim#ag(<q-args>,
+            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \                 <bang>0)
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -507,8 +510,8 @@ nnoremap <silent> <leader>G :Ag!<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ack.vim
 if executable('ag')
-  "let g:ackprg = 'ag --vimgrep'
-  let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
+    "let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
 endif
 let g:ackhighlight = 1
 nnoremap <F5> :Ack!<Space><C-R><C-W>
