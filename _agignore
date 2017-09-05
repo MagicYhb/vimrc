@@ -1,3 +1,7 @@
+*.[oad]
+*.img
+*.map
+*.el
 *.bak
 *~
 .*.swp
