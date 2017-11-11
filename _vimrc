@@ -128,7 +128,7 @@ Plug 'vim-scripts/stlrefvim'
 
 " general utils
 "Plug 'vim-scripts/Vimball'
-"Plug 'vim-scripts/grep.vim'
+Plug 'vim-scripts/grep.vim'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'Lokaltog/vim-easymotion'
@@ -281,10 +281,21 @@ nnoremap <silent> <F12> :A<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep.vim
-"nnoremap <silent> <F5> :Rgrep<CR>
-"let Grep_Default_Filelist = '*.c *.cpp *.h'
-"let Grep_Skip_Files = '*.bak *~'
-"let Grep_Default_Options = '-i'
+if !executable('ag')
+    let Grep_Default_Filelist = '*.c *.cpp *.h'
+    let Grep_Skip_Files = '*.bak *~'
+    let Grep_Default_Options = '-i'
+    nnoremap <silent> <F5> :Rgrep<CR>
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ack.vim
+if executable('ag')
+    "let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
+    let g:ackhighlight = 1
+    nnoremap <F5> :Ack!<Space><C-R><C-W>
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OmniCppComplete
@@ -506,16 +517,6 @@ nnoremap <silent> <leader>c :History:<CR>
 nnoremap <silent> <leader>u :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ack.vim
-if executable('ag')
-    "let g:ackprg = 'ag --vimgrep'
-    let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
-endif
-let g:ackhighlight = 1
-nnoremap <F5> :Ack!<Space><C-R><C-W>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
