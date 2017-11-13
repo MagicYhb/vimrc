@@ -180,7 +180,7 @@ Plug 'vim-scripts/Tagbar'
 Plug 'elzr/vim-json'
 Plug 'plasticboy/vim-markdown'
 Plug 'mattn/emmet-vim'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 
 call plug#end()
 
@@ -414,20 +414,20 @@ vmap <Enter> <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
-let g:syntastic_c_checkers = []
-let g:syntastic_cpp_checkers = []
-let g:syntastic_java_checkers = []
-let g:syntastic_python_checkers = ['python']
-let g:syntastic_sh_checkers = ['sh', 'shellcheck']
+"let g:syntastic_c_checkers = []
+"let g:syntastic_cpp_checkers = []
+"let g:syntastic_java_checkers = []
+"let g:syntastic_python_checkers = ['python']
+"let g:syntastic_sh_checkers = ['sh', 'shellcheck']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline
