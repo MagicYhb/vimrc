@@ -177,7 +177,7 @@ Plug 'tpope/vim-fugitive'
 "Plug 'vim-scripts/bufexplorer.zip'
 Plug 'scrooloose/nerdtree'
 "Plug 'vim-scripts/taglist.vim'
-Plug 'vim-scripts/Tagbar'
+Plug 'majutsushi/tagbar'
 "Plug 'pright/winmanager--Fox'
 Plug 'elzr/vim-json'
 Plug 'plasticboy/vim-markdown'
@@ -387,7 +387,7 @@ function! MyCCTreeLoadDBFunc(rebuild)
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar
+" tagbar
 let g:tagbar_sort = 0
 let g:tagbar_left = 0
 nnoremap <silent> <F4> :TagbarToggle<CR>
