@@ -154,7 +154,7 @@ Plug 'benmills/vimux'
 " programming
 Plug 'vim-scripts/TaskList.vim'
 Plug 'vim-scripts/a.vim'
-Plug 'pright/c.vim'
+"Plug 'pright/c.vim'
 Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
