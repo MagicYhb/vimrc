@@ -431,7 +431,7 @@ let g:syntastic_sh_checkers = ['sh', 'shellcheck']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline
-let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
+let g:airline#extensions#whitespace#enabled = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf.vim
