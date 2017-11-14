@@ -267,7 +267,7 @@ if filereadable("tags")
     set tags+=tags
 endif
 
-nnoremap <silent> <F11> :!update_tags &<CR>
+nnoremap <silent> <leader>u :!update_tags<CR>:cs reset<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minibufexpl
@@ -279,7 +279,7 @@ nnoremap <silent> <F11> :!update_tags &<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " a.vim
-nnoremap <silent> <F12> :A<CR>
+nnoremap <silent> <leader>a :A<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep.vim
@@ -517,7 +517,7 @@ nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>r :History<CR>
 nnoremap <silent> <leader>c :History:<CR>
-nnoremap <silent> <leader>u :Buffers<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
 
