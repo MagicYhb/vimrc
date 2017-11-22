@@ -150,6 +150,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'benmills/vimux'
+Plug 'dhruvasagar/vim-table-mode'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
@@ -554,3 +555,9 @@ map <Leader>vx :VimuxInterruptRunner<CR>
 
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
 map <Leader>vz :call VimuxZoomRunner()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-table-mode
+"let g:table_mode_corner='|'
+let g:table_mode_corner_corner = '+'
+"let g:table_mode_header_fillchar='='
