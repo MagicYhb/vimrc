@@ -151,6 +151,7 @@ Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'benmills/vimux'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'edkolev/promptline.vim'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
@@ -435,6 +436,7 @@ vmap <Enter> <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline_theme = 'dark'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf.vim
@@ -561,3 +563,13 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 "let g:table_mode_corner='|'
 let g:table_mode_corner_corner = '+'
 "let g:table_mode_header_fillchar='='
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nerdcommenter
+let g:NERDCustomDelimiters = {
+            \ 'asm': { 'left': '/*', 'right': '*/' }
+            \ }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" promptline
+let g:promptline_preset = 'clear'
