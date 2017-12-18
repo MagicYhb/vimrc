@@ -40,6 +40,7 @@ set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 "set fileencoding=cp936
 "set fileencodings=cp936,ucs-bom,utf-8
+set encoding=utf-8
 
 set updatetime=100
 
@@ -437,6 +438,7 @@ vmap <Enter> <Plug>(EasyAlign)
 " vim-airline
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme = 'dark'
+let g:airline_powerline_fonts = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf.vim
