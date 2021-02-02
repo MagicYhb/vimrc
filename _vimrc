@@ -369,10 +369,10 @@ let g:EchoFuncKeyNext="<C-n>"
 let g:DoxygenToolkit_authorName="MagicYang"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
-nnoremap <F8>a :DoxAuthor
-nnoremap <F8>f :Dox
-nnoremap <F8>b :DoxBlock
-nnoremap <F8>c O/** */<Left><Left>
+nnoremap <F9>a :DoxAuthor
+nnoremap <F9>f :Dox
+nnoremap <F9>b :DoxBlock
+nnoremap <F9>c O/** */<Left><Left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FuzzyFinder
@@ -552,6 +552,7 @@ nnoremap <silent> <leader>c :History:<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
+nnoremap <silent> <leader>m :Marks<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
