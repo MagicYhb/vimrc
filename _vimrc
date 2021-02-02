@@ -2,9 +2,12 @@
 " Global settings
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+" set compatible 就是让 vim 关闭所有扩bai展的功能，尽du量模拟 vi 的行为。
+" set nocompatible，关闭兼容模式。由于这个选项是最最基础的选项，会连带很多其它选项发生变动（称作副作用），所以它必需是第一个设定的选项。
 set nocompatible
 
 " Always show the statusline
+" 默认值为 1, 无法显示状态栏
 set laststatus=2
 
 " allow backspacing over everything in insert mode
@@ -28,11 +31,17 @@ set nu
 set rnu
 
 " tab width
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
-set smarttab
+set smarttab        " 在行首输入 tab 时插入宽度为 shiftwidth 的空白，在其他地方按 tabstop 和 softtabstop 处理
+set expandtab       " 如果此时需要输入真正的 tab，则输入 Ctrl+V, tab，在 Windows 下是 Ctrl+Q, tab
+set tabstop=4       " 设定 tab 长度为 4
+set shiftwidth=4    " 设定 << 和 >> 命令移动时的宽度为 4
+set softtabstop=4   " 设定编辑模式下 tab 的视在宽度
+"set noexpandtab
+"set tabstop=8
+"set shiftwidth=8
+"set softtabstop=8
+"set copyindent
+"set preserveindent
 
 " encoding
 let &termencoding=&encoding
@@ -55,6 +64,11 @@ let mapleader = ","
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
+
+" inoremap
+" i代表是在插入模式（insert）下有效
+" nore表示不递归no recursion
+" map映射
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -153,20 +167,25 @@ Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'benmills/vimux'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'edkolev/promptline.vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'dkprice/vim-easygrep'
+Plug 'lfv89/vim-interestingwords'
+Plug 'vim-scripts/VisIncr'
+Plug 'justinmk/vim-dirvish'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
-Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
 "Plug 'pright/c.vim'
 Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pright/CCTree'
-Plug 'pright/stl-tags'
-Plug 'pright/glibc-tags'
-Plug 'pright/mytags'
-Plug 'vim-scripts/OmniCppComplete'
-Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init' }
+"Plug 'pright/stl-tags'
+"Plug 'pright/glibc-tags'
+"Plug 'pright/mytags'
+Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
+Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'vim-scripts/clang-complete'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'vim-scripts/code_complete'
@@ -176,16 +195,25 @@ Plug 'pright/vim-snippets'
 "Plug 'drmingdrmer/xptemplate'
 "Plug 'vim-scripts/UltiSnips'
 Plug 'tpope/vim-fugitive'
+if has('nvim') || has('patch-8.0.902')
+    Plug 'mhinz/vim-signify'
+else
+    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+endif
 "Plug 'vim-scripts/minibufexpl.vim'
 "Plug 'vim-scripts/bufexplorer.zip'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'vim-scripts/taglist.vim'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 "Plug 'pright/winmanager--Fox'
-Plug 'elzr/vim-json'
-Plug 'plasticboy/vim-markdown'
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mattn/emmet-vim'
 "Plug 'scrooloose/syntastic'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'w0rp/ale'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 
@@ -207,6 +235,7 @@ else
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" quickfix是vim内置插件，用于浏览命令执行结果信息。命令需要进行设定，才能把执行结果显示到quickfix中。
 " QuickFix
 nnoremap <silent> <leader>n :cn<CR>
 nnoremap <silent> <leader>p :cp<CR>
@@ -263,8 +292,8 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags
-set tags+=~/.vim/bundle/stl-tags/tags
-set tags+=~/.vim/bundle/glibc-tags/tags
+"set tags+=~/.vim/bundle/stl-tags/tags
+"set tags+=~/.vim/bundle/glibc-tags/tags
 "set tags+=~/.vim/bundle/mytags/hi3716c_sdk50_framework_base.tags
 if filereadable("tags")
     set tags+=tags
@@ -281,6 +310,7 @@ nnoremap <silent> <leader>u :!update_tags<CR>:cs reset<CR><CR>
 "let g:miniBufExplForceSyntaxEnable = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 头文件(.h)和源文件(.c,.cpp,.cc...)之间切换
 " a.vim
 nnoremap <silent> <leader>a :A<CR>
 
@@ -339,13 +369,14 @@ let g:EchoFuncKeyNext="<C-n>"
 "let g:DoxygenToolkit_returnTag="@Returns "
 "let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
 "let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="Jun Xie"
+let g:DoxygenToolkit_authorName="MagicYang"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
-nnoremap <F2>a :DoxAuthor
-nnoremap <F2>f :Dox
-nnoremap <F2>b :DoxBlock
-nnoremap <F2>c O/** */<Left><Left>
+nnoremap <silent> <leader>da :DoxAuthor<CR>
+nnoremap <silent> <leader>df :Dox<CR>
+nnoremap <silent> <leader>db :DoxBlock<CR>
+nnoremap <silent> <leader>dc O/** */<Left><Left>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FuzzyFinder
@@ -528,7 +559,7 @@ nnoremap <silent> <leader>G :Ag!<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
-let g:VimuxHeight = "40"
+let g:VimuxHeight = "30"
 let g:VimuxOrientation = "h"
 
 function! VimuxSlime()
@@ -544,6 +575,9 @@ nmap <Leader>vs vip<Leader>vs<CR>
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vm :VimuxPromptCommand("make")<CR><CR>
+map <Leader>vmc :VimuxPromptCommand("make clean")<CR><CR>
+map <Leader>vma :VimuxPromptCommand("make ")<CR>
 
 " Run last command executed by VimuxRunCommand
 map <Leader>vl :VimuxRunLastCommand<CR>
@@ -573,5 +607,43 @@ let g:NERDCustomDelimiters = {
             \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" promptline
-let g:promptline_preset = 'clear'
+" promptline.vim
+"let g:promptline_preset = 'clear'
+let g:promptline_preset = {
+            \'b' : [ promptline#slices#python_virtualenv(), '$USER' ],
+            \'a' : [ promptline#slices#vcs_branch() ],
+            \'c' : [ promptline#slices#cwd() ],
+            \'options': {
+            \'left_sections' : [ 'b', 'a', 'c' ],
+            \'left_only_sections' : [ 'b', 'a', 'c' ]}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tmuxline.vim
+let g:tmuxline_preset = 'tmux'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gutentags
+let g:gutentags_modules = []
+if executable('ctags')
+    let g:gutentags_modules += ['ctags']
+endif
+if executable('cscope')
+    let g:gutentags_modules += ['cscope']
+endif
+if executable('gtags-cscope') && executable('gtags')
+    let g:gutentags_modules += ['gtags_cscope']
+endif
+
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VisIncr
+vnoremap <silent> g<C-A> :I<CR>
+vnoremap <silent> g<C-X> :I -1<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-multiple-cursors
+let g:multi_cursor_exit_from_insert_mode = 1
