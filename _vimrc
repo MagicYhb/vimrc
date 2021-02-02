@@ -180,10 +180,8 @@ Plug 'pright/mytags'
 Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'vim-scripts/clang-complete'
-" Plug 'Valloric/YouCompleteMe'
-Plug 'vim-scripts/code_complete'
 Plug 'vim-scripts/pep8'
-Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
+" Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
 Plug 'pright/vim-snippets'
 "Plug 'drmingdrmer/xptemplate'
 "Plug 'vim-scripts/UltiSnips'
@@ -209,7 +207,9 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'    "缩进显示"
 
-" coc.nvim
+" completion
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'vim-scripts/code_complete'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
