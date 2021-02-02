@@ -174,14 +174,14 @@ Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pright/CCTree'
-"Plug 'pright/stl-tags'
-"Plug 'pright/glibc-tags'
-"Plug 'pright/mytags'
+Plug 'pright/stl-tags'
+Plug 'pright/glibc-tags'
+Plug 'pright/mytags'
 Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'vim-scripts/clang-complete'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'vim-scripts/code_complete'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'vim-scripts/code_complete'
 Plug 'vim-scripts/pep8'
 Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
 Plug 'pright/vim-snippets'
@@ -193,7 +193,7 @@ if has('nvim') || has('patch-8.0.902')
 else
     Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 endif
-"Plug 'vim-scripts/minibufexpl.vim'
+Plug 'vim-scripts/minibufexpl.vim'
 "Plug 'vim-scripts/bufexplorer.zip'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'vim-scripts/taglist.vim'
@@ -369,11 +369,10 @@ let g:EchoFuncKeyNext="<C-n>"
 let g:DoxygenToolkit_authorName="MagicYang"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
-nnoremap <silent> <leader>da :DoxAuthor<CR>
-nnoremap <silent> <leader>df :Dox<CR>
-nnoremap <silent> <leader>db :DoxBlock<CR>
-nnoremap <silent> <leader>dc O/** */<Left><Left>
-
+nnoremap <F8>a :DoxAuthor
+nnoremap <F8>f :Dox
+nnoremap <F8>b :DoxBlock
+nnoremap <F8>c O/** */<Left><Left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FuzzyFinder
@@ -572,9 +571,7 @@ nmap <Leader>vs vip<Leader>vs<CR>
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vm :VimuxPromptCommand("make")<CR><CR>
-map <Leader>vmc :VimuxPromptCommand("make clean")<CR><CR>
-map <Leader>vma :VimuxPromptCommand("make ")<CR>
+map <Leader>vm :VimuxPromptCommand("make ")<CR>
 
 " Run last command executed by VimuxRunCommand
 map <Leader>vl :VimuxRunLastCommand<CR>
