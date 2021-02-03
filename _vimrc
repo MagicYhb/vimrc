@@ -306,6 +306,14 @@ nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+nmap fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags
 "set tags+=~/.vim/bundle/stl-tags/tags
@@ -710,7 +718,7 @@ func SetTitle()
 endfunc
 autocmd BufNewFile * normal G
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " eggcache vim
 "nnoremap ; :
 :command W w
@@ -721,6 +729,10 @@ autocmd BufNewFile * normal G
 :command QA qa
 :command QW qa
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if filereadable("cscope/load.vim")
+    source ./cscope/load.vim
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"实用设置
