@@ -177,7 +177,6 @@ Plug 'pright/CCTree'
 Plug 'pright/stl-tags'
 Plug 'pright/glibc-tags'
 Plug 'pright/mytags'
-Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'vim-scripts/clang-complete'
 Plug 'vim-scripts/pep8'
@@ -210,9 +209,29 @@ Plug 'nathanaelkane/vim-indent-guides'    "缩进显示"
 " completion
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'vim-scripts/code_complete'
+" Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:script_cwd = expand('<sfile>:p:h')
+let s:source_list = [
+      \ 'viml',
+      \ 'config',
+      \]
+
+for s:item in s:source_list
+  let s:path = split(globpath(s:script_cwd . '/' . s:item, '*.vim'), '\n')
+  for s:cfg in s:path
+    if filereadable(s:cfg)
+      execute 'source ' . s:cfg
+    endif
+  endfor
+endfor
+
+unlet s:script_cwd
+unlet s:source_list
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
