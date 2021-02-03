@@ -24,18 +24,17 @@ set ruler		        " show the cursor position all the time
 set showcmd		        " display incomplete commands
 set incsearch		    " do incremental searching
 
-" line number
-set nu
-
-" relative line number
-set rnu
+set nu                  " line number
+set rnu                 " relative line number
 
 " tab width
-set smarttab        " 在行首输入 tab 时插入宽度为 shiftwidth 的空白，在其他地方按 tabstop 和 softtabstop 处理
-set expandtab       " 如果此时需要输入真正的 tab，则输入 Ctrl+V, tab，在 Windows 下是 Ctrl+Q, tab
-set tabstop=4       " 设定 tab 长度为 4
-set shiftwidth=4    " 设定 << 和 >> 命令移动时的宽度为 4
-set softtabstop=4   " 设定编辑模式下 tab 的视在宽度
+set smarttab            " 在行首输入 tab 时插入宽度为 shiftwidth 的空白，在其他地方按 tabstop 和 softtabstop 处理
+set expandtab           " 如果此时需要输入真正的 tab，则输入 Ctrl+V, tab，在 Windows 下是 Ctrl+Q, tab
+set tabstop=4           " 设定 tab 长度为 4
+set shiftwidth=4        " 设定 << 和 >> 命令移动时的宽度为 4
+set softtabstop=4       " 设定编辑模式下 tab 的视在宽度
+
+set updatetime=100      "根据光标位置自动更新高亮tag的间隔时间，单位为毫秒
 
 " encoding
 let &termencoding=&encoding
@@ -44,8 +43,6 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 "set fileencoding=cp936
 "set fileencodings=cp936,ucs-bom,utf-8
 set encoding=utf-8
-
-set updatetime=100
 
 set completeopt=longest,menu
 
@@ -126,7 +123,6 @@ endif
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
-" My plugins
 " color scheme
 Plug 'vim-scripts/peaksea'
 Plug 'vim-scripts/blackboard.vim'
@@ -163,20 +159,18 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dkprice/vim-easygrep'
-Plug 'lfv89/vim-interestingwords'
-Plug 'itchyny/vim-cursorword'
 
 " programming
-Plug 'vim-scripts/TaskList.vim'
+" Plug 'vim-scripts/TaskList.vim'
 Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
 "Plug 'pright/c.vim'
 Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'pright/CCTree'
-Plug 'pright/stl-tags'
-Plug 'pright/glibc-tags'
-Plug 'pright/mytags'
+" Plug 'pright/CCTree'
+" Plug 'pright/stl-tags'
+" Plug 'pright/glibc-tags'
+" Plug 'pright/mytags'
 Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'vim-scripts/clang-complete'
 Plug 'vim-scripts/pep8'
@@ -205,6 +199,8 @@ Plug 'mattn/emmet-vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'    "缩进显示"
+Plug 'lfv89/vim-interestingwords'
+Plug 'itchyny/vim-cursorword'
 
 " completion
 " Plug 'Valloric/YouCompleteMe'
@@ -215,6 +211,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc.nvim clangd completion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:script_cwd = expand('<sfile>:p:h')
 let s:source_list = [
       \ 'viml',
@@ -450,9 +448,9 @@ let g:tagbar_left = 0
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TaskList
-let g:tlWindowPosition = 1
-map <leader>v <Plug>TaskList
+" " TaskList
+" let g:tlWindowPosition = 1
+" map <leader>v <Plug>TaskList
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pep8
@@ -580,6 +578,7 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
 nnoremap <silent> <leader>m :Marks<CR>
+nnoremap <silent> <leader>w :Windows<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
@@ -661,12 +660,9 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""新文件标题
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
 ""定义函数SetTitle，自动插入文件头
