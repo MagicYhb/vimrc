@@ -139,13 +139,10 @@ Plug 'vim-scripts/stlrefvim'
 "Plug 'vim-scripts/L9' | Plug 'vim-scripts/FuzzyFinder'
 "Plug 'vim-scripts/Tabular'
 Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
-Plug 'vim-scripts/grep.vim'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'vim-airline/vim-airline'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/visSum.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
@@ -158,7 +155,9 @@ Plug 'benmills/vimux'
 Plug 'dhruvasagar/vim-table-mode'
 " Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'vim-scripts/grep.vim'
 Plug 'dkprice/vim-easygrep'
+Plug 'lfv89/vim-interestingwords'
 
 " programming
 " Plug 'vim-scripts/TaskList.vim'
@@ -197,9 +196,10 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mattn/emmet-vim'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'lfv89/vim-interestingwords'
 Plug 'itchyny/vim-cursorword'
 
 " completion
@@ -370,8 +370,8 @@ set foldlevel=100
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " echofunc
-let g:EchoFuncKeyPrev="<C-p>"
-let g:EchoFuncKeyNext="<C-n>"
+let g:EchoFuncKeyPrev="<C-->"
+let g:EchoFuncKeyNext="<C-+>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lookupfile
@@ -572,8 +572,8 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
-nnoremap <silent> <leader>r :History<CR>
-nnoremap <silent> <leader>c :History:<CR>
+nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>H :History:<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
