@@ -7,7 +7,7 @@
 set nocompatible
 
 " Always show the statusline
-" 默认值为 1, 无法显示状态栏
+" 2总显示最后一个窗口的状态行，1窗口多于一个时显示最后一个窗口的状态行，0不显示最后一个窗口的状态行, 默认值为1
 set laststatus=2
 
 " allow backspacing over everything in insert mode
@@ -133,20 +133,20 @@ Plug 'vim-scripts/stlrefvim'
 
 " general utils
 "Plug 'vim-scripts/Vimball'
+""Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-scripts/genutils' | Plug 'vim-scripts/lookupfile'
+"Plug 'vim-scripts/Command-T'
+"Plug 'vim-scripts/L9' | Plug 'vim-scripts/FuzzyFinder'
+"Plug 'vim-scripts/Tabular'
+Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'vim-scripts/grep.vim'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'Lokaltog/vim-easymotion'
-"Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-"Plug 'vim-scripts/genutils' | Plug 'vim-scripts/lookupfile'
-"Plug 'vim-scripts/Command-T'
-"Plug 'vim-scripts/L9' | Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/visSum.vim'
-"Plug 'vim-scripts/Tabular'
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'kshenoy/vim-signature'
@@ -156,28 +156,35 @@ Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'benmills/vimux'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'edkolev/promptline.vim'
+" Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dkprice/vim-easygrep'
 
 " programming
 " Plug 'vim-scripts/TaskList.vim'
-Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
-"Plug 'pright/c.vim'
-Plug 'mbbill/echofunc'
-Plug 'vim-scripts/DoxygenToolkit.vim'
-Plug 'scrooloose/nerdcommenter'
+" Plug 'pright/c.vim'
 " Plug 'pright/CCTree'
 " Plug 'pright/stl-tags'
 " Plug 'pright/glibc-tags'
 " Plug 'pright/mytags'
-Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
-"Plug 'vim-scripts/clang-complete'
-Plug 'vim-scripts/pep8'
-" Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
-Plug 'pright/vim-snippets'
 "Plug 'drmingdrmer/xptemplate'
 "Plug 'vim-scripts/UltiSnips'
+"Plug 'vim-scripts/clang-complete'
+" Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
+"Plug 'vim-scripts/bufexplorer.zip'
+"Plug 'vim-scripts/taglist.vim'
+"Plug 'pright/winmanager--Fox'
+" Plug 'scrooloose/syntastic'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'w0rp/ale'
+Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'mbbill/echofunc'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
+Plug 'vim-scripts/pep8'
+Plug 'pright/vim-snippets'
 Plug 'tpope/vim-fugitive'
 if has('nvim') || has('patch-8.0.902')
     Plug 'mhinz/vim-signify'
@@ -185,20 +192,13 @@ else
     Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 endif
 Plug 'vim-scripts/minibufexpl.vim'
-"Plug 'vim-scripts/bufexplorer.zip'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-"Plug 'pright/winmanager--Fox'
-Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mattn/emmet-vim'
-"Plug 'scrooloose/syntastic'
-"Plug 'ludovicchabant/vim-gutentags'
-"Plug 'w0rp/ale'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides'    "缩进显示"
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'lfv89/vim-interestingwords'
 Plug 'itchyny/vim-cursorword'
 
@@ -471,9 +471,9 @@ vmap <Enter> <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
@@ -630,13 +630,13 @@ let g:NERDCustomDelimiters = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " promptline.vim
 "let g:promptline_preset = 'clear'
-let g:promptline_preset = {
-            \'b' : [ promptline#slices#python_virtualenv(), '$USER' ],
-            \'a' : [ promptline#slices#vcs_branch() ],
-            \'c' : [ promptline#slices#cwd() ],
-            \'options': {
-            \'left_sections' : [ 'b', 'a', 'c' ],
-            \'left_only_sections' : [ 'b', 'a', 'c' ]}}
+" let g:promptline_preset = {
+"             \'b' : [ promptline#slices#python_virtualenv(), '$USER' ],
+"             \'a' : [ promptline#slices#vcs_branch() ],
+"             \'c' : [ promptline#slices#cwd() ],
+"             \'options': {
+"             \'left_sections' : [ 'b', 'a', 'c' ],
+"             \'left_only_sections' : [ 'b', 'a', 'c' ]}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tmuxline.vim
