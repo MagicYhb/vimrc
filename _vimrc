@@ -724,6 +724,7 @@ autocmd BufNewFile * normal G
 :command Qa qa
 :command QA qa
 :command QW qa
+nnoremap <Enter> yaw
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if filereadable("cscope/load.vim")
