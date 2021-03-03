@@ -386,11 +386,11 @@ let g:EchoFuncKeyNext="<C-+>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DoxygenToolkit
-"let g:DoxygenToolkit_briefTag_pre="@Synopsis "
-"let g:DoxygenToolkit_paramTag_pre="@Param "
-"let g:DoxygenToolkit_returnTag="@Returns "
-"let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-"let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
 let g:DoxygenToolkit_authorName="MagicYang"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
@@ -398,6 +398,7 @@ nnoremap <F9>a :DoxAuthor
 nnoremap <F9>f :Dox
 nnoremap <F9>b :DoxBlock
 nnoremap <F9>c O/** */<Left><Left>
+nnoremap <F9>l :DoxLic
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FuzzyFinder
