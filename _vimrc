@@ -263,6 +263,7 @@ set helplang=cn
 " NerdTree
 let NERDTreeWinPos="left"
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
+nnoremap <silent> <F7> :NERDTreeFind<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -365,7 +366,9 @@ let OmniCpp_ShowAccess = 1
 let OmniCpp_MayCompleteDot = 1
 let OmniCpp_MayCompleteArrow = 1
 let OmniCpp_MayCompleteScope = 1
-set foldmethod=syntax
+"set foldmethod=syntax
+set foldmethod=indent
+"set foldmethod=marker
 set foldlevel=100
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
