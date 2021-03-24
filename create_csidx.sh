@@ -13,13 +13,16 @@ if [ $# -lt 1 ]; then
     echo " "
     echo -e "${DYEL}mode 1 single:    ./create_csidx.sh path${RES}"
     echo " "
-    echo -e "${DYEL}mode 2 all:       ./create_csidx.sh path all${RES}"
+    echo -e "${DYEL}mode 2 rebuild:   ./create_csidx.sh rebuild${RES}"
+    echo " "
+    echo -e "${DYEL}mode 3 all:       ./create_csidx.sh path all${RES}"
     echo " "
     exit -1
 fi
 
 set -x
 FILE_PATH="./file.log"
+REBUILD_FILE="./rebuildfile"
 
 STR=$1
 FINAL=${STR: -1}
@@ -41,14 +44,25 @@ if [ "all" == "$2" ]; then
     for sfile in ${softfiles}
     do
         echo "$INPUT_PATH/$sfile" > $FILE_PATH
-        CSCOPE_FILE=`sed "s#/#_#g" $FILE_PATH`
+        CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
         find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" > cscope/"$CSCOPE_FILE".files
         cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
     done
+elif [ "rebuild" == "$1" ]; then
+    echo "mode is rebuild"
+    rebuildfiles=`ls cscope/*.files`
+    for refiles in ${rebuildfiles}
+    do
+        echo $refiles > $REBUILD_FILE
+        REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
+        rm $REBUILD_OUT
+        cscope -bkq -i $refiles -f $REBUILD_OUT
+    done
+    rm $REBUILD_FILE
 else
     echo "mode is once"
-    CSCOPE_FILE=`sed "s#/#_#g" $FILE_PATH`
+    CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
     find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" > cscope/"$CSCOPE_FILE".files
     cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
