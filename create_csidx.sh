@@ -44,6 +44,7 @@ if [ "all" == "$2" ]; then
     for sfile in ${softfiles}
     do
         echo "$INPUT_PATH/$sfile" > $FILE_PATH
+        # 路径转义,为rebuild做准备
         CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
         find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" > cscope/"$CSCOPE_FILE".files
@@ -56,7 +57,14 @@ elif [ "rebuild" == "$1" ]; then
     do
         echo $refiles > $REBUILD_FILE
         REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
+        TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
+        echo $TMP_PATH > $REBUILD_FILE
+        TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
+        echo $TMP_PATH > $FILE_PATH
+        REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
+        #echo $REBUILD_PATH
         rm $REBUILD_OUT
+        find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" > $refiles
         cscope -bkq -i $refiles -f $REBUILD_OUT
     done
     rm $REBUILD_FILE
