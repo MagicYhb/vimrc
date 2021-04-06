@@ -14,7 +14,7 @@ if [ ! -f $plugm ]; then
 fi
 
 if [ ! -f $plugm ]; then
-    cp ./plug.vim $plugm
+    sudo cp ./plug.vim $plugm
 fi
 
 ln -sf $cwd/_agignore $home/.agignore
