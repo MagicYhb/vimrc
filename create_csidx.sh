@@ -47,7 +47,7 @@ if [ "all" == "$2" ]; then
         # 路径转义,为rebuild做准备
         CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
-        find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" > cscope/"$CSCOPE_FILE".files
+        find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
         cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
     done
 elif [ "rebuild" == "$1" ]; then
@@ -64,7 +64,7 @@ elif [ "rebuild" == "$1" ]; then
         REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
         #echo $REBUILD_PATH
         rm $REBUILD_OUT
-        find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" > $refiles
+        find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
         cscope -bkq -i $refiles -f $REBUILD_OUT
     done
     rm $REBUILD_FILE
@@ -72,7 +72,7 @@ else
     echo "mode is once"
     CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
-    find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" > cscope/"$CSCOPE_FILE".files
+    find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
     cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
 fi
 
