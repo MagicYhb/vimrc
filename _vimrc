@@ -62,8 +62,8 @@ map Q gq
 " nore表示不递归no recursion
 " map映射
 
-noremap O 5j
-noremap I 5k
+noremap I 5j
+noremap O 5k
 
 nnoremap . ,
 
