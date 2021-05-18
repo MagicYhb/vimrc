@@ -1,8 +1,16 @@
 #!/bin/sh
 
+set -x
+
 home=$HOME
 cwd=$(pwd)
 plugm=$home/.vim/autoload/plug.vim
+
+if [ ! -d $home/.vim ]; then
+    mkdir $home/.vim
+    mkdir $home/.vim/autoload
+    cp ./plug.vim $plugm
+fi
 
 # powerline-fonts
 git clone https://github.com/powerline/fonts.git --depth=1
