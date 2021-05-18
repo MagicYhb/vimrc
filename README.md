@@ -11,4 +11,4 @@ git clone https://github.com/MagicYhb/vimrc.git
 cd vimrc
 ./install
 ```
-
+https://vimawesome.com/

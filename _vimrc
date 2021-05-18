@@ -57,9 +57,15 @@ let mapleader = ","
 map Q gq
 
 " inoremap
-" i代表是在插入模式（insert）下有效
+" i代表是在insert模式下有效
+" n代表是在normal模式下有效
 " nore表示不递归no recursion
 " map映射
+
+noremap O 5j
+noremap I 5k
+
+nnoremap . ,
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -190,8 +196,9 @@ if has('nvim') || has('patch-8.0.902')
 else
     Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 endif
-Plug 'vim-scripts/minibufexpl.vim'
+"Plug 'vim-scripts/minibufexpl.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mattn/emmet-vim'
@@ -265,6 +272,17 @@ let NERDTreeWinPos="left"
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 nnoremap <silent> <F7> :NERDTreeFind<CR>
 
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" taglist
