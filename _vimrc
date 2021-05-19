@@ -64,6 +64,7 @@ map Q gq
 
 noremap I 5j
 noremap O 5k
+noremap P 5k
 
 nnoremap . ,
 
@@ -208,6 +209,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-cursorword'
+Plug 'mbbill/undotree'
 
 " completion
 " Plug 'Valloric/YouCompleteMe'
@@ -361,7 +363,7 @@ if !executable('ag')
     let Grep_Default_Filelist = '*.c *.cpp *.h'
     let Grep_Skip_Files = '*.bak *~'
     let Grep_Default_Options = '-i'
-    nnoremap <silent> <F5> :Rgrep<CR>
+    nnoremap <silent> <F11> :Rgrep<CR>
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -370,7 +372,7 @@ if executable('ag')
     "let g:ackprg = 'ag --vimgrep'
     let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
     let g:ackhighlight = 1
-    nnoremap <F5> :Ack!<Space><C-R><C-W>
+    nnoremap <F12> :Ack!<Space><C-R><C-W>
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -468,6 +470,13 @@ endfunction
 let g:tagbar_sort = 0
 let g:tagbar_left = 0
 nnoremap <silent> <F4> :TagbarToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" undotree
+" Maintain undo history between sessions
+set undofile
+set undodir=~/.vim/undodir
+nnoremap <F5> :UndotreeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " TaskList
