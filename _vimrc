@@ -200,12 +200,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "" Plug 'vim-scripts/pep8'
 Plug 'pright/vim-snippets'
-Plug 'tpope/vim-fugitive'
-if has('nvim') || has('patch-8.0.902')
-    Plug 'mhinz/vim-signify'
-else
-    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
-endif
 "Plug 'vim-scripts/minibufexpl.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -219,6 +213,16 @@ Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-cursorword'
 Plug 'mbbill/undotree'
+
+
+""  Git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+if has('nvim') || has('patch-8.0.902')
+    Plug 'mhinz/vim-signify'
+else
+    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+endif
 
 " completion
 " Plug 'Valloric/YouCompleteMe'
@@ -486,6 +490,26 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 set undofile
 set undodir=~/.vim/undodir
 nnoremap <F5> :UndotreeToggle<CR>
+
+" ==
+" == GitGutter
+" ==
+" let g:gitgutter_signs = 0
+let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+let g:gitgutter_sign_added = '▎'
+let g:gitgutter_sign_modified = '░'
+let g:gitgutter_sign_removed = '▏'
+let g:gitgutter_sign_removed_first_line = '▔'
+let g:gitgutter_sign_modified_removed = '▒'
+" autocmd BufWritePost * GitGutter
+nnoremap <LEADER>gf :GitGutterFold<CR>
+nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
+nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " TaskList
