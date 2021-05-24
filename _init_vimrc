@@ -1,12 +1,4 @@
-" __  ____   __  __     _____ __  __ ____   ____
-"|  \/  \ \ / /  \ \   / /_ _|  \/  |  _ \ / ___|
-"| |\/| |\ V /    \ \ / / | || |\/| | |_) | |
-"| |  | | | |      \ V /  | || |  | |  _ <| |___
-"|_|  |_| |_|       \_/  |___|_|  |_|_| \_\\____|
-
-" Author: @MagicYang
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global settings
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -65,15 +57,11 @@ let mapleader = ","
 map Q gq
 
 " inoremap
-" i代表是在insert模式下有效
-" n代表是在normal模式下有效
+" i代表是在插入模式（insert）下有效
 " nore表示不递归no recursion
 " map映射
-
-noremap <C-h> 5j
-noremap <C-l> 5k
-
-nnoremap . ,
+noremap I 5j
+noremap O 5k
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -134,9 +122,7 @@ if !exists(":DiffOrig")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" === Install Plugins with vim-plug
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" vim-plug
 call plug#begin('~/.vim/plugged')
 
 " color scheme
@@ -206,9 +192,8 @@ if has('nvim') || has('patch-8.0.902')
 else
     Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 endif
-"Plug 'vim-scripts/minibufexpl.vim'
+" Plug 'vim-scripts/minibufexpl.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mattn/emmet-vim'
@@ -218,13 +203,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-cursorword'
-Plug 'mbbill/undotree'
 
 " completion
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'vim-scripts/code_complete'
 " Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'ncm2/ncm2' 
+Plug 'roxma/nvim-yarp'
 
 call plug#end()
 
@@ -283,17 +270,6 @@ let NERDTreeWinPos="left"
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 nnoremap <silent> <F7> :NERDTreeFind<CR>
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" taglist
@@ -372,7 +348,7 @@ if !executable('ag')
     let Grep_Default_Filelist = '*.c *.cpp *.h'
     let Grep_Skip_Files = '*.bak *~'
     let Grep_Default_Options = '-i'
-    nnoremap <silent> <F11> :Rgrep<CR>
+    nnoremap <silent> <F5> :Rgrep<CR>
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -381,7 +357,7 @@ if executable('ag')
     "let g:ackprg = 'ag --vimgrep'
     let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
     let g:ackhighlight = 1
-    nnoremap <F12> :Ack!<Space><C-R><C-W>
+    nnoremap <F5> :Ack!<Space><C-R><C-W>
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -481,20 +457,13 @@ let g:tagbar_left = 0
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" undotree
-" Maintain undo history between sessions
-set undofile
-set undodir=~/.vim/undodir
-nnoremap <F5> :UndotreeToggle<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " TaskList
 " let g:tlWindowPosition = 1
 " map <leader>v <Plug>TaskList
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pep8
-" let g:pep8_map='<leader>8'
+let g:pep8_map='<leader>8'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gist-vim
@@ -758,8 +727,6 @@ autocmd BufNewFile * normal G
 " eggcache vim
 "nnoremap ; :
 :command W w
-:command W! w!
-:command W@! w!
 :command WQ wq
 :command Wq wq
 :command Q q
