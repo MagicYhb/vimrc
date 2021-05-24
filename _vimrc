@@ -198,7 +198,7 @@ Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
-Plug 'vim-scripts/pep8'
+"" Plug 'vim-scripts/pep8'
 Plug 'pright/vim-snippets'
 Plug 'tpope/vim-fugitive'
 if has('nvim') || has('patch-8.0.902')
@@ -758,8 +758,6 @@ autocmd BufNewFile * normal G
 " eggcache vim
 "nnoremap ; :
 :command W w
-:command W! w!
-:command W@! w!
 :command WQ wq
 :command Wq wq
 :command Q q
