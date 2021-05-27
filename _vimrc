@@ -160,7 +160,7 @@ Plug 'vim-scripts/YankRing.vim'
 
 """ Tmux
 "Plug 'benmills/vimux'
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 
 "" programming
 " Plug 'vim-scripts/TaskList.vim'
@@ -515,12 +515,20 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 " Maintain undo history between sessions
 set undofile
 set undodir=~/.vim/undodir
-nnoremap <F5> :UndotreeToggle<CR>
+"nnoremap <F5> :UndotreeToggle<CR>
+noremap L :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
 
 " ==
 " == GitGutter
 " ==
 " let g:gitgutter_signs = 0
+let g:NERDTreeGitStatusPorcelainVersion = 1
 let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
@@ -583,17 +591,18 @@ let g:airline_theme = 'dark'                            " 设置主题
 let g:airline_powerline_fonts = 1                       " 使用powerline的字体
 
 "" enable tabline
-let g:airline#extensions#tabline#enabled = 1            "tabline中当前buffer两端的分隔字符
-let g:airline#extensions#tabline#left_sep = ' '         "tabline中未激活buffer两端的分隔字符
-let g:airline#extensions#tabline#left_alt_sep = '|'     "tabline中buffer显示编号
-let g:airline#extensions#tabline#buffer_nr_show = 1 
+let g:airline#extensions#tabline#enabled = 1            "tabline使能
+let g:airline_stl_path_style = 'short'
+let g:airline#extensions#tabline#left_sep = ' '         "tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|'     "tabline中未激活buffer两端的分隔字符
+let g:airline#extensions#tabline#buffer_nr_show = 1     "tabline中buffer显示编号 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf.vim
 " Setting ag as the default source for fzf
 if executable('ag')
-    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g  ""'
 endif
 
 " This is the default extra key bindings
