@@ -5,7 +5,8 @@
 *.bak
 *~
 .*.swp
-cscope.*out
-cscope.files
+.git
+.vim
+cscope
 ctags.files
 tags
