@@ -152,6 +152,9 @@ Plug 'Lokaltog/vim-powerline'
 Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 
+""" 
+Plug 'luochen1990/rainbow'
+
 " general utils
 "Plug 'vim-scripts/Tabular'
 
@@ -309,9 +312,16 @@ set helplang=cn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdTree
+"打开vim时如果没有文件自动打开NERDTree
+" autocmd vimenter * if !argc()|NERDTree|endif
+"当NERDTree为剩下的唯一窗口时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 let NERDTreeWinPos="left"
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
-nnoremap <silent> <F7> :NERDTreeFind<CR>
+let g:NERDTreeWinSize = 25          " 设定 NERDTree 视窗大小
+" let g:NERDTreeHidden=0            " 不显示隐藏文件
+let g:NERDTreeShowLineNumbers=1     " 是否显示行号
+" let NERDTreeIgnore = ['\.pyc$']     " 过滤所有.pyc文件不显示
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -324,6 +334,16 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
+
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
+nnoremap <silent> <F7> :NERDTreeFind<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tagbar
+let g:tagbar_sort = 0
+let g:tagbar_left = 0
+let g:tagbar_width= 35
+nnoremap <silent> <F4> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" taglist
@@ -382,6 +402,12 @@ if filereadable("tags")
 endif
 
 "nnoremap <silent> <leader>u :!update_tags<CR>:cs reset<CR><CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indentLine
+let g:indent_guides_guide_size  = 1     "指定对其的尺寸
+let g:indent_guides_start_level = 2     "从第二层开始可视化缩进
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minibufexpl
@@ -505,12 +531,6 @@ function! MyCCTreeLoadDBFunc(rebuild)
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" tagbar
-let g:tagbar_sort = 0
-let g:tagbar_left = 0
-nnoremap <silent> <F4> :TagbarToggle<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " undotree
 " Maintain undo history between sessions
 set undofile
@@ -591,12 +611,15 @@ let g:airline_theme = 'dark'                            " 设置主题
 let g:airline_powerline_fonts = 1                       " 使用powerline的字体
 
 "" enable tabline
-let g:airline#extensions#tabline#enabled = 1            "tabline使能
+let g:airline#extensions#tabline#enabled = 1            " tabline使能
 let g:airline_stl_path_style = 'short'
-let g:airline#extensions#tabline#left_sep = ' '         "tabline中当前buffer两端的分隔字符
-let g:airline#extensions#tabline#left_alt_sep = '|'     "tabline中未激活buffer两端的分隔字符
-let g:airline#extensions#tabline#buffer_nr_show = 1     "tabline中buffer显示编号 
+let g:airline#extensions#tabline#left_sep = ' '         " tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|'     " tabline中未激活buffer两端的分隔字符
+let g:airline#extensions#tabline#buffer_nr_show = 1     " tabline中buffer显示编号 
 
+nmap <leader>1 <Plug>AirlineSelectPrevTab               " 切换到前一个tab
+nmap <leader>2 <Plug>AirlineSelectNextTab               " 切换到下一个tab
+nmap <leader>q :bp<cr>:bd #<cr>                         " 退出当前的 tab
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf.vim
@@ -730,9 +753,38 @@ let g:table_mode_corner_corner = '+'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter
+" 注释工具
+" <leader> + <c> + <space>
 let g:NERDCustomDelimiters = {
             \ 'asm': { 'left': '/*', 'right': '*/' }
             \ }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rainbow
+" 提供嵌套括号高亮
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\ 'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
+\ 'ctermfgs': ['lightyellow', 'lightcyan','lightblue', 'lightmagenta'],
+\ 'operators': '_,_',
+\ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\ 'separately': {
+\ '*': {},
+\ 'tex': {
+\ 'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\ },
+\ 'lisp': {
+\ 'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
+\ },
+\ 'vim': {
+\ 'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\ },
+\ 'html': {
+\ 'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\ },
+\ 'css': 0,
+\ }
+\}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " promptline.vim
