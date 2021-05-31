@@ -266,9 +266,9 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
     \ 'coc-css',
-    \ 'coc-translator',
     \ 'coc-pyright',
-    \ 'coc-python']
+    \ 'coc-python',
+    \ 'coc-translator']
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
