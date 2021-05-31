@@ -266,6 +266,7 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
     \ 'coc-css',
+    \ 'coc-translator',
     \ 'coc-pyright',
     \ 'coc-python']
 
@@ -291,6 +292,10 @@ function! Show_documentation()
 endfunction
 nnoremap <LEADER>e :call Show_documentation()<CR>
 
+" coc translator
+nmap ts <Plug>(coc-translator-p)
+
+" nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
 
 "let s:script_cwd = expand('<sfile>:p:h')
 "let s:source_list = [
