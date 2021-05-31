@@ -292,23 +292,23 @@ endfunction
 nnoremap <LEADER>e :call Show_documentation()<CR>
 
 
-let s:script_cwd = expand('<sfile>:p:h')
-let s:source_list = [
-      \ 'viml',
-      \ 'config',
-      \]
+"let s:script_cwd = expand('<sfile>:p:h')
+"let s:source_list = [
+      "\ 'viml',
+      "\ 'config',
+      "\]
 
-for s:item in s:source_list
-  let s:path = split(globpath(s:script_cwd . '/' . s:item, '*.vim'), '\n')
-  for s:cfg in s:path
-    if filereadable(s:cfg)
-      execute 'source ' . s:cfg
-    endif
-  endfor
-endfor
+"for s:item in s:source_list
+  "let s:path = split(globpath(s:script_cwd . '/' . s:item, '*.vim'), '\n')
+  "for s:cfg in s:path
+    "if filereadable(s:cfg)
+      "execute 'source ' . s:cfg
+    "endif
+  "endfor
+"endfor
 
-unlet s:script_cwd
-unlet s:source_list
+"unlet s:script_cwd
+"unlet s:source_list
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
