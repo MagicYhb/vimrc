@@ -200,7 +200,7 @@ Plug 'dkprice/vim-easygrep'
 Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
+"" Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "" Plug 'vim-scripts/pep8'
 Plug 'pright/vim-snippets'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -219,6 +219,10 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
+
+""" Translator
+" use coc-translator
+" Plug 'voldikss/vim-translator'
 
 """ Key word
 Plug 'itchyny/vim-cursorword'
@@ -266,9 +270,12 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
     \ 'coc-css',
+    \ 'coc-translator',
     \ 'coc-pyright',
     \ 'coc-python',
-    \ 'coc-translator']
+    \ 'coc-jedi',
+    \ 'coc-vimlsp',
+    \ 'coc-sh']
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -293,7 +300,15 @@ endfunction
 nnoremap <LEADER>e :call Show_documentation()<CR>
 
 " coc translator
+" popup
 nmap ts <Plug>(coc-translator-p)
+vmap ts <Plug>(coc-translator-pv)
+" echo
+nmap te <Plug>(coc-translator-e)
+vmap te <Plug>(coc-translator-ev)
+" replace
+"nmap tr <Plug>(coc-translator-r)
+"vmap tr <Plug>(coc-translator-rv)
 
 " nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
 
@@ -375,7 +390,7 @@ nnoremap <silent> <F7> :NERDTreeFind<CR>
 " tagbar
 let g:tagbar_sort = 0
 let g:tagbar_left = 0
-let g:tagbar_width= 35
+let g:tagbar_width= 30
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
