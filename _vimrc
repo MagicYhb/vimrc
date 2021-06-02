@@ -274,6 +274,8 @@ let g:coc_global_extensions = [
     \ 'coc-pyright',
     \ 'coc-python',
     \ 'coc-jedi',
+    \ 'coc-html',
+    \ 'coc-json',
     \ 'coc-vimlsp',
     \ 'coc-sh']
 
@@ -307,8 +309,8 @@ vmap ts <Plug>(coc-translator-pv)
 nmap te <Plug>(coc-translator-e)
 vmap te <Plug>(coc-translator-ev)
 " replace
-"nmap tr <Plug>(coc-translator-r)
-"vmap tr <Plug>(coc-translator-rv)
+"nmap <LEADER>tsr <Plug>(coc-translator-r)
+"vmap <LEADER>tsr <Plug>(coc-translator-rv)
 
 " nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
 
