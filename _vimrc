@@ -253,11 +253,11 @@ Plug 'lfv89/vim-interestingwords'
 """  Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-if has('nvim') || has('patch-8.0.902')
-    Plug 'mhinz/vim-signify'
-else
-    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
-endif
+"if has('nvim') || has('patch-8.0.902')
+    "Plug 'mhinz/vim-signify'
+"else
+    "Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+"endif
 
 """ Undo tree
 Plug 'mbbill/undotree'
