@@ -9,39 +9,24 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" This must be first, because it changes other options as a side effect.
-" set compatible 让 vim 关闭所有扩展的功能，尽量模拟 vi 的行为。
-" set nocompatible，关闭兼容模式。
-
-set nocompatible                    " 设置不兼容原始vi模式, 由于这个选项是最最基础的选项，会连带很多其它选项发生变动(副作用)，所以它必需是第一个设定的选项。
+set nocompatible                    " set not compatible with the original vi mode, this must be first, because it changes other options as a side effect.
 let mapleader = ","                 " set map leader
 set laststatus=2                    " always show the statusline, 2总显示最后一个窗口的状态行，1窗口多于一个时显示最后一个窗口的状态行，0不显示最后一个窗口的状态行, 默认值为1
-set noeb                            " 关闭错误的提示
-
-if has("vms")
-    set nobackup		            " do not keep a backup file, use versions instead
-else
-    set backup		                " keep a backup file
-endif
-
+set noeb                            " turn off error prompts
 set history=50		                " keep 50 lines of command line history
 set ruler		                    " show the cursor position all the time
 set showcmd		                    " display incomplete commands
-set incsearch		                " do incremental searching
-
 set nu                              " line number
 set rnu                             " relative line number
-
 " tab width
 set smarttab                        " 在行首输入 tab 时插入宽度为 shiftwidth 的空白，在其他地方按 tabstop 和 softtabstop 处理
 set expandtab                       " 如果此时需要输入真正的 tab，则输入 Ctrl+V, tab，在 Windows 下是 Ctrl+Q, tab
 set tabstop=4                       " 设定 tab 长度为 4
 set shiftwidth=4                    " 设定 << 和 >> 命令移动时的宽度为 4
 set softtabstop=4                   " 设定编辑模式下 tab 的视在宽度
-
 set updatetime=100                  " 根据光标位置自动更新高亮tag的间隔时间，单位为毫秒
-
 set backspace=indent,eol,start      " allow backspacing over everything in insert mode
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,7 +44,7 @@ set completeopt=longest,menu
 " 搜索设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set hlsearch                       " 高亮显示搜索结果
-"set incsearch                      " 开启实时搜索功能
+set incsearch                      " 开启实时搜索功能
 "set ignorecase                     " 搜索时大小写不敏感
 set ignorecase smartcase
 
@@ -68,6 +53,11 @@ set ignorecase smartcase
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set nobackup                       " 设置不备份
 "set noswapfile                     " 禁止生成临时文件
+if has("vms")
+    set nobackup		            " do not keep a backup file, use versions instead
+else
+    set backup		                " keep a backup file
+endif
 set autoread                        " 文件在vim之外修改过，自动重新读入
 set autowrite                       " 设置自动保存
 set confirm                         " 在处理未保存或只读文件的时候，弹出确认
@@ -87,7 +77,9 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 "set fileencodings=cp936,ucs-bom,utf-8
 set encoding=utf-8
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
