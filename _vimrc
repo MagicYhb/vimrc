@@ -80,17 +80,20 @@ set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" inoremap
+" i代表是在insert模式下有效
+" n代表是在normal模式下有效
+" nore表示不递归no recursion
+" map映射
+
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" inoremap
-" i代表是在insert模式下有效
-" n代表是在normal模式下有效
-" nore表示不递归no recursion
-" map映射
+" Delete find pair
+nnoremap dy d%
 
 noremap <C-h> 5j
 noremap <C-l> 5k
@@ -923,12 +926,12 @@ func SetTitle()
 		call append(line(".")+5, "")
 	endif
 	if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include<iostream>")
+		call append(line(".")+6, "#include <iostream>")
 		call append(line(".")+7, "using namespace std;")
 		call append(line(".")+8, "")
 	endif
 	if &filetype == 'c'
-		call append(line(".")+6, "#include<stdio.h>")
+		call append(line(".")+6, "#include <stdio.h>")
 		call append(line(".")+7, "")
 	endif
 	if expand("%:e") == 'h'
