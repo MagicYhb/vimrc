@@ -4,7 +4,8 @@
 "| |  | | | |      \ V /  | || |  | |  _ <| |___
 "|_|  |_| |_|       \_/  |___|_|  |_|_| \_\\____|
 
-" Author: @MagicYang
+" Author:       MagicYang <476080754@qq.com>
+" Repository:   https://github.com/MagicYhb/vimrc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
@@ -193,7 +194,7 @@ Plug 'vim-scripts/YankRing.vim'
 "" programming
 " Plug 'vim-scripts/TaskList.vim'
 " Plug 'pright/c.vim'
-" Plug 'pright/CCTree'
+ "Plug 'pright/CCTree'
 " Plug 'pright/stl-tags'
 " Plug 'pright/glibc-tags'
 " Plug 'pright/mytags'
@@ -590,20 +591,20 @@ nnoremap <silent> <F6> :YRShow<CR>
 "let g:CCTreeCscopeDb = "cscope.out"
 " using my own command to generate cctree.out because cctree cannot parse the
 " one which ccglue generates.
-nnoremap <silent> <F10> :MyCCTreeLoadXRefDB<CR>
-nnoremap <silent> <F10>r :MyCCTreeLoadDB<CR>
-
-command! -nargs=0 MyCCTreeLoadXRefDB call MyCCTreeLoadDBFunc(0)
-command! -nargs=0 MyCCTreeLoadDB call MyCCTreeLoadDBFunc(1)
-
-function! MyCCTreeLoadDBFunc(rebuild)
-    if a:rebuild==1 || !filereadable("cctree.out")
-        :CCTreeLoadDB cscope.out
-        :CCTreeSaveXRefDB cctree.out
-    else
-        :CCTreeLoadXRefDBFromDisk cctree.out
-    endif
-endfunction
+"" nnoremap <silent> <F10> :MyCCTreeLoadXRefDB<CR>
+"" nnoremap <silent> <F10>r :MyCCTreeLoadDB<CR>
+"" 
+"" command! -nargs=0 MyCCTreeLoadXRefDB call MyCCTreeLoadDBFunc(0)
+"" command! -nargs=0 MyCCTreeLoadDB call MyCCTreeLoadDBFunc(1)
+"" 
+"" function! MyCCTreeLoadDBFunc(rebuild)
+""     if a:rebuild==1 || !filereadable("cctree.out")
+""         :CCTreeLoadDB cscope.out
+""         :CCTreeSaveXRefDB cctree.out
+""     else
+""         :CCTreeLoadXRefDBFromDisk cctree.out
+""     endif
+"" endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " undotree
@@ -787,38 +788,38 @@ nnoremap <silent> <leader>w :Windows<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
-let g:VimuxHeight = "30"
-let g:VimuxOrientation = "h"
-
-function! VimuxSlime()
-    call VimuxSendText(@v)
-    call VimuxSendKeys("Enter")
-endfunction
-
-" If text is selected, save it in the v buffer and send that buffer it to tmux
-vmap <Leader>vs "vy :call VimuxSlime()<CR>
-
-" Select current paragraph and send it to tmux
-nmap <Leader>vs vip<Leader>vs<CR>
-
-" Prompt for a command to run
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vm :VimuxPromptCommand("make ")<CR>
-
-" Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
-
-" Inspect runner pane
-map <Leader>vi :VimuxInspectRunner<CR>
-
-" Close vim tmux runner opened by VimuxRunCommand
-map <Leader>vq :VimuxCloseRunner<CR>
-
-" Interrupt any command running in the runner pane
-map <Leader>vx :VimuxInterruptRunner<CR>
-
-" Zoom the runner pane (use <bind-key> z to restore runner pane)
-map <Leader>vz :call VimuxZoomRunner()<CR>
+" let g:VimuxHeight = "30"
+" let g:VimuxOrientation = "h"
+" 
+" function! VimuxSlime()
+"     call VimuxSendText(@v)
+"     call VimuxSendKeys("Enter")
+" endfunction
+" 
+" " If text is selected, save it in the v buffer and send that buffer it to tmux
+" vmap <Leader>vs "vy :call VimuxSlime()<CR>
+" 
+" " Select current paragraph and send it to tmux
+" nmap <Leader>vs vip<Leader>vs<CR>
+" 
+" " Prompt for a command to run
+" map <Leader>vp :VimuxPromptCommand<CR>
+" map <Leader>vm :VimuxPromptCommand("make ")<CR>
+" 
+" " Run last command executed by VimuxRunCommand
+" map <Leader>vl :VimuxRunLastCommand<CR>
+" 
+" " Inspect runner pane
+" map <Leader>vi :VimuxInspectRunner<CR>
+" 
+" " Close vim tmux runner opened by VimuxRunCommand
+" map <Leader>vq :VimuxCloseRunner<CR>
+" 
+" " Interrupt any command running in the runner pane
+" map <Leader>vx :VimuxInterruptRunner<CR>
+" 
+" " Zoom the runner pane (use <bind-key> z to restore runner pane)
+" map <Leader>vz :call VimuxZoomRunner()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-table-mode
@@ -920,7 +921,7 @@ func SetTitle()
 		call setline(1, "/*************************************************************************")
 		call append(line("."), "	> File Name: ".expand("%"))
 		call append(line(".")+1, "	> Author: MagicYang")
-		call append(line(".")+2, "	> Mail: ")
+		call append(line(".")+2, "	> Mail: 476080754@qq.com")
 		call append(line(".")+3, "	> Created Time: ".strftime("%c"))
 		call append(line(".")+4, " ************************************************************************/")
 		call append(line(".")+5, "")
