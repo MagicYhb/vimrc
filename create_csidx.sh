@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#/**
+#* @file create_csidx.sh
+#* @Synopsis 
+#* @author MagicYang
+#* @version 
+#* @date 2021-06-16
+#*/
+
 DYEL='\E[0;33m'
 DYELL='\E[43;30m'
 GRN='\E[1;32m'
@@ -37,6 +45,8 @@ if [ $# -lt 1 ]; then
 fi
 
 set -e
+
+## tmpfile
 FILE_PATH="./file.log"
 EXCLUDE_FILE="./excludefile"
 REBUILD_FILE="./rebuildfile"
@@ -57,23 +67,30 @@ if [ x"$#" == x"1" ]; then
     if [ x"$1" == x"rebuild" ];then
         echo -e "${DYELL}in mode 4: 更新cscope目录下全部索引 ${RES}"
         echo " "
-        rebuildfiles=`ls cscope/*.files`
-        for refiles in ${rebuildfiles}
-        do
-            echo $refiles > $REBUILD_FILE
-            REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
-            TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
-            echo $TMP_PATH > $REBUILD_FILE
-            TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
-            echo $TMP_PATH > $FILE_PATH
-            REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
-            echo "rebuild $REBUILD_PATH"
-            echo " "
-            rm $REBUILD_OUT
-            find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-            cscope -bkq -i $refiles -f $REBUILD_OUT
-        done
-        rm $REBUILD_FILE
+        
+        FILE_COUNT=$(ls cscope/*.files 2> /dev/null | wc -l)
+        if [ "$FILE_COUNT" == "0" ]; then
+            echo "there is no *.files"
+        else 
+            rebuildfiles=`ls cscope/*.files`
+            for refiles in ${rebuildfiles}
+            do
+                echo $refiles > $REBUILD_FILE
+                REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
+                TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
+                echo $TMP_PATH > $REBUILD_FILE
+                TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
+                echo $TMP_PATH > $FILE_PATH
+                REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
+                echo "rebuild $REBUILD_PATH"
+                echo " "
+                if [ -f $REBUILD_OUT ]; then
+                    rm $REBUILD_OUT
+                fi
+                find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                cscope -bkq -i $refiles -f $REBUILD_OUT
+            done
+        fi
     else
         echo -e "${DYELL}in mode 1: 以目标目录为索引名，创建单个索引 ${RES}"
         echo " "
@@ -82,7 +99,13 @@ if [ x"$#" == x"1" ]; then
         CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
         find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
-        cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
+        if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
+            rm cscope/"$CSCOPE_FILE".files
+            echo cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out
+            echo " "
+        else
+            cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
+        fi
     fi
 elif [ x"$#" == x"2" ]; then
     if [ x"$1" == x"rebuild" ]; then
@@ -91,41 +114,48 @@ elif [ x"$#" == x"2" ]; then
         REBUILD_MODULE=$2
         echo "rebuild module: $REBUILD_MODULE"
         echo " "
-        rebuildfiles=`ls cscope/*.files`
-        for refiles in ${rebuildfiles}
-        do
-            echo $refiles > $REBUILD_FILE
-            REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
-            TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
-            echo $TMP_PATH > $REBUILD_FILE
-            TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
-            echo $TMP_PATH > $FILE_PATH
-            REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
-            echo $REBUILD_PATH
-            #A=${REBUILD_PATH%/*}/
-            R=${REBUILD_PATH##*/}
-            #echo A:$A
-            #echo R:$R
 
-            shopt -s nocasematch
-            case "$REBUILD_MODULE" in
-                $R ) MATCHED=1;;
-                *) MATCHED=0;;
-            esac
-            shopt -u nocasematch
+        FILE_COUNT=$(ls cscope/*.files 2> /dev/null | wc -l)
+        if [ "$FILE_COUNT" == "0" ]; then
+            echo "there is no *.files"
+        else
+            rebuildfiles=`ls cscope/*.files`
+            for refiles in ${rebuildfiles}
+            do
+                echo $refiles > $REBUILD_FILE
+                REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
+                TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
+                echo $TMP_PATH > $REBUILD_FILE
+                TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
+                echo $TMP_PATH > $FILE_PATH
+                REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
+                echo $REBUILD_PATH
+                #A=${REBUILD_PATH%/*}/
+                R=${REBUILD_PATH##*/}
+                #echo A:$A
+                #echo R:$R
 
-            if [ x"1" == x"$MATCHED" ]; then
-                echo -e "${DYEL}match, will rebuild ${RES}"
-                rm $REBUILD_OUT
-                find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                cscope -bkq -i $refiles -f $REBUILD_OUT
-            else
-                echo "not match"
-            fi
-            echo " "
-            
-        done
-        rm $REBUILD_FILE
+                shopt -s nocasematch
+                case "$REBUILD_MODULE" in
+                    $R ) MATCHED=1;;
+                    *) MATCHED=0;;
+                esac
+                shopt -u nocasematch
+
+                if [ x"1" == x"$MATCHED" ]; then
+                    echo -e "${DYEL}match, will rebuild ${RES}"
+                    if [ -f $REBUILD_OUT ]; then
+                        rm $REBUILD_OUT
+                    fi
+                    find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                    cscope -bkq -i $refiles -f $REBUILD_OUT
+                else
+                    echo "not match"
+                fi
+                echo " "
+                
+            done
+        fi
     elif [ x"$2" == x"all" ]; then
         echo -e "${DYELL}in mode 2: 以目标目录下的文件夹为索引名，创建多个索引${RES}"
         echo " "
@@ -133,13 +163,18 @@ elif [ x"$#" == x"2" ]; then
 
         for sfile in ${softfiles}
         do
-            echo "build $INPUT_PATH/$sfile"
             echo " "
+            echo "build $INPUT_PATH/$sfile"
             echo "$INPUT_PATH/$sfile" > $FILE_PATH
             # 路径转义,为rebuild做准备
             CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
             find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+            if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
+                echo -e "${DYEL}cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out ${RES}"
+                rm cscope/"$CSCOPE_FILE".files
+                continue
+            fi
             cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
         done
     else
@@ -162,6 +197,7 @@ else
         softfiles=`ls "$INPUT_PATH"`
         for sfile in ${softfiles}
         do
+            echo " "
             echo "build $INPUT_PATH/$sfile"
             echo "$INPUT_PATH/$sfile" > $FILE_PATH
             echo "$INPUT_PATH/$sfile" > $EXCLUDE_FILE
@@ -195,12 +231,17 @@ else
             else
                 echo -e "${DYEL}will build  ${RES}"
                 find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+
+                if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
+                    echo -e "${DYEL}cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out ${RES}"
+                    rm cscope/"$CSCOPE_FILE".files
+                    continue
+                fi
+
                 cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
             fi
-            echo " "
             
         done
-        rm $EXCLUDE_FILE
     elif [ x"$1" == x"rebuild" ] && [ x"$2" == x"-e" ]; then
         echo -e "${DYELL}in mode 6: 更新cscope目录下全部索引，忽略某些索引(索引名忽略大小写)  ${RES}"
         echo "exclude module:"
@@ -214,62 +255,105 @@ else
         done
         echo " "
 
-        rebuildfiles=`ls cscope/*.files`
-        for refiles in ${rebuildfiles}
-        do
-            echo $refiles > $REBUILD_FILE
-            REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
-            TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
-            echo $TMP_PATH > $REBUILD_FILE
-            TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
-            echo $TMP_PATH > $FILE_PATH
-            REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
-            echo $REBUILD_PATH
-            #A=${REBUILD_PATH%/*}/
-            E=${REBUILD_PATH##*/}
-            #echo A:$A
-            #echo E:$E
-
-            MATCHED=0
-            count=1
-            for i in $@
+        FILE_COUNT=$(ls cscope/*.files 2> /dev/null | wc -l)
+        if [ "$FILE_COUNT" == "0" ]; then
+            echo "there is no *.files"
+        else
+            rebuildfiles=`ls cscope/*.files`
+            for refiles in ${rebuildfiles}
             do
-                if [ "$count" -ge "3" ]; then
-                    shopt -s nocasematch
-                    case "$i" in
-                        $E ) MATCHED=1;;
-                        *) ;;
-                    esac
-                    shopt -u nocasematch
+                echo $refiles > $REBUILD_FILE
+                REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
+                TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
+                echo $TMP_PATH > $REBUILD_FILE
+                TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
+                echo $TMP_PATH > $FILE_PATH
+                REBUILD_PATH=`sed "s#+#/#g" $FILE_PATH`
+                echo $REBUILD_PATH
+                #A=${REBUILD_PATH%/*}/
+                E=${REBUILD_PATH##*/}
+                #echo A:$A
+                #echo E:$E
+
+                MATCHED=0
+                count=1
+                for i in $@
+                do
+                    if [ "$count" -ge "3" ]; then
+                        shopt -s nocasematch
+                        case "$i" in
+                            $E ) MATCHED=1;;
+                            *) ;;
+                        esac
+                        shopt -u nocasematch
+                    fi
+                    let count=count+1
+                done
+
+                if [ x"1" == x"$MATCHED" ]; then
+                    echo -e "${DYELL}match, will exclude ${RES}"
+                else
+                    echo -e "${DYEL}will rebuild  ${RES}"
+                    if [ -f $REBUILD_OUT ]; then
+                        rm $REBUILD_OUT
+                    fi
+                    find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                    cscope -bkq -i $refiles -f $REBUILD_OUT
                 fi
-                let count=count+1
+                echo " "
+                
             done
 
-            if [ x"1" == x"$MATCHED" ]; then
-                echo -e "${DYELL}match, will exclude ${RES}"
-            else
-                echo -e "${DYEL}will rebuild  ${RES}"
-                rm $REBUILD_OUT
-                find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                cscope -bkq -i $refiles -f $REBUILD_OUT
-            fi
-            echo " "
-            
-        done
-        rm $REBUILD_FILE
+        fi
     else
         echo -e "${DYELL}input 3, unknown mode  ${RES}"
     fi
 fi
 
-rm $FILE_PATH
-echo "`ls cscope/*.out`" >cscope/load_list.vim
+## remove tmpfile
+if [ -f $EXCLUDE_FILE ]; then
+    rm $EXCLUDE_FILE
+fi
+
+if [ -f $FILE_PATH ]; then
+    rm $FILE_PATH
+fi
+
+if [ -f $REBUILD_FILE ]; then
+    rm $REBUILD_FILE
+fi
+
+## check *.out
+echo -e "${DYEL}check *.out${RES}"
+
+OUT_COUNT=$(ls cscope/*.out 2> /dev/null | wc -l)
+
+if [ "$OUT_COUNT" != "0" ]; then
+    ls cscope/*.out
+    echo "`ls cscope/*.out`" >cscope/load_list.vim
+else
+    echo "there is no *.out"
+fi
+
+#if [ -f cscope/*.out ]; then
+#    ls cscope/*.out
+#    echo "`ls cscope/*.out`" >cscope/load_list.vim
+#else
+#    echo "there is no *.out"
+#fi
+
 if [ -f cscope/load.vim ]; then
     rm cscope/load.vim
 fi
-sed 's/^/cs add &/g' cscope/load_list.vim >>cscope/load.vim
+
+if [ -f cscope/load_list.vim ]; then
+    sed 's/^/cs add &/g' cscope/load_list.vim >>cscope/load.vim
+fi
+
 if [ -f cscope/load_list.vim ]; then
     rm cscope/load_list.vim
 fi 
 
+## end
+echo " "
 echo "done"
