@@ -96,8 +96,10 @@ map Q gq
 " Delete find pair
 nnoremap dy d%
 
-noremap <C-h> 5j
-noremap <C-l> 5k
+noremap <C-j> 5j
+noremap <C-k> 5k
+noremap <C-h> 5h
+noremap <C-l> 5l
 
 nnoremap . ,
 
