@@ -304,8 +304,8 @@ let g:coc_global_extensions = [
     \ 'coc-jedi',
     \ 'coc-html',
     \ 'coc-json',
-    \ 'coc-vimlsp',
-    \ 'coc-sh']
+    \ 'coc-sh',
+    \ 'coc-vimlsp']
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
