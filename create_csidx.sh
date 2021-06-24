@@ -75,6 +75,11 @@ if [ x"$#" == x"1" ]; then
             rebuildfiles=`ls cscope/*.files`
             for refiles in ${rebuildfiles}
             do
+                if [ ! -s $refiles ]; then
+                    echo -e "${DYEL}$refiles is empty, will not build cscope.out ${RES}"
+                    rm $refiles
+                    continue
+                fi
                 echo $refiles > $REBUILD_FILE
                 REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
                 TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
@@ -122,6 +127,11 @@ elif [ x"$#" == x"2" ]; then
             rebuildfiles=`ls cscope/*.files`
             for refiles in ${rebuildfiles}
             do
+                if [ ! -s $refiles ]; then
+                    echo -e "${DYEL}$refiles is empty, will not build cscope.out ${RES}"
+                    rm $refiles
+                    continue
+                fi
                 echo $refiles > $REBUILD_FILE
                 REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
                 TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
@@ -262,6 +272,11 @@ else
             rebuildfiles=`ls cscope/*.files`
             for refiles in ${rebuildfiles}
             do
+                if [ ! -s $refiles ]; then
+                    echo -e "${DYEL}$refiles is empty, will not build cscope.out ${RES}"
+                    rm $refiles
+                    continue
+                fi
                 echo $refiles > $REBUILD_FILE
                 REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
                 TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
