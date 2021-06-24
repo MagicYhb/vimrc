@@ -45,7 +45,7 @@ set completeopt=longest,menu
 " 搜索设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set hlsearch                       " 高亮显示搜索结果
-set incsearch                      " 开启实时搜索功能
+set incsearch                       " 开启实时搜索功能
 "set ignorecase                     " 搜索时大小写不敏感
 set ignorecase smartcase
 
@@ -249,7 +249,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
 
 """ Translator
-" use coc-translator
+""" use coc-translator
 " Plug 'voldikss/vim-translator'
 
 """ Key word
@@ -921,9 +921,9 @@ func SetTitle()
 "        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
 	else
 		call setline(1, "/*************************************************************************")
-		call append(line("."), "	> File Name: ".expand("%"))
-		call append(line(".")+1, "	> Author: MagicYang")
-		call append(line(".")+2, "	> Mail: 476080754@qq.com")
+		call append(line("."), "	> File Name:    ".expand("%"))
+		call append(line(".")+1, "	> Author:       MagicYang")
+		call append(line(".")+2, "	> Mail:         476080754@qq.com")
 		call append(line(".")+3, "	> Created Time: ".strftime("%c"))
 		call append(line(".")+4, " ************************************************************************/")
 		call append(line(".")+5, "")

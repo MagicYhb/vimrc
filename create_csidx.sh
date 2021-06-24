@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #/**
-#* @file create_csidx.sh
+#* @file    create_csidx.sh
 #* @Synopsis 
-#* @author MagicYang
-#* @version 
-#* @date 2021-06-16
+#* @author  MagicYang
+#* @version 2.0.1 
+#* @date    2021-06-16
 #*/
 
 DYEL='\E[0;33m'
