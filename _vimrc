@@ -96,10 +96,16 @@ map Q gq
 " Delete find pair
 nnoremap dy d%
 
-noremap <C-j> 5j
-noremap <C-k> 5k
-noremap <C-h> 5h
-noremap <C-l> 5l
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+nnoremap <C-h> 5h
+nnoremap <C-l> 5l
+
+" in xshell-5 <C-down> && <C-up> unable to trigger, so use xshell-5 hotkey
+"nnoremap <C-down>    5j
+"nnoremap <C-up>      5k
+"nnoremap <C-left>    5h
+"nnoremap <C-right>   5l
 
 nnoremap . ,
 
