@@ -66,15 +66,10 @@ set confirm                         " 在处理未保存或只读文件的时候
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编码设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set langmenu=zh_CN.UTF-8
-"set helplang=cn
-"set termencoding=utf-8
-"set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
-
 let &termencoding=&encoding
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-"set fileencoding=cp936
+"set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 "set fileencodings=cp936,ucs-bom,utf-8
 set encoding=utf-8
 
@@ -106,8 +101,6 @@ nnoremap <C-l> 5l
 "nnoremap <C-up>      5k
 "nnoremap <C-left>    5h
 "nnoremap <C-right>   5l
-
-nnoremap . ,
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -184,7 +177,7 @@ Plug 'vim-scripts/stlrefvim'
 "Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'Lokaltog/vim-powerline'
 Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline-themes'
 
 """ 
 Plug 'luochen1990/rainbow'
@@ -200,22 +193,16 @@ Plug 'vim-scripts/YankRing.vim'
 "Plug 'christoomey/vim-tmux-navigator'
 
 "" programming
-" Plug 'vim-scripts/TaskList.vim'
-" Plug 'pright/c.vim'
- "Plug 'pright/CCTree'
-" Plug 'pright/stl-tags'
-" Plug 'pright/glibc-tags'
-" Plug 'pright/mytags'
-"Plug 'drmingdrmer/xptemplate'
 "Plug 'vim-scripts/UltiSnips'
-"Plug 'vim-scripts/clang-complete'
-" Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
-"Plug 'vim-scripts/bufexplorer.zip'
-"Plug 'vim-scripts/taglist.vim'
-"Plug 'pright/winmanager--Fox'
-" Plug 'scrooloose/syntastic'
-"Plug 'ludovicchabant/vim-gutentags'
+"
+"Plug 'drmingdrmer/xptemplate'
+"
+"Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
+
+"Plug 'scrooloose/syntastic'
 "Plug 'w0rp/ale'
+" 
+"Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'mileszs/ack.vim'
 Plug 'Lokaltog/vim-easymotion'
@@ -256,7 +243,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 """ Translator
 """ use coc-translator
-" Plug 'voldikss/vim-translator'
+"Plug 'voldikss/vim-translator'
 
 """ Key word
 Plug 'itchyny/vim-cursorword'
@@ -275,7 +262,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 
 """ Shell
-" Plug 'edkolev/promptline.vim'
+"Plug 'edkolev/promptline.vim'
 
 """ C/C++
 Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
@@ -284,17 +271,17 @@ Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 """ Python
-" Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
-" Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
-" Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
+"Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
+"Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
+"Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 "Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 "Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 "Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
 
 """ Auto complete
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'vim-scripts/code_complete'
-" Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'vim-scripts/code_complete'
+"Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
