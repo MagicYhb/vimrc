@@ -7,11 +7,12 @@
 #* @version 2.0.1 
 #* @date    2021-06-16
 #*/
-
 DYEL='\E[0;33m'
 DYELL='\E[43;30m'
 GRN='\E[1;32m'
 RES='\E[0m'
+
+EX_FIND_FILE=" -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" "
 
 if [ $# -lt 1 ]; then
     echo -e "${DYELL}example: ${RES}"
@@ -92,7 +93,8 @@ if [ x"$#" == x"1" ]; then
                 if [ -f $REBUILD_OUT ]; then
                     rm $REBUILD_OUT
                 fi
-                find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                find "$REBUILD_PATH" -name "*.c" $EX_FIND_FILE > $refiles
                 cscope -bkq -i $refiles -f $REBUILD_OUT
             done
         fi
@@ -103,7 +105,8 @@ if [ x"$#" == x"1" ]; then
         echo " "
         CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
-        find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+        #find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+        find "$INPUT_PATH" -name "*.c" $EX_FIND_FILE > cscope/"$CSCOPE_FILE".files
         if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
             rm cscope/"$CSCOPE_FILE".files
             echo cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out
@@ -157,7 +160,8 @@ elif [ x"$#" == x"2" ]; then
                     if [ -f $REBUILD_OUT ]; then
                         rm $REBUILD_OUT
                     fi
-                    find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                    #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                    find "$REBUILD_PATH" -name "*.c" $EX_FIND_FILE > $refiles
                     cscope -bkq -i $refiles -f $REBUILD_OUT
                 else
                     echo "not match"
@@ -179,7 +183,8 @@ elif [ x"$#" == x"2" ]; then
             # 路径转义,为rebuild做准备
             CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
-            find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+            #find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+            find "$INPUT_PATH/$sfile" -name "*.c" $EX_FIND_FILE > cscope/"$CSCOPE_FILE".files
             if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
                 echo -e "${DYEL}cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out ${RES}"
                 rm cscope/"$CSCOPE_FILE".files
@@ -240,7 +245,8 @@ else
                 echo -e "${DYELL}match, will exclude ${RES}"
             else
                 echo -e "${DYEL}will build  ${RES}"
-                find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+                #find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
+                find "$INPUT_PATH/$sfile" -name "*.c" $EX_FIND_FILE > cscope/"$CSCOPE_FILE".files
 
                 if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
                     echo -e "${DYEL}cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out ${RES}"
@@ -312,7 +318,8 @@ else
                     if [ -f $REBUILD_OUT ]; then
                         rm $REBUILD_OUT
                     fi
-                    find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                    #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
+                    find "$REBUILD_PATH" -name "*.c" $EX_FIND_FILE > $refiles
                     cscope -bkq -i $refiles -f $REBUILD_OUT
                 fi
                 echo " "
