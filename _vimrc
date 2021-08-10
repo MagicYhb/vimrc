@@ -88,6 +88,8 @@ set encoding=utf-8
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+nnoremap <Enter> yaw
+
 " Delete find pair
 nnoremap dy d%
 
@@ -102,15 +104,31 @@ nnoremap <C-l> 5l
 "nnoremap <C-left>    5h
 "nnoremap <C-right>   5l
 
+" eggcache vim
+"nnoremap ; :
+:command W w
+:command Q q
+:command WQ wq
+:command Wq wq
+:command Qa qa
+:command QA qa
+:command QW qa
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" mouse
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " In many terminal emulators the mouse works just fine, thus enable it.
 "if has('mouse')
     "set mouse=a
 "endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" highlight settings 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -118,6 +136,9 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" autocmd  
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
     " Enable file type detection.
@@ -221,7 +242,6 @@ Plug 'dkprice/vim-easygrep'
 Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
-"" Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "" Plug 'vim-scripts/pep8'
 Plug 'pright/vim-snippets'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -271,6 +291,7 @@ Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 """ Python
+"Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 "Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 "Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
@@ -899,7 +920,13 @@ func SetTitle()
 	"如果文件类型为.sh文件
 	if &filetype == 'sh'
 		call setline(1,"\#!/bin/bash")
-		call append(line("."), "")
+		call append(line("."), " ")
+		call append(line(".")+1, "\#> File Name:    ".expand("%"))
+		call append(line(".")+2, "\#> Author:       MagicYang")
+		call append(line(".")+3, "\#> Mail:         476080754@qq.com")
+		call append(line(".")+4, "\#> Created Time: ".strftime("%c"))
+		call append(line(".")+5, " ")
+		call append(line(".")+6, "")
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
@@ -943,17 +970,6 @@ func SetTitle()
 endfunc
 autocmd BufNewFile * normal G
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" eggcache vim
-"nnoremap ; :
-:command W w
-:command WQ wq
-:command Wq wq
-:command Q q
-:command Qa qa
-:command QA qa
-:command QW qa
-nnoremap <Enter> yaw
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if filereadable("cscope/load.vim")
