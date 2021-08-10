@@ -580,22 +580,6 @@ nnoremap <F9>b :DoxBlock
 nnoremap <F9>c O/** */<Left><Left>
 nnoremap <F9>l :DoxLic
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FuzzyFinder
-"let g:fuf_modesDisable = []
-"let g:fuf_mrufile_maxItem = 400
-"let g:fuf_mrucmd_maxItem = 400
-"nnoremap <silent> <leader>f :FufFile<CR>
-"nnoremap <silent> <leader>F :FufCoverageFile<CR>
-"nnoremap <silent> <leader>t :FufBufferTag<CR>
-"nnoremap <silent> <leader>T :FufTag<CR>
-"nnoremap <silent> <leader>r :FufMruFileInCwd<CR>
-"nnoremap <silent> <leader>R :FufMruFile<CR>
-"nnoremap <silent> <leader>u :FufBuffer<CR>
-"nnoremap <silent> <leader>a :FufBookmarkFileAdd<CR>
-"nnoremap <silent> <leader>b :FufBookmarkFile<CR>
-"nnoremap <silent> <leader>d :FufDir<CR>
-"nnoremap <silent> <leader>] :FufTagWithCursorWord!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" YankRing
@@ -715,6 +699,7 @@ nmap <leader>q :bp<cr>:bd #<cr>                         " 退出当前的 tab
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Setting ag as the default source for fzf
 if executable('ag')
     let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g  ""'
@@ -791,6 +776,32 @@ imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
+""""""""""""""""""""""""""""""""""
+":Files [PATH]	    Files (runs $FZF_DEFAULT_COMMAND if defined)
+":GFiles [OPTS]	    Git files (git ls-files)
+":GFiles?	        Git files (git status)
+":Buffers	        Open buffers
+":Colors	        Color schemes
+":Ag [PATTERN]	    ag search result (ALT-A to select all, ALT-D to deselect all)
+":Rg [PATTERN]	    rg search result (ALT-A to select all, ALT-D to deselect all)
+":Lines [QUERY]	    Lines in loaded buffers
+":BLines [QUERY]	Lines in the current buffer
+":Tags [QUERY]	    Tags in the project (ctags -R)
+":BTags [QUERY]	    Tags in the current buffer
+":Marks	            Marks
+":Windows	        Windows
+":Locate PATTERN	locate command output
+":History	        v:oldfiles and open buffers
+":History:	        Command history
+":History/	        Search history
+":Snippets	        Snippets (UltiSnips)
+":Commits	        Git commits (requires fugitive.vim)
+":BCommits	        Git commits for the current buffer; visual-select lines to track changes in the range
+":Commands	        Commands
+":Maps              Normal mode mappings
+":Helptags	        Help tags 1
+":Filetypes	        File types
+
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
@@ -804,6 +815,7 @@ nnoremap <silent> <leader>w :Windows<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:VimuxHeight = "30"
 " let g:VimuxOrientation = "h"
 " 
@@ -839,6 +851,7 @@ nnoremap <silent> <leader>w :Windows<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-table-mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:table_mode_corner='|'
 let g:table_mode_corner_corner = '+'
 "let g:table_mode_header_fillchar='='
@@ -846,6 +859,7 @@ let g:table_mode_corner_corner = '+'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter
 " 注释工具
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <leader> + <c> + <space>
 let g:NERDCustomDelimiters = {
             \ 'asm': { 'left': '/*', 'right': '*/' }
@@ -854,6 +868,7 @@ let g:NERDCustomDelimiters = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow
 " 提供嵌套括号高亮
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
 let g:rainbow_conf = {
 \ 'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
@@ -880,6 +895,7 @@ let g:rainbow_conf = {
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " promptline.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:promptline_preset = 'clear'
 " let g:promptline_preset = {
 "             \'b' : [ promptline#slices#python_virtualenv(), '$USER' ],
@@ -891,10 +907,12 @@ let g:rainbow_conf = {
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tmuxline.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tmuxline_preset = 'tmux'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gutentags
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gutentags_modules = []
 if executable('ctags')
     let g:gutentags_modules += ['ctags']
@@ -970,8 +988,9 @@ func SetTitle()
 endfunc
 autocmd BufNewFile * normal G
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" add cscope.out   
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if filereadable("cscope/load.vim")
     source ./cscope/load.vim
 endif
