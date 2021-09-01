@@ -17,7 +17,7 @@ let s:interestingWordsTermColors = ['006', '005', '003', '002', '154', '121', '1
 
 ## 四、vim compelete
 ### apt install
-sudo apt-get install npm ag fzf cscope clangd ccls
+sudo apt-get install npm silversearcher-ag fzf cscope clangd ccls
 
 ### npm
 npm i -g bash-language-server
