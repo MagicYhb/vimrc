@@ -313,12 +313,13 @@ call plug#end()
 let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-translator',
-    \ 'coc-pyright',
     \ 'coc-python',
-    \ 'coc-jedi',
+    "\ 'coc-pyright',
+    "\ 'coc-jedi',
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-sh',
+    \ 'coc-clangd',
     \ 'coc-vimlsp']
 
 " Use tab for trigger completion with characters ahead and navigate.

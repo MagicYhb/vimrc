@@ -14,13 +14,21 @@ https://vimawesome.com/
 ## 三、vim-interestingwords
 let s:interestingWordsTermColors = ['006', '005', '003', '002', '154', '121', '131', '111', '137', '214', '222', '001', '090', '255', '100']
 
+## 四 xhell5 ubuntu20
+/etc/ssh/sshd_config
 
-## 四、vim compelete
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
+
+systemctl restart sshd
+
+## 五、vim compelete
 ### apt install
-sudo apt-get install npm silversearcher-ag fzf cscope clangd ccls
+sudo apt-get install npm silversearcher-ag fzf cscope clangd ccls ctags
 
 ### npm
 npm i -g bash-language-server
+
+npm install jedi
 
 ### before make nodejs
 sudo apt-get install python3-distutils
