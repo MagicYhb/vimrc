@@ -38,3 +38,9 @@ nodejs(version >= 12.12)
 
 ### [coc.nvim] Server languageserver.coc-clangd failed to start: Launching server "languageserver.coc-clangd" using command clangd failed.
 sudo apt-get install clangd
+
+## 六、man
+###1. sudo apt-get install manpages-posix manpages-posix-dev
+###2. sudo apt-get install manpages-zh
+###3. 配置中文：sudo gedit /etc/manpath.config& 把其中的/usr/share/man全部修改成/usr/share/man/zh_CN
+###4. 测试：man ls显示中文
