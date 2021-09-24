@@ -237,7 +237,7 @@ Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'edkolev/tmuxline.vim'
-Plug 'vim-scripts/grep.vim'
+"Plug 'vim-scripts/grep.vim'
 Plug 'dkprice/vim-easygrep'
 Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -264,6 +264,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 """ Translator
 """ use coc-translator
 "Plug 'voldikss/vim-translator'
+Plug 'soimort/translate-shell'
 
 """ Key word
 Plug 'itchyny/vim-cursorword'
@@ -277,6 +278,9 @@ Plug 'tpope/vim-fugitive'
 "else
     "Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 "endif
+
+""" term need vim8.2
+Plug 'voldikss/vim-floaterm'
 
 """ Undo tree
 Plug 'mbbill/undotree'
@@ -374,6 +378,58 @@ vmap te <Plug>(coc-translator-ev)
 
 "unlet s:script_cwd
 "unlet s:source_list
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-translator
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configuration
+"let g:translator_target_lang='zh'
+"let g:translator_source_lang='auto'
+"let g:translator_default_engines=['youdao', 'bing', 'google', 'haici']
+" Available: 'bing', 'google', 'haici', 'iciba'(expired), 'sdcv', 'trans', 'youdao'
+" Default: If g:translator_target_lang is 'zh', this will be ['bing', 'google', 'haici', 'youdao'], otherwise ['google']
+
+" echo translation in the cmdline
+"nmap <silent> <Leader>t <Plug>Translate
+"vmap <silent> <Leader>t <Plug>TranslateV
+
+"nmap <silent> <Leader>t <Plug>TranslateW
+"vmap <silent> <Leader>t <Plug>TranslateWV
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-floaterm need vim 82
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Configuration
+" Set floaterm window's background to black
+ "hi Floaterm guibg=black
+" " Set floating window border line color to cyan, and background to orange
+ hi FloatermBorder guibg=orange guifg=cyan
+
+"let g:floaterm_title = ' floaterm '
+let g:floaterm_width = 0.38
+let g:floaterm_height = 0.55
+let g:floaterm_wintype = 'float'
+"let g:floaterm_position = 'topleft'
+let g:floaterm_position = 'topright'
+"let g:floaterm_opener
+"let g:floaterm_autoclose
+"let g:floaterm_borderchars
+"let g:floaterm_autoclose = 1
+let g:floaterm_borderchars = '-I-I[]]['
+
+" KeyMaps
+let g:floaterm_keymap_new = '<F5>n'
+"let g:floaterm_keymap_prev
+"let g:floaterm_keymap_next
+"let g:floaterm_keymap_first
+"let g:floaterm_keymap_last
+let g:floaterm_keymap_hide = '<F5>h'
+let g:floaterm_keymap_show = '<F5>s'
+let g:floaterm_keymap_kill = '<F5>q'
+let g:floaterm_keymap_toggle = '<Leader>t'
+ 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -517,12 +573,12 @@ nnoremap <silent> <leader>a :A<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep.vim
-if !executable('ag')
-    let Grep_Default_Filelist = '*.c *.cpp *.h'
-    let Grep_Skip_Files = '*.bak *~'
-    let Grep_Default_Options = '-i'
-    nnoremap <silent> <F11> :Rgrep<CR>
-endif
+"if !executable('ag')
+    "let Grep_Default_Filelist = '*.c *.cpp *.h'
+    "let Grep_Skip_Files = '*.bak *~'
+    "let Grep_Default_Options = '-i'
+    "nnoremap <silent> <F11> :Rgrep<CR>
+"endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ack.vim
@@ -804,7 +860,7 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 ":Filetypes	        File types
 
 nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>t :BTags<CR>
+"nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>h :History<CR>
 nnoremap <silent> <leader>H :History:<CR>
