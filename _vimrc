@@ -407,7 +407,7 @@ vmap te <Plug>(coc-translator-ev)
 " " Set floating window border line color to cyan, and background to orange
  hi FloatermBorder guibg=orange guifg=cyan
 
-"let g:floaterm_title = ' floaterm '
+let g:floaterm_title = '------------------------- MagicYang floaterm: $1/$2 '
 let g:floaterm_width = 0.38
 let g:floaterm_height = 0.55
 let g:floaterm_wintype = 'float'
@@ -420,11 +420,11 @@ let g:floaterm_position = 'topright'
 let g:floaterm_borderchars = '-I-I[]]['
 
 " KeyMaps
-let g:floaterm_keymap_new = '<F5>n'
-"let g:floaterm_keymap_prev
-"let g:floaterm_keymap_next
-"let g:floaterm_keymap_first
-"let g:floaterm_keymap_last
+let g:floaterm_keymap_new = '<F5>c'
+let g:floaterm_keymap_prev = '<F5>p'
+let g:floaterm_keymap_next = '<F5>n'
+let g:floaterm_keymap_first = '<F5>f'
+let g:floaterm_keymap_last = '<F5>l'
 let g:floaterm_keymap_hide = '<F5>h'
 let g:floaterm_keymap_show = '<F5>s'
 let g:floaterm_keymap_kill = '<F5>q'
