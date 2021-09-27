@@ -44,3 +44,6 @@ sudo apt-get install clangd
 ###2. sudo apt-get install manpages-zh
 ###3. 配置中文：sudo gedit /etc/manpath.config& 把其中的/usr/share/man全部修改成/usr/share/man/zh_CN
 ###4. 测试：man ls显示中文
+
+## 七、vim_tools
+git@github.com:MagicYhb/vim_tools.git
