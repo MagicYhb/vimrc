@@ -135,6 +135,8 @@ if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch
 endif
+nnoremap <LEADER>3 :set hlsearch<CR>
+nnoremap <LEADER>4 :set nohlsearch<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd  
@@ -452,7 +454,7 @@ endif
 " quickfix是vim内置插件，用于浏览命令执行结果信息。命令需要进行设定，才能把执行结果显示到quickfix中。
 " QuickFix
 "nnoremap <silent> <leader>n :cn<CR>
-nnoremap <silent> <leader>p :cp<CR>
+"nnoremap <silent> <leader>p :cp<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimcdoc
