@@ -118,9 +118,16 @@ if [ x"$#" == x"1" ]; then
                 outfiles=`echo ${outfiles##*+}`
                 echo ${outfiles%.*} >> cscope/index.file
             done
-            #cat cscope/index.file | awk '{if(NR%2!=0)ORS=" ";else ORS="\n";print}'
-            awk '{if (NR%4==0){print $0} else {printf"%s ",$0}}' cscope/index.file >> cscope/index_out.file
+
+            awk '{if (NR%3==0){print $0} else {printf"%s ",$0}}' cscope/index.file >> cscope/index_out.file
+            echo "" >> cscope/index_out.file
+            
+            total=`awk '{print NR}' cscope/index.file | tail -n1`
+            echo "total:$total"
+            echo " "
+
             cat cscope/index_out.file | column -t
+
             rm cscope/index.file
             rm cscope/index_out.file
         else
