@@ -42,6 +42,10 @@ if [ $# -lt 1 ]; then
     echo -e "${GRN}    rebuild module:  ./create_csidx.sh rebuild -e module1 module2 module3 ... modulex ${RES}"
     echo " "
 
+    echo -e "${DYEL}mode 7: 查看当前已建立的索引  ${RES}"
+    echo -e "${GRN}    show index:      ./create_csidx.sh ps ${RES}"
+    echo " "
+
     exit -1
 fi
 
@@ -68,7 +72,7 @@ if [ x"$#" == x"1" ]; then
     if [ x"$1" == x"rebuild" ];then
         echo -e "${DYELL}in mode 4: 更新cscope目录下全部索引 ${RES}"
         echo " "
-        
+
         FILE_COUNT=$(ls cscope/*.files 2> /dev/null | wc -l)
         if [ "$FILE_COUNT" == "0" ]; then
             echo "there is no *.files"
@@ -97,6 +101,30 @@ if [ x"$#" == x"1" ]; then
                 find "$REBUILD_PATH" -name "*.c" $EX_FIND_FILE > $refiles
                 cscope -bkq -i $refiles -f $REBUILD_OUT
             done
+        fi
+    elif [ x"$1" == x"ps" ]; then
+        echo -e "${DYELL}in mode 7: 查看当前已建立的索引 ${RES}"
+        echo " "
+        if [ -f cscope/load.vim ]; then
+            if [ -f cscope/index.file ]; then
+                rm cscope/index.file
+            fi
+            if [ -f cscope/index_out.file ]; then
+                rm cscope/index_out.file
+            fi
+            indexfiles=`ls cscope/*.out`
+            for outfiles in $indexfiles
+            do
+                outfiles=`echo ${outfiles##*+}`
+                echo ${outfiles%.*} >> cscope/index.file
+            done
+            #cat cscope/index.file | awk '{if(NR%2!=0)ORS=" ";else ORS="\n";print}'
+            awk '{if (NR%4==0){print $0} else {printf"%s ",$0}}' cscope/index.file >> cscope/index_out.file
+            cat cscope/index_out.file | column -t
+            rm cscope/index.file
+            rm cscope/index_out.file
+        else
+            echo "there is no index file"
         fi
     else
         echo -e "${DYELL}in mode 1: 以目标目录为索引名，创建单个索引 ${RES}"
@@ -167,7 +195,7 @@ elif [ x"$#" == x"2" ]; then
                     echo "not match"
                 fi
                 echo " "
-                
+
             done
         fi
     elif [ x"$2" == x"all" ]; then
@@ -256,7 +284,7 @@ else
 
                 cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
             fi
-            
+
         done
     elif [ x"$1" == x"rebuild" ] && [ x"$2" == x"-e" ]; then
         echo -e "${DYELL}in mode 6: 更新cscope目录下全部索引，忽略某些索引(索引名忽略大小写)  ${RES}"
@@ -323,7 +351,7 @@ else
                     cscope -bkq -i $refiles -f $REBUILD_OUT
                 fi
                 echo " "
-                
+
             done
 
         fi
@@ -345,36 +373,38 @@ if [ -f $REBUILD_FILE ]; then
     rm $REBUILD_FILE
 fi
 
-## check *.out
-echo -e "${DYEL}check *.out${RES}"
+if [ x"$1" != x"ps" ]; then
+    ## check *.out
+    echo -e "${DYEL}check *.out${RES}"
 
-OUT_COUNT=$(ls cscope/*.out 2> /dev/null | wc -l)
+    OUT_COUNT=$(ls cscope/*.out 2> /dev/null | wc -l)
 
-if [ "$OUT_COUNT" != "0" ]; then
-    ls cscope/*.out
-    echo "`ls cscope/*.out`" >cscope/load_list.vim
-else
-    echo "there is no *.out"
+    if [ "$OUT_COUNT" != "0" ]; then
+        ls cscope/*.out
+        echo "`ls cscope/*.out`" >cscope/load_list.vim
+    else
+        echo "there is no *.out"
+    fi
+
+    #if [ -f cscope/*.out ]; then
+    #    ls cscope/*.out
+    #    echo "`ls cscope/*.out`" >cscope/load_list.vim
+    #else
+    #    echo "there is no *.out"
+    #fi
+
+    if [ -f cscope/load.vim ]; then
+        rm cscope/load.vim
+    fi
+
+    if [ -f cscope/load_list.vim ]; then
+        sed 's/^/cs add &/g' cscope/load_list.vim >>cscope/load.vim
+    fi
+
+    if [ -f cscope/load_list.vim ]; then
+        rm cscope/load_list.vim
+    fi
 fi
-
-#if [ -f cscope/*.out ]; then
-#    ls cscope/*.out
-#    echo "`ls cscope/*.out`" >cscope/load_list.vim
-#else
-#    echo "there is no *.out"
-#fi
-
-if [ -f cscope/load.vim ]; then
-    rm cscope/load.vim
-fi
-
-if [ -f cscope/load_list.vim ]; then
-    sed 's/^/cs add &/g' cscope/load_list.vim >>cscope/load.vim
-fi
-
-if [ -f cscope/load_list.vim ]; then
-    rm cscope/load_list.vim
-fi 
 
 ## end
 echo " "
