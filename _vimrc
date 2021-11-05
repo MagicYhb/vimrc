@@ -410,8 +410,8 @@ vmap te <Plug>(coc-translator-ev)
  hi FloatermBorder guibg=orange guifg=cyan
 
 let g:floaterm_title = '------------------------- MagicYang floaterm: $1/$2 '
-let g:floaterm_width = 0.38
-let g:floaterm_height = 0.55
+let g:floaterm_width = 0.45
+let g:floaterm_height = 0.65
 let g:floaterm_wintype = 'float'
 "let g:floaterm_position = 'topleft'
 let g:floaterm_position = 'topright'
