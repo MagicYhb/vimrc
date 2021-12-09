@@ -469,7 +469,7 @@ set helplang=cn
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let NERDTreeWinPos="left"
-let g:NERDTreeWinSize = 25          " 设定 NERDTree 视窗大小
+let g:NERDTreeWinSize = 35          " 设定 NERDTree 视窗大小
 " let g:NERDTreeHidden=0            " 不显示隐藏文件
 let g:NERDTreeShowLineNumbers=1     " 是否显示行号
 " let NERDTreeIgnore = ['\.pyc$']     " 过滤所有.pyc文件不显示
