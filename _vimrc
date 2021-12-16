@@ -989,7 +989,7 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""新文件标题
+""""" new file title
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
@@ -999,12 +999,13 @@ func SetTitle()
 	if &filetype == 'sh'
 		call setline(1,"\#!/bin/bash")
 		call append(line("."), " ")
-		call append(line(".")+1, "\#> File Name:    ".expand("%"))
-		call append(line(".")+2, "\#> Author:       MagicYang")
-		call append(line(".")+3, "\#> Mail:         476080754@qq.com")
-		call append(line(".")+4, "\#> Created Time: ".strftime("%c"))
-		call append(line(".")+5, " ")
-		call append(line(".")+6, "")
+		call append(line(".")+1, "\#> File Name:        ".expand("%"))
+		call append(line(".")+2, "\#> Author:           MagicYang")
+		call append(line(".")+3, "\#> Version:          1.0.1")
+		call append(line(".")+4, "\#> Mail:             476080754@qq.com")
+		call append(line(".")+5, "\#> Created Time:     ".strftime("%Y-%m-%d %H:%M:%S"))
+		call append(line(".")+6, " ")
+		call append(line(".")+7, "")
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
@@ -1019,41 +1020,47 @@ func SetTitle()
 "        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
 	else
 		call setline(1, "/*************************************************************************")
-		call append(line("."), "	> File Name:    ".expand("%"))
-		call append(line(".")+1, "	> Author:       MagicYang")
-		call append(line(".")+2, "	> Mail:         476080754@qq.com")
-		call append(line(".")+3, "	> Created Time: ".strftime("%c"))
-		call append(line(".")+4, " ************************************************************************/")
-		call append(line(".")+5, "")
+		call append(line("."), "	> File Name:        ".expand("%"))
+		call append(line(".")+1, "	> Author:           MagicYang")
+		call append(line(".")+2, "	> Version:          1.0.1")
+		call append(line(".")+3, "	> Mail:             476080754@qq.com")
+		call append(line(".")+4, "	> Created Time:     ".strftime("%Y-%m-%d %H:%M:%S"))
+		call append(line(".")+5, "	> par Copyright (c):")
+		call append(line(".")+6, "")
+		call append(line(".")+7, "	> par History:     ")
+		call append(line(".")+8, "	> |  version  |    author    |     desc     |       data")
+		call append(line(".")+9, "	> |  1.0.1    |   MagicYang  |  create file |       ".strftime("%Y-%m-%d"))
+		call append(line(".")+10, " ************************************************************************/")
+		call append(line(".")+11, "")
 	endif
 	if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include <iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
+		call append(line(".")+12, "#include <iostream>")
+		call append(line(".")+13, "using namespace std;")
+		call append(line(".")+14, "")
 	endif
 	if &filetype == 'c'
-		call append(line(".")+6, "#include <stdio.h>")
-		call append(line(".")+7, "")
+		call append(line(".")+12, "#include <stdio.h>")
+		call append(line(".")+13, "")
 	endif
 	if expand("%:e") == 'h'
-		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
-        call append(line(".")+8, "")
-        call append(line(".")+9, "#ifdef __cplusplus")
-        call append(line(".")+10, "extern \"C\" {")
-        call append(line(".")+11, "#endif")
-        call append(line(".")+12, "")
-        call append(line(".")+13, "")
+		call append(line(".")+12, "#ifndef _".toupper(expand("%:r"))."_H")
+		call append(line(".")+13, "#define _".toupper(expand("%:r"))."_H")
         call append(line(".")+14, "")
         call append(line(".")+15, "#ifdef __cplusplus")
-        call append(line(".")+16, "}")
+        call append(line(".")+16, "extern \"C\" {")
         call append(line(".")+17, "#endif")
         call append(line(".")+18, "")
-        call append(line(".")+19, "#endif")
+        call append(line(".")+19, "")
+        call append(line(".")+20, "")
+        call append(line(".")+21, "#ifdef __cplusplus")
+        call append(line(".")+22, "}")
+        call append(line(".")+23, "#endif")
+        call append(line(".")+24, "")
+        call append(line(".")+25, "#endif")
 	endif
 	if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%:r"))
-		call append(line(".")+7,"")
+		call append(line(".")+12,"public class ".expand("%:r"))
+		call append(line(".")+13,"")
 	endif
 	"新建文件后，自动定位到文件末尾
 endfunc
