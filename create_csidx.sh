@@ -360,24 +360,26 @@ elif [ x"$CS_MODE" == x"-ps" ]; then
         if [ -f cscope/index_out.file ]; then
             rm cscope/index_out.file
         fi
-        indexfiles=`ls cscope/*.out`
+        cd cscope
+        indexfiles=`ls *.out`
         for outfiles in $indexfiles
         do
             outfiles=`echo ${outfiles##*+}`
-            echo ${outfiles%.*} >> cscope/index.file
+            echo ${outfiles%.*} >> ./index.file
         done
 
-        awk '{if (NR%3==0){print $0} else {printf"%s ",$0}}' cscope/index.file >> cscope/index_out.file
-        echo "" >> cscope/index_out.file
+        awk '{if (NR%3==0){print $0} else {printf"%s ",$0}}' ./index.file >> ./index_out.file
+        echo "" >> ./index_out.file
         
-        total=`awk '{print NR}' cscope/index.file | tail -n1`
+        total=`awk '{print NR}' ./index.file | tail -n1`
         echo "total:$total"
         echo " "
 
-        cat cscope/index_out.file | column -t
+        cat ./index_out.file | column -t
 
-        rm cscope/index.file
-        rm cscope/index_out.file
+        rm ./index.file
+        rm ./index_out.file
+        cd ..
     else
         echo "there is no index file"
     fi
