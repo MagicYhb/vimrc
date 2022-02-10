@@ -4,13 +4,21 @@
 #* @file    create_csidx.sh
 #* @Synopsis 
 #* @author  MagicYang
-#* @version 3.0.1 
+#* @version 3.1.1 
 #* @date    2021-12-14
 #*/
+
 DYEL='\E[0;33m'
 DYELL='\E[43;30m'
 GRN='\E[1;32m'
 RES='\E[0m'
+
+## tmpfile
+FILE_PATH="./file.log"
+EXCLUDE_FILE="./excludefile"
+REBUILD_FILE="./rebuildfile"
+REMOVE_FILE="./removefile"
+IGNORE_FILE=""
 
 EX_FIND_FILE=" -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" "
 
@@ -23,35 +31,58 @@ help_func()
     echo -e "${GRN}    build module:    ./create_csidx.sh -b path ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 2: 以目标目录下的文件夹为索引名，创建多个索引  ${RES}"
+    echo -e "${DYEL}mode 2: 以目标目录为索引名，创建单个索引，忽略某些文件夹  ${RES}"
+    echo -e "${GRN}    build module:    ./create_csidx.sh -b path -e module1 module2 module3 ... modulex ${RES}"
+    echo " "
+
+    echo -e "${DYEL}mode 3: 以目标目录下的文件夹为索引名，创建多个索引  ${RES}"
     echo -e "${GRN}    build all:       ./create_csidx.sh -b path all ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 3: 以目标目录下(忽略指定文件夹)的文件夹为索引名，创建多个索引  ${RES}"
+    echo -e "${DYEL}mode 4: 以目标目录下(忽略指定文件夹)的文件夹为索引名，创建多个索引  ${RES}"
     echo -e "${GRN}    build all:       ./create_csidx.sh -b path all -e module1 module2 module3 ... modulex ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 4: 更新cscope目录下全部索引  ${RES}"
+    echo -e "${DYEL}mode 5: 更新cscope目录下全部索引  ${RES}"
     echo -e "${GRN}    rebuild all:     ./create_csidx.sh -rb ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 5: 更新cscope目录下单个索引，索引名忽略大小写  ${RES}"
+    echo -e "${DYEL}mode 6: 更新cscope目录下单个索引，索引名忽略大小写  ${RES}"
     echo -e "${GRN}    rebuild module:  ./create_csidx.sh -rb module ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 6: 更新cscope目录下全部索引，忽略某些索引(索引名忽略大小写)  ${RES}"
+    echo -e "${DYEL}mode 7: 更新cscope目录下全部索引，忽略某些索引(索引名忽略大小写)  ${RES}"
     echo -e "${GRN}    rebuild module:  ./create_csidx.sh -rb -e module1 module2 module3 ... modulex ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 7: 查看当前已建立的索引  ${RES}"
+    echo -e "${DYEL}mode 8: 查看当前已建立的索引  ${RES}"
     echo -e "${GRN}    show index:      ./create_csidx.sh -ps ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 8: 删除已建立的索引  ${RES}"
+    echo -e "${DYEL}mode 9: 删除已建立的索引  ${RES}"
     echo -e "${GRN}    remove module:   ./create_csidx.sh -rm module1 module2 module3 ... modulex ${RES}"
     echo " "
 
     exit -1
+}
+
+remove_func()
+{
+    if [ -f $EXCLUDE_FILE ]; then
+        rm $EXCLUDE_FILE
+    fi
+
+    if [ -f $FILE_PATH ]; then
+        rm $FILE_PATH
+    fi
+
+    if [ -f $REBUILD_FILE ]; then
+        rm $REBUILD_FILE
+    fi
+
+    if [ -f $REMOVE_FILE ]; then
+        rm $REMOVE_FILE
+    fi
 }
 
 if [ $# -lt 1 ]; then
@@ -60,12 +91,7 @@ fi
 
 set -e
 
-## tmpfile
-FILE_PATH="./file.log"
-EXCLUDE_FILE="./excludefile"
-REBUILD_FILE="./rebuildfile"
-REMOVE_FILE="./removefile"
-
+remove_func
 CS_MODE=$1
 
 if [ x"$CS_MODE" == x"-b" ]; then
@@ -95,8 +121,64 @@ if [ x"$CS_MODE" == x"-b" ]; then
         else
             cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
         fi
+    elif [ x"$3" == x"-e" ]; then
+        echo -e "${DYEL}mode 2: 以目标目录为索引名，创建单个索引，忽略某些文件夹  ${RES}"
+        echo " "
+        echo "build $STR"
+        echo " "
+
+        softfiles=`ls "$INPUT_PATH"`
+        CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
+        if [ -f cscope/"$CSCOPE_FILE".files ]; then
+            rm cscope/"$CSCOPE_FILE".files
+        fi
+
+        for sfile in ${softfiles}
+        do
+            MATCHED=0
+            count=1
+            for i in $@
+            do
+                if [ "$count" -ge "4" ]; then
+                    STR=$i
+                    FINAL=${STR: -1}
+
+                    if [ x'/' == x$FINAL ]; then
+                        ignore_file=${STR%/*}
+                    else
+                        ignore_file=$STR
+                    fi
+
+                    E=${ignore_file##*/}
+                    #echo "ignore_file:$E"
+
+                    shopt -s nocasematch
+                    case "$sfile" in
+                        $E ) MATCHED=1;;
+                        *) ;;
+                    esac
+                    shopt -u nocasematch
+                fi
+                let count=count+1
+            done
+
+            if [ x"1" == x"$MATCHED" ]; then
+                echo -e "${DYELL}match, will exclude:$sfile ${RES}"
+            else
+                find "$INPUT_PATH/$sfile" -name "*.c" $EX_FIND_FILE >> cscope/"$CSCOPE_FILE".files
+            fi
+        done
+
+        if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
+            echo -e "${DYEL}cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out ${RES}"
+            rm cscope/"$CSCOPE_FILE".files
+            continue
+        fi
+
+        cscope -bkq -i cscope/"$CSCOPE_FILE".files -f cscope/"$CSCOPE_FILE".out
+
     elif [ x"$#" == x"3" ] && [ x"$3" == x"all" ]; then
-        echo -e "${DYELL}in mode 2: 以目标目录下的文件夹为索引名，创建多个索引${RES}"
+        echo -e "${DYELL}in mode 3: 以目标目录下的文件夹为索引名，创建多个索引${RES}"
         echo " "
         softfiles=`ls "$INPUT_PATH"`
 
@@ -119,7 +201,7 @@ if [ x"$CS_MODE" == x"-b" ]; then
         done
 
     elif [ x"$3" == x"all" ] && [ x"$4" == x"-e" ]; then
-        echo -e "${DYELL}in mode 3: 以目标目录下(忽略指定文件夹)的文件夹为索引名，创建多个索引  ${RES}"
+        echo -e "${DYELL}in mode 4: 以目标目录下(忽略指定文件夹)的文件夹为索引名，创建多个索引  ${RES}"
         echo "exclude module:"
         count=1
         for i in $@
@@ -180,7 +262,6 @@ if [ x"$CS_MODE" == x"-b" ]; then
             fi
 
         done
-
     else
         echo -e "${DYELL} unknown mode ... ${RES}"
         echo " "
@@ -188,7 +269,7 @@ if [ x"$CS_MODE" == x"-b" ]; then
     fi
 elif [ x"$CS_MODE" == x"-rb" ]; then
     if [ x"$#" == x"1" ]; then
-        echo -e "${DYELL}in mode 4: 更新cscope目录下全部索引 ${RES}"
+        echo -e "${DYELL}in mode 5: 更新cscope目录下全部索引 ${RES}"
         echo " "
 
         FILE_COUNT=$(ls cscope/*.files 2> /dev/null | wc -l)
@@ -222,7 +303,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
         fi
 
     elif [ x"$#" == x"2" ]; then
-        echo -e "${DYELL}in mode 5: 更新cscope目录下单个索引，索引名忽略大小写 ${RES}"
+        echo -e "${DYELL}in mode 6: 更新cscope目录下单个索引，索引名忽略大小写 ${RES}"
         echo " "
 
         REBUILD_MODULE=$2
@@ -278,7 +359,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
         fi
 
     elif [ x"$2" == x"-e" ]; then
-        echo -e "${DYELL}in mode 6: 更新cscope目录下全部索引，忽略某些索引(索引名忽略大小写)  ${RES}"
+        echo -e "${DYELL}in mode 7: 更新cscope目录下全部索引，忽略某些索引(索引名忽略大小写)  ${RES}"
         echo "exclude module:"
 
         count=1
@@ -351,7 +432,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
         help_func
     fi
 elif [ x"$CS_MODE" == x"-ps" ]; then
-    echo -e "${DYELL}in mode 7: 查看当前已建立的索引 ${RES}"
+    echo -e "${DYELL}in mode 8: 查看当前已建立的索引 ${RES}"
     echo " "
     if [ -f cscope/load.vim ]; then
         if [ -f cscope/index.file ]; then
@@ -385,7 +466,7 @@ elif [ x"$CS_MODE" == x"-ps" ]; then
     fi
 
 elif [ x"$CS_MODE" == x"-rm" ]; then
-    echo -e "${DYELL}in mode 8: 删除已建立的索引 ${RES}"
+    echo -e "${DYELL}in mode 9: 删除已建立的索引 ${RES}"
     echo " "
 
     count=1
@@ -460,21 +541,7 @@ else
 fi
 
 ## remove tmpfile
-if [ -f $EXCLUDE_FILE ]; then
-    rm $EXCLUDE_FILE
-fi
-
-if [ -f $FILE_PATH ]; then
-    rm $FILE_PATH
-fi
-
-if [ -f $REBUILD_FILE ]; then
-    rm $REBUILD_FILE
-fi
-
-if [ -f $REMOVE_FILE ]; then
-    rm $REMOVE_FILE
-fi
+#remove_func
 
 if [ x"$1" != x"-ps" ]; then
 
