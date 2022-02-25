@@ -31,7 +31,7 @@ help_func()
     echo -e "${GRN}    build module:    ./create_csidx.sh -b path ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 2: 以目标目录为索引名，创建单个索引，忽略某些文件夹  ${RES}"
+    echo -e "${DYEL}mode 2: 以目标目录为索引名，创建单个索引，忽略某些文件夹(与rb模式冲突，慎用)  ${RES}"
     echo -e "${GRN}    build module:    ./create_csidx.sh -b path -e module1 module2 module3 ... modulex ${RES}"
     echo " "
 
