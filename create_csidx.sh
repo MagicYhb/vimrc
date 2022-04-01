@@ -541,7 +541,7 @@ else
 fi
 
 ## remove tmpfile
-#remove_func
+remove_func
 
 if [ x"$1" != x"-ps" ]; then
 
