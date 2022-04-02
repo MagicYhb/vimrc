@@ -47,3 +47,6 @@ sudo apt-get install clangd
 
 ## 七、vim_tools
 git@github.com:MagicYhb/vim_tools.git
+
+## 八、fzf preview
+export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -999'"
