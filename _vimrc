@@ -21,7 +21,7 @@ set nu                              " line number
 set rnu                             " relative line number
 " tab width
 set smarttab                        " 在行首输入 tab 时插入宽度为 shiftwidth 的空白，在其他地方按 tabstop 和 softtabstop 处理
-set expandtab                     " 如果此时需要输入真正的 tab，则输入 Ctrl+V, tab，在 Windows 下是 Ctrl+Q, tab
+set expandtab						" 如果此时需要输入真正的 tab，则输入 Ctrl+V, tab，在 Windows 下是 Ctrl+Q, tab
 set tabstop=4                       " 设定 tab 长度为 4
 set shiftwidth=4                    " 设定 << 和 >> 命令移动时的宽度为 4
 set softtabstop=4                   " 设定编辑模式下 tab 的视在宽度
@@ -405,10 +405,10 @@ vmap te <Plug>(coc-translator-ev)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-which-key
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set timeoutlen=1500
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-let g:mapleader = "\<Space>"
-let g:maplocalleader = ','
+set timeoutlen=300
+nnoremap <silent> <leader> :WhichKey ','<CR>
+let g:mapleader = ','
+let g:maplocalleader = "\<Space>"
 
 "nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 "nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
