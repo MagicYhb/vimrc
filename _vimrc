@@ -405,7 +405,7 @@ vmap te <Plug>(coc-translator-ev)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-which-key
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set timeoutlen=300
+set timeoutlen=500
 nnoremap <silent> <leader> :WhichKey ','<CR>
 let g:mapleader = ','
 let g:maplocalleader = "\<Space>"
