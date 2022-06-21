@@ -122,10 +122,12 @@ inoremap <C-U> <C-G>u<C-U>
 " mouse
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " In many terminal emulators the mouse works just fine, thus enable it.
-"if has('mouse')
-    "set mouse=a
-    "set mousemodel=popup
-"endif
+if has('mouse')
+    set mouse=a
+    set mousemodel=popup
+    noremap <ScrollWheelDown><ScrollWheelUp> <ScrollWheelDown>
+    noremap <ScrollWheelUp><ScrollWheelUp> <ScrollWheelUp>
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " highlight settings 
