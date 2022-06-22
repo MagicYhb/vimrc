@@ -445,14 +445,16 @@ elif [ x"$CS_MODE" == x"-ps" ]; then
         indexfiles=`ls *.out`
         for outfiles in $indexfiles
         do
-            outfiles=`echo ${outfiles##*+}`
-            echo ${outfiles%.*} >> ./index.file
+            outfiles_name=`echo ${outfiles##*+}`
+            echo ${outfiles_name%.*} >> ./index.file
+            echo ${outfiles} >> ./index.file
         done
 
-        awk '{if (NR%3==0){print $0} else {printf"%s ",$0}}' ./index.file >> ./index_out.file
+        awk '{if (NR%2==0){print $0} else {printf"%s ",$0}}' ./index.file >> ./index_out.file
         echo "" >> ./index_out.file
         
         total=`awk '{print NR}' ./index.file | tail -n1`
+        total=$(expr $total / 2)
         echo "total:$total"
         echo " "
 
