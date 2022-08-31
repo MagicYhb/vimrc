@@ -11,6 +11,7 @@
 DYEL='\E[0;33m'
 DYELL='\E[43;30m'
 GRN='\E[1;32m'
+SKY_BLUE='\E[1;36m'
 RES='\E[0m'
 
 ## tmpfile
@@ -24,43 +25,43 @@ EX_FIND_FILE=" -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java"
 
 help_func()
 {
-    echo -e "${DYELL}example: ${RES}"
+    echo -e "${DYELL}example:${RES}"
     echo " "
 
     echo -e "${DYEL}mode 1: 以目标目录为索引名，创建单个索引  ${RES}"
-    echo -e "${GRN}    build module:    ./create_csidx.sh -b path ${RES}"
+    echo -e "${GRN}    build module:${RES}    ${SKY_BLUE}./cscope/create_csidx.sh -b path ${RES}"
     echo " "
 
-    echo -e "${DYEL}mode 2: 以目标目录为索引名，创建单个索引，忽略某些文件夹(与rb模式冲突，慎用)  ${RES}"
-    echo -e "${GRN}    build module:    ./create_csidx.sh -b path -e module1 module2 module3 ... modulex ${RES}"
+    echo -e "${DYEL}mode 2: 以目标目录为索引名，创建单个索引，忽略某些文件夹(与rb模式冲突，慎用，不打算修复)  ${RES}"
+    echo -e "${GRN}    build module:${RES}    ${SKY_BLUE}./cscope/create_csidx.sh -b path -e module1 module2 module3 ... modulex ${RES}"
     echo " "
 
     echo -e "${DYEL}mode 3: 以目标目录下的文件夹为索引名，创建多个索引  ${RES}"
-    echo -e "${GRN}    build all:       ./create_csidx.sh -b path all ${RES}"
+    echo -e "${GRN}    build all:${RES}       ${SKY_BLUE}./cscope/create_csidx.sh -b path all ${RES}"
     echo " "
 
     echo -e "${DYEL}mode 4: 以目标目录下(忽略指定文件夹)的文件夹为索引名，创建多个索引  ${RES}"
-    echo -e "${GRN}    build all:       ./create_csidx.sh -b path all -e module1 module2 module3 ... modulex ${RES}"
+    echo -e "${GRN}    build all:${RES}       ${SKY_BLUE}./cscope/create_csidx.sh -b path all -e module1 module2 module3 ... modulex ${RES}"
     echo " "
 
     echo -e "${DYEL}mode 5: 更新cscope目录下全部索引  ${RES}"
-    echo -e "${GRN}    rebuild all:     ./create_csidx.sh -rb ${RES}"
+    echo -e "${GRN}    rebuild all:${RES}     ${SKY_BLUE}./cscope/create_csidx.sh -rb ${RES}"
     echo " "
 
     echo -e "${DYEL}mode 6: 更新cscope目录下单个索引，索引名忽略大小写  ${RES}"
-    echo -e "${GRN}    rebuild module:  ./create_csidx.sh -rb module ${RES}"
+    echo -e "${GRN}    rebuild module:${RES}  ${SKY_BLUE}./cscope/create_csidx.sh -rb module ${RES}"
     echo " "
 
     echo -e "${DYEL}mode 7: 更新cscope目录下全部索引，忽略某些索引(索引名忽略大小写)  ${RES}"
-    echo -e "${GRN}    rebuild module:  ./create_csidx.sh -rb -e module1 module2 module3 ... modulex ${RES}"
+    echo -e "${GRN}    rebuild module:${RES}  ${SKY_BLUE}./cscope/create_csidx.sh -rb -e module1 module2 module3 ... modulex ${RES}"
     echo " "
 
     echo -e "${DYEL}mode 8: 查看当前已建立的索引  ${RES}"
-    echo -e "${GRN}    show index:      ./create_csidx.sh -ps ${RES}"
+    echo -e "${GRN}    show index:${RES}      ${SKY_BLUE}./cscope/create_csidx.sh -ps ${RES}"
     echo " "
 
     echo -e "${DYEL}mode 9: 删除已建立的索引  ${RES}"
-    echo -e "${GRN}    remove module:   ./create_csidx.sh -rm module1 module2 module3 ... modulex ${RES}"
+    echo -e "${GRN}    remove module:${RES}   ${SKY_BLUE}./cscope/create_csidx.sh -rm module1 module2 module3 ... modulex ${RES}"
     echo " "
 
     exit -1
