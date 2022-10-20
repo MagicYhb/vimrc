@@ -88,6 +88,9 @@ set encoding=utf-8
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+"nmap <C-w><C-q> <C-w>
+nnoremap <C-w><C-q> <C-w>
+
 nnoremap <Enter> yaw
 
 " Delete find pair
@@ -256,10 +259,12 @@ Plug 'mattn/emmet-vim'
 "Plug 'vim-scripts/Command-T'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+"Plug 'yuki-ycino/fzf-preview.vim'
 "Plug 'vim-scripts/minibufexpl.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+
+"Plug 'MattesGroeger/vim-bookmarks'
 
 """ Indent
 Plug 'michaeljsmith/vim-indent-object'
@@ -276,6 +281,7 @@ Plug 'itchyny/vim-cursorword'
 Plug 'lfv89/vim-interestingwords'
 
 """  Git
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 "if has('nvim') || has('patch-8.0.902')
@@ -645,7 +651,7 @@ let g:EchoFuncKeyNext="<C-+>"
 " DoxygenToolkit
 let g:DoxygenToolkit_briefTag_pre="@Synopsis "
 let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns "
+let g:DoxygenToolkit_returnTag="@Returns"
 let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
 let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
 let g:DoxygenToolkit_authorName="MagicYang"
