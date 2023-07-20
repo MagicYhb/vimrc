@@ -205,7 +205,8 @@ Plug 'vim-scripts/stlrefvim'
 """ Status line
 "Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'Lokaltog/vim-powerline'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+"Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 
 """ 
@@ -265,6 +266,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 "Plug 'MattesGroeger/vim-bookmarks'
+
+""" preview
+"Plug 'ryanoasis/vim-devicons'
 
 """ Indent
 Plug 'michaeljsmith/vim-indent-object'
@@ -433,9 +437,9 @@ let g:maplocalleader = "\<Space>"
 " " Set floating window border line color to cyan, and background to orange
  hi FloatermBorder guibg=orange guifg=cyan
 
-let g:floaterm_title = '------------------------- MagicYang floaterm: $1/$2 '
-let g:floaterm_width = 0.45
-let g:floaterm_height = 0.65
+let g:floaterm_title = '--------------------------------------------- MagicYang floaterm: $1/$2 '
+let g:floaterm_width = 0.60
+let g:floaterm_height = 0.70
 let g:floaterm_wintype = 'float'
 "let g:floaterm_position = 'topleft'
 let g:floaterm_position = 'topright'
@@ -443,7 +447,7 @@ let g:floaterm_position = 'topright'
 "let g:floaterm_autoclose
 "let g:floaterm_borderchars
 "let g:floaterm_autoclose = 1
-let g:floaterm_borderchars = '-I-I[]]['
+let g:floaterm_borderchars = '-]-[[]]['
 
 " KeyMaps
 let g:floaterm_keymap_new = '<F5>c'
@@ -456,6 +460,14 @@ let g:floaterm_keymap_show = '<F5>s'
 let g:floaterm_keymap_kill = '<F5>q'
 let g:floaterm_keymap_toggle = '<Leader>t'
  
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-devicons
+"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+"let g:DevIconsEnableFolderExtensionPatternMatching = 1
+"let g:DevIconsEnableFileTypeDetection = 1
+"let g:DevIconsEnableFolderOpenCloseFolderSymbol = '▾'
+"let g:DevIconsEnableFolderCloseFolderSymbol = '▸'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -804,6 +816,9 @@ let g:fzf_layout = { 'down': '~45%' }
 " - Note that this array is passed as arguments to fzf#vim#with_preview function.
 " - To learn more about preview window options, see `--preview-window` section of `man fzf`.
 let g:fzf_preview_window = ['right:25%', 'ctrl-/']
+"let g:fzf_preview_command = 'bat --color=always --style=numbers --line-range :500 {}'
+"let g:fzf_preview_options = ['--preview', 'cat {}']
+" let g:fzf_preview_filetypes = ['c', 'cpp', 'txt', 'md', 'html', 'css', 'js', 'py', 'sh', 'yaml', 'json']
 
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
@@ -812,6 +827,10 @@ let g:fzf_preview_window = ['right:25%', 'ctrl-/']
 
 " Empty value to disable preview window altogether
 "let g:fzf_preview_window = []
+
+" preview in marw window
+" let g:fzf_preview_mark = 'echo {} | sed 's/:/ /' | xargs -I{} sh -c "bat {}; echo"'
+" let g:fzf_preview_mark = 'echo {} | xargs -I{} sh -c "bat {}; echo"'
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors = {
