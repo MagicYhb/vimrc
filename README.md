@@ -25,6 +25,8 @@ systemctl restart sshd
 ### apt install
 sudo apt-get install npm silversearcher-ag fzf cscope clangd ccls ctags
 
+sudo apt install python3-pip
+
 ### npm
 npm i -g bash-language-server
 
@@ -50,3 +52,7 @@ git@github.com:MagicYhb/vim_tools.git
 
 ## 八、fzf preview
 export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -999'"
+
+## 九、
+export TERM=xterm-256color
+

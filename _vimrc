@@ -205,9 +205,16 @@ Plug 'vim-scripts/stlrefvim'
 """ Status line
 "Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'Lokaltog/vim-powerline'
-Plug 'itchyny/lightline.vim'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
+"Plug 'mengelbrecht/lightline-bufferline'
+"Plug 'mgee/lightline-bufferline'
+
+"Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+"""
+Plug 'michaeljsmith/vim-indent-object'
 
 """ 
 Plug 'luochen1990/rainbow'
@@ -780,6 +787,7 @@ vmap <Enter> <Plug>(EasyAlign)
 let g:airline#extensions#whitespace#enabled = 0         " 关闭空白符检测
 let g:airline_theme = 'dark'                            " 设置主题
 let g:airline_powerline_fonts = 1                       " 使用powerline的字体
+let g:airline_skip_empty_sections = 1                   " 跳过空的状态栏部分，避免色块残留的问题
 
 "" enable tabline
 let g:airline#extensions#tabline#enabled = 1            " tabline使能
