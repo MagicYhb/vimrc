@@ -101,6 +101,11 @@ nnoremap <C-k> 5k
 nnoremap <C-h> 5h
 nnoremap <C-l> 5l
 
+nnoremap <F9> <C-w><
+nnoremap <F10> <C-w>>
+nnoremap <F11> :resize -5<CR>
+nnoremap <F12> :resize +5<CR>
+
 " in xshell-5 <C-down> && <C-up> unable to trigger, so use xshell-5 hotkey
 "nnoremap <C-down>    5j
 "nnoremap <C-up>      5k
@@ -444,8 +449,8 @@ let g:maplocalleader = "\<Space>"
 " " Set floating window border line color to cyan, and background to orange
  hi FloatermBorder guibg=orange guifg=cyan
 
-let g:floaterm_title = '--------------------------------------------- MagicYang floaterm: $1/$2 '
-let g:floaterm_width = 0.60
+let g:floaterm_title = '------------------------------------------------ MagicYang floaterm: $1/$2 '
+let g:floaterm_width = 0.65
 let g:floaterm_height = 0.70
 let g:floaterm_wintype = 'float'
 "let g:floaterm_position = 'topleft'
@@ -568,6 +573,28 @@ if has("cscope")
     endif
     set csverb
 endif
+
+command! -nargs=* -complete=command Cs cs <args>
+command! -nargs=* -complete=command CS cs <args>
+
+
+" cscope 命令:
+" add  :  添加新的数据库                 (用法: add file|dir [pre-path] [flags])
+" find :  查询一个模式                   (用法: find a|c|d|e|f|g|i|s|t name)
+"         a: 搜索对此符号的赋值
+"         c: 搜索调用此函数的函数
+"         d: 搜索此函数调用的函数
+"         e: 搜索此 egrep 模式
+"         f: 搜索此文件
+"         g: 搜索此定义
+"         i: 搜索包含此文件的文件
+"         s: 搜索此 C 符号
+"         t: 搜索此文本字符串
+" help : 显示此信息                     (用法: help)
+" kill : 结束一个连接                   (用法: kill #)
+" reset: 重置所有连接                   (用法: reset)
+" show : 显示连接                       (用法: show)
+
 """ :set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -586,6 +613,7 @@ nmap fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap fa :cs find a <C-R>=expand("<cword>")<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags
 "set tags+=~/.vim/bundle/stl-tags/tags
@@ -631,7 +659,7 @@ if executable('ag')
     "let g:ackprg = 'ag --vimgrep'
     let g:ackprg = 'ag -f -i --nogroup --nocolor --column'
     let g:ackhighlight = 1
-    nnoremap <F12> :Ack!<Space><C-R><C-W>
+    "nnoremap <F12> :Ack!<Space><C-R><C-W>
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -823,7 +851,7 @@ let g:fzf_layout = { 'down': '~45%' }
 "   - CTRL-/ will toggle preview window.
 " - Note that this array is passed as arguments to fzf#vim#with_preview function.
 " - To learn more about preview window options, see `--preview-window` section of `man fzf`.
-let g:fzf_preview_window = ['right:25%', 'ctrl-/']
+let g:fzf_preview_window = ['right:35%:hidden', 'ctrl-/']
 "let g:fzf_preview_command = 'bat --color=always --style=numbers --line-range :500 {}'
 "let g:fzf_preview_options = ['--preview', 'cat {}']
 " let g:fzf_preview_filetypes = ['c', 'cpp', 'txt', 'md', 'html', 'css', 'js', 'py', 'sh', 'yaml', 'json']
