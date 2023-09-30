@@ -101,10 +101,17 @@ nnoremap <C-k> 5k
 nnoremap <C-h> 5h
 nnoremap <C-l> 5l
 
-nnoremap <F9> <C-w><
-nnoremap <F10> <C-w>>
-nnoremap <F11> :resize -5<CR>
-nnoremap <F12> :resize +5<CR>
+" :res[ize] -N / CTRL-W +        使得当前窗口高度加 N (默认值是 1).
+nnoremap <F9> :resize -5<CR>
+
+" :res[ize] +N / CTRL-W +        使得当前窗口高度加N (默认值是 1). 
+nnoremap <F10> :resize +5<CR>
+
+" CTRL-W <        使得当前窗口宽度减 N (默认值是 1).
+nnoremap <F11> <C-w><
+
+" CTRL-W >        使得当前窗口宽度加 N (默认值是 1)。
+nnoremap <F12> <C-w>>
 
 " in xshell-5 <C-down> && <C-up> unable to trigger, so use xshell-5 hotkey
 "nnoremap <C-down>    5j
