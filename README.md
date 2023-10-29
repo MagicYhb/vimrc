@@ -56,3 +56,5 @@ export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --preview '(highlight -O 
 ## 九、
 export TERM=xterm-256color
 
+## 十、node.js
+https://nodejs.cn/download/
