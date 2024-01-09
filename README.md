@@ -58,3 +58,14 @@ export TERM=xterm-256color
 
 ## 十、node.js
 https://nodejs.cn/download/
+
+## 十一、 ImportError: No module named Crypto.Cipher
+拷贝 ./local/lib/python2.7
+
+## 十二、
+安装libiconv的参考网址:
+https://www.cnblogs.com/kay2018/p/9936008.html
+wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz
+./configure -prefix=/usr/local
+make
+sudo make install
