@@ -277,7 +277,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
         if [ "$FILE_COUNT" == "0" ]; then
             echo "there is no *.files"
         else 
-            rebuildfiles=`ls cscope/*.files`
+            rebuildfiles=`ls cscope/*.out`
             for refiles in ${rebuildfiles}
             do
                 if [ ! -s $refiles ]; then
@@ -286,8 +286,8 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                     continue
                 fi
                 echo $refiles > $REBUILD_FILE
-                REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
-                TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
+                REBUILD_OUT=$refiles
+                TMP_PATH=`sed "s#.out##g" $REBUILD_FILE`
                 echo $TMP_PATH > $REBUILD_FILE
                 TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
                 echo $TMP_PATH > $FILE_PATH
@@ -315,7 +315,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
         if [ "$FILE_COUNT" == "0" ]; then
             echo "there is no *.files"
         else
-            rebuildfiles=`ls cscope/*.files`
+            rebuildfiles=`ls cscope/*.out`
             for refiles in ${rebuildfiles}
             do
                 if [ ! -s $refiles ]; then
@@ -324,8 +324,8 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                     continue
                 fi
                 echo $refiles > $REBUILD_FILE
-                REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
-                TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
+                REBUILD_OUT=$refiles
+                TMP_PATH=`sed "s#.out##g" $REBUILD_FILE`
                 echo $TMP_PATH > $REBUILD_FILE
                 TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
                 echo $TMP_PATH > $FILE_PATH
@@ -377,7 +377,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
         if [ "$FILE_COUNT" == "0" ]; then
             echo "there is no *.files"
         else
-            rebuildfiles=`ls cscope/*.files`
+            rebuildfiles=`ls cscope/*.out`
             for refiles in ${rebuildfiles}
             do
                 if [ ! -s $refiles ]; then
@@ -386,8 +386,8 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                     continue
                 fi
                 echo $refiles > $REBUILD_FILE
-                REBUILD_OUT=`sed "s#.files#.out#g" $REBUILD_FILE`
-                TMP_PATH=`sed "s#.files##g" $REBUILD_FILE`
+                REBUILD_OUT=$refiles
+                TMP_PATH=`sed "s#.out##g" $REBUILD_FILE`
                 echo $TMP_PATH > $REBUILD_FILE
                 TMP_PATH=`sed "s#cscope/##g" $REBUILD_FILE`
                 echo $TMP_PATH > $FILE_PATH
