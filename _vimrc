@@ -357,15 +357,15 @@ let g:coc_global_extensions = [
     \ 'coc-python',
     "\ 'coc-pyright',
     "\ 'coc-jedi',
-    \ 'coc-html',
+    "\ 'coc-html',
     \ 'coc-json',
-    \ 'coc-sh',
+    "\ 'coc-sh',
     \ 'coc-clangd',
     \ 'coc-vimlsp']
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
-	\ pumvisible() ? "\<C-n>" :
+	\ coc#pum#visible() ? "\<C-n>" :
 	\ <SID>check_back_space() ? "\<TAB>" :
 	\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -1170,6 +1170,15 @@ autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " add cscope.out   
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if filereadable("cscope/load.vim")
-    source ./cscope/load.vim
+" echo 'vim:('$VIM')'
+
+if exists('$VIM')
+    if $VIM == '/usr/local/share/vim'
+    " 对于经典vim的配置
+        if filereadable("cscope/load.vim")
+            source ./cscope/load.vim
+        endif
+    else
+    " 对于neovim的配置
+    endif
 endif
