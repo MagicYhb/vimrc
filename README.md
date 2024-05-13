@@ -58,6 +58,7 @@ export TERM=xterm-256color
 
 ## 十、node.js
 https://nodejs.cn/download/
+https://nodejs.org/dist/
 
 ## 十一、 ImportError: No module named Crypto.Cipher
 拷贝 ./local/lib/python2.7

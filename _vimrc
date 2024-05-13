@@ -365,8 +365,8 @@ let g:coc_global_extensions = [
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
-	\ coc#pum#visible() ? "\<C-n>" :
 	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#pum#visible() ? "\<C-n>" :
 	\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -478,7 +478,11 @@ let g:floaterm_keymap_hide = '<F5>h'
 let g:floaterm_keymap_show = '<F5>s'
 let g:floaterm_keymap_kill = '<F5>q'
 let g:floaterm_keymap_toggle = '<Leader>t'
- 
+
+" 绑定 Ctrl + b 到 floaterm 向上翻页
+tnoremap <C-k> <C-\><C-n><C-u>
+" 绑定 Ctrl + f 到 floaterm 向下翻页
+tnoremap <C-j> <C-\><C-n><C-d>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-devicons
