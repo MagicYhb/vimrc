@@ -1177,7 +1177,7 @@ autocmd BufNewFile * normal G
 " echo 'vim:('$VIM')'
 
 if exists('$VIM')
-    if $VIM == '/usr/local/share/vim'
+    if $VIM == '/usr/local/share/vim' || $VIM == '/usr/share/vim'
     " 对于经典vim的配置
         if filereadable("cscope/load.vim")
             source ./cscope/load.vim
