@@ -70,3 +70,6 @@ wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz
 ./configure -prefix=/usr/local
 make
 sudo make install
+
+## 十三、vim plug dir
+git@github.com:MagicYhb/vim_plug.git
