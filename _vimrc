@@ -355,11 +355,11 @@ let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-translator',
     \ 'coc-python',
-    "\ 'coc-pyright',
-    "\ 'coc-jedi',
-    "\ 'coc-html',
+    \ 'coc-pyright',
+    \ 'coc-jedi',
+    \ 'coc-html',
     \ 'coc-json',
-    "\ 'coc-sh',
+    \ 'coc-sh',
     \ 'coc-clangd',
     \ 'coc-vimlsp']
 
@@ -750,8 +750,8 @@ nnoremap <silent> <F6> :YRShow<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " undotree
 " Maintain undo history between sessions
-set undofile
-set undodir=~/.vim/undodir
+"set undofile
+"set undodir=~/.vim/undodir
 "nnoremap <F5> :UndotreeToggle<CR>
 noremap L :UndotreeToggle<CR>
 let g:undotree_DiffAutoOpen = 1
