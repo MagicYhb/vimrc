@@ -23,7 +23,8 @@ systemctl restart sshd
 
 ## 五、vim compelete
 ### apt install
-sudo apt-get install npm silversearcher-ag fzf cscope clangd ccls ctags
+sudo apt-get install npm silversearcher-ag fzf cscope clangd ccls
+sudo apt install exuberant-ctags
 
 sudo apt install python3-pip
 
