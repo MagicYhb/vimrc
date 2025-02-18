@@ -19,6 +19,10 @@ let s:interestingWordsTermColors = ['006', '005', '003', '002', '154', '121', '1
 
 KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
 
+HostKeyAlgorithms +ssh-rsa
+
+PubkeyAcceptedAlgorithms +ssh-rsa
+
 systemctl restart sshd
 
 ## 五、vim compelete
