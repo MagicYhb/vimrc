@@ -29,6 +29,7 @@ systemctl restart sshd
 ### apt install
 sudo apt-get install npm silversearcher-ag fzf cscope clangd ccls
 sudo apt install exuberant-ctags
+sudo apt install libncurses5-dev
 
 sudo apt install python3-pip
 

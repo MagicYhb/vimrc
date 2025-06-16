@@ -346,6 +346,9 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 "Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+""" github copliot
+"Plug 'github/copilot.vim' 
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -715,11 +718,11 @@ let g:DoxygenToolkit_blockFooter="----------------------------------------------
 let g:DoxygenToolkit_authorName="MagicYang"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
-nnoremap <F9>a :DoxAuthor
-nnoremap <F9>f :Dox
-nnoremap <F9>b :DoxBlock
-nnoremap <F9>c O/** */<Left><Left>
-nnoremap <F9>l :DoxLic
+nnoremap <F8>a :DoxAuthor
+nnoremap <F8>f :Dox
+nnoremap <F8>b :DoxBlock
+nnoremap <F8>c O/** */<Left><Left>
+nnoremap <F8>l :DoxLic
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
