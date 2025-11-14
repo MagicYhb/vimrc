@@ -206,35 +206,49 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-""" Color scheme
+"""""""""" Color scheme 颜色主题插件 """"""""""
+" 提供深色主题配色方案
 Plug 'vim-scripts/peaksea'
+
+" 提供另一种配色方案
 Plug 'vim-scripts/blackboard.vim'
 
-""" Documents
+
+"""""""""" Documents 文档插件 """"""""""
+" 为 VIM 提供中文帮助文档
 Plug 'pright/vimcdoc'
+
+" 提供标准模板库参考文档
 Plug 'vim-scripts/stlrefvim'
 
-""" Status line
+
+"""""""""" Status line 状态栏插件 """"""""""
+" 美化和增强状态栏显示
 "Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'Lokaltog/vim-powerline'
+
 "Plug 'itchyny/lightline.vim'
 "Plug 'mengelbrecht/lightline-bufferline'
 "Plug 'mgee/lightline-bufferline'
 
 "Plug 'bling/vim-airline'
+
+" 轻量级状态栏插件，提供更好的视觉效果
 Plug 'vim-airline/vim-airline'
+
+" 为 airline 提供多种主题
 Plug 'vim-airline/vim-airline-themes'
 
-"""
+" 提供基于缩进的文本对象选择
 Plug 'michaeljsmith/vim-indent-object'
 
-""" 
+" 为嵌套括号提供彩虹色高亮显示
 Plug 'luochen1990/rainbow'
 
 " general utils
 "Plug 'vim-scripts/Tabular'
 
-""" 
+" 管理复制历史记录
 Plug 'vim-scripts/YankRing.vim'
 
 """ Tmux
@@ -254,34 +268,83 @@ Plug 'vim-scripts/YankRing.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'mileszs/ack.vim'
+
+" 快速移动光标到屏幕任意位置
 Plug 'Lokaltog/vim-easymotion'
+
 Plug 'vim-scripts/visSum.vim'
+
+" 快速对齐代码
 Plug 'junegunn/vim-easy-align'
+
+" 支持多光标编辑
 Plug 'terryma/vim-multiple-cursors'
+
+" 显示和管理标记 
 Plug 'kshenoy/vim-signature'
+
+" 快速添加、删除或修改包围符号（如引号、括号等）
 Plug 'tpope/vim-surround'
+
+" 增强重复操作功能
 Plug 'tpope/vim-repeat'
+
+" 会话管理插件
 Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
+
+" 支持将代码发布到 GitHub Gist 
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+
+" 简化表格创建和编辑 
 Plug 'dhruvasagar/vim-table-mode'
+
+" 为 tmux 状态栏提供配色方案
 Plug 'edkolev/tmuxline.vim'
+
 "Plug 'vim-scripts/grep.vim'
+
+" 简化搜索和替换操作
 Plug 'dkprice/vim-easygrep'
+
+" 显示函数原型
 Plug 'mbbill/echofunc'
+
+" 自动生成 Doxygen 风格的注释
 Plug 'vim-scripts/DoxygenToolkit.vim'
+
+" 快速注释和取消注释代码
 Plug 'scrooloose/nerdcommenter'
+
 "" Plug 'vim-scripts/pep8'
+
+" 代码片段库
 Plug 'pright/vim-snippets'
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+" 文本对齐工具
+Plug 'godlygeek/tabular'
+
+" Markdown 文件支持
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+" HTML/CSS 快速编写工具
 Plug 'mattn/emmet-vim'
 
-""" File navigation
+""" File navigation 文件导航插件
 "Plug 'vim-scripts/Command-T'
+
+" 模糊搜索文件、缓冲区、标签等
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" 模糊搜索文件、缓冲区、标签等
 Plug 'junegunn/fzf.vim'
+
 "Plug 'yuki-ycino/fzf-preview.vim'
 "Plug 'vim-scripts/minibufexpl.vim'
+
+" 树形文件浏览器
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+" 显示代码结构标签栏
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 "Plug 'MattesGroeger/vim-bookmarks'
@@ -291,44 +354,62 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 """ Indent
 Plug 'michaeljsmith/vim-indent-object'
+
+" 显示缩进参考线
 Plug 'Yggdroot/indentLine'
+
+" 可视化缩进指南
 Plug 'nathanaelkane/vim-indent-guides'
 
 """ Translator
 """ use coc-translator
 "Plug 'voldikss/vim-translator'
+
+" 命令行翻译工具
 Plug 'soimort/translate-shell'
 
 """ Key word
+
+" 高亮光标下的单词
 Plug 'itchyny/vim-cursorword'
+
+" 高亮感兴趣的单词
 Plug 'lfv89/vim-interestingwords'
 
 """  Git
+" 在 NERDTree 中显示 Git 状态
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" 在侧边栏显示 Git 更改 
 Plug 'airblade/vim-gitgutter'
+
+" Git 集成工具
 Plug 'tpope/vim-fugitive'
+
 "if has('nvim') || has('patch-8.0.902')
     "Plug 'mhinz/vim-signify'
 "else
     "Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 "endif
 
-""" term need vim8.2
+" term need vim8.2 浮动终端窗口
 Plug 'voldikss/vim-floaterm'
 
-""" Undo tree
+" Undo tree 可视化撤销历史树
 Plug 'mbbill/undotree'
 
 """ Shell
 "Plug 'edkolev/promptline.vim'
 
-""" viewer
+""" viewer 显示快捷键映射
 Plug 'liuchengxu/vim-which-key'
 
 """ C/C++
+" 在 .c 和 .h 文件间快速切换
 Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
 
 """ Json
+" JSON 文件语法高亮和格式化
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 """ Python
@@ -555,7 +636,7 @@ nnoremap <silent> <F7> :NERDTreeFind<CR>
 " tagbar
 let g:tagbar_sort = 0
 let g:tagbar_left = 0
-let g:tagbar_width= 35
+let g:tagbar_width= 40
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1110,7 +1191,7 @@ func SetTitle()
 		call append(line(".")+1, "\#> File Name:        ".expand("%"))
 		call append(line(".")+2, "\#> Author:           MagicYang")
 		call append(line(".")+3, "\#> Version:          1.0.1")
-		call append(line(".")+4, "\#> Mail:             476080754@qq.com")
+		call append(line(".")+4, "\#> Mail:             yanghaibo@imilab.com")
 		call append(line(".")+5, "\#> Created Time:     ".strftime("%Y-%m-%d %H:%M:%S"))
 		call append(line(".")+6, " ")
 		call append(line(".")+7, "")
@@ -1131,7 +1212,7 @@ func SetTitle()
 		call append(line("."), "	> File Name:        ".expand("%"))
 		call append(line(".")+1, "	> Author:           MagicYang")
 		call append(line(".")+2, "	> Version:          1.0.1")
-		call append(line(".")+3, "	> Mail:             476080754@qq.com")
+		call append(line(".")+3, "	> Mail:             yanghaibo@imilab.com")
 		call append(line(".")+4, "	> Created Time:     ".strftime("%Y-%m-%d %H:%M:%S"))
 		call append(line(".")+5, "	> par Copyright (c):")
 		call append(line(".")+6, "")
@@ -1173,6 +1254,13 @@ func SetTitle()
 	"新建文件后，自动定位到文件末尾
 endfunc
 autocmd BufNewFile * normal G
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 屏蔽换行自动添加注释
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"autocmd FileType c,cpp,java,js,php setlocal formatoptions-=cro
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " add cscope.out   
