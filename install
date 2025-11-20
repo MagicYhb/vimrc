@@ -27,6 +27,7 @@ fi
 
 ln -sf $cwd/_agignore $home/.agignore
 ln -sf $cwd/_vimrc $home/.vimrc
+ln -sf $cwd/tmux.conf $home/.tmux.conf
 
 vim -c "PlugInstall" +"qall"
 
