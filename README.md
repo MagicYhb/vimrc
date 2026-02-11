@@ -79,3 +79,10 @@ sudo make install
 
 ## 十三、vim plug dir
 git@github.com:MagicYhb/vim_plug.git
+
+## 十四、Python
+sudo apt-get install python-pip 
+sudo apt-get install python3-pip
+
+sudo pip2 install pylzma
+sudo pip3 install pylzma
