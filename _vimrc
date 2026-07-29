@@ -136,6 +136,15 @@ nnoremap <F12> <C-w>>
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+" 误撤销防护 (set hidden 后各 buffer 撤销历史常驻, 容易在错误的文件里按 u)
+" 去掉注释后, 撤销/重做会在命令行回显当前文件名, 操作错了立刻 Ctrl+R 恢复
+nnoremap <silent> u u:echom 'undo @ ' . expand('%:p')<CR>
+nnoremap <silent> <C-r> <C-r>:echom 'redo @ ' . expand('%:p')<CR>
+
+" 重新加载当前文件并清空撤销历史 (undo reset), 用于恢复 "切回文件后 u 不再回退旧修改" 的行为
+" 注意: 会放弃当前 buffer 中未保存的修改! (e! 强制重载)
+nnoremap <silent> <LEADER>ur :set undoreload=0 \| e! \| set undoreload=10000<CR>:echom 'undo history cleared @ ' . expand('%:p')<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " mouse
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
