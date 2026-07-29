@@ -114,7 +114,8 @@ if [ x"$CS_MODE" == x"-b" ]; then
         CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
         #find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
-        find "$INPUT_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > cscope/"$CSCOPE_FILE".files
+        #find "$INPUT_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" ${EX_FIND_FILE} > cscope/"$CSCOPE_FILE".files
+        find "$INPUT_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > cscope/"$CSCOPE_FILE".files
         if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
             rm cscope/"$CSCOPE_FILE".files
             echo cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out
@@ -166,7 +167,7 @@ if [ x"$CS_MODE" == x"-b" ]; then
             if [ x"1" == x"$MATCHED" ]; then
                 echo -e "${DYELL}match, will exclude:$sfile ${RES}"
             else
-                find "$INPUT_PATH/$sfile" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" >> cscope/"$CSCOPE_FILE".files
+                find "$INPUT_PATH/$sfile" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" >> cscope/"$CSCOPE_FILE".files
             fi
         done
 
@@ -192,7 +193,7 @@ if [ x"$CS_MODE" == x"-b" ]; then
             CSCOPE_FILE=`sed "s#/#+#g" $FILE_PATH`
 
             #find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
-            find "$INPUT_PATH/$sfile" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > cscope/"$CSCOPE_FILE".files
+            find "$INPUT_PATH/$sfile" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > cscope/"$CSCOPE_FILE".files
             if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
                 echo -e "${DYEL}cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out ${RES}"
                 rm cscope/"$CSCOPE_FILE".files
@@ -251,7 +252,7 @@ if [ x"$CS_MODE" == x"-b" ]; then
             else
                 echo -e "${DYEL}will build  ${RES}"
                 #find "$INPUT_PATH/$sfile" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > cscope/"$CSCOPE_FILE".files
-                find "$INPUT_PATH/$sfile" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > cscope/"$CSCOPE_FILE".files
+                find "$INPUT_PATH/$sfile" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > cscope/"$CSCOPE_FILE".files
 
                 if [ ! -s cscope/"$CSCOPE_FILE".files ]; then
                     echo -e "${DYEL}cscope/"$CSCOPE_FILE".files is empty, will not build cscope.out ${RES}"
@@ -298,7 +299,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                     rm $REBUILD_OUT
                 fi
                 #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
+                find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
                 cscope -bkq -i $refiles -f $REBUILD_OUT
             done
         fi
@@ -349,7 +350,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                         rm $REBUILD_OUT
                     fi
                     #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
+                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
                     cscope -bkq -i $refiles -f $REBUILD_OUT
                 else
                     echo "not match"
@@ -421,7 +422,7 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                         rm $REBUILD_OUT
                     fi
                     #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
+                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
                     cscope -bkq -i $refiles -f $REBUILD_OUT
                 fi
                 echo " "
