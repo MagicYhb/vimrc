@@ -12,6 +12,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible                    " set not compatible with the original vi mode, this must be first, because it changes other options as a side effect.
 let mapleader = ","                 " set map leader
+set hidden                          " 切换 buffer 时不卸载旧 buffer (coc.nvim 依赖: 否则 :edit 切换文件后
+                                    " 旧 buffer 会被卸载, coc 将其 document detach, buffer 补全源
+                                    " 就找不到其他文件里的函数/词汇了)
 set laststatus=2                    " always show the statusline, 2总显示最后一个窗口的状态行，1窗口多于一个时显示最后一个窗口的状态行，0不显示最后一个窗口的状态行, 默认值为1
 set noeb                            " turn off error prompts
 set history=50		                " keep 50 lines of command line history
@@ -448,11 +451,15 @@ let g:coc_global_extensions = [
     \ 'coc-vimlsp']
 
 " Use tab for trigger completion with characters ahead and navigate.
+" 注意: coc 的补全菜单有两种形态 —— coc 浮动窗口 (coc#pum#visible) 和
+" vim 原生菜单 (pumvisible), 必须都判断, 否则原生菜单下 Tab 会落到
+" coc#refresh() 而无法向下选择
 inoremap <silent><expr> <TAB>
+	\ coc#pum#visible() ? coc#pum#next(1) :
+	\ pumvisible() ? "\<C-n>" :
 	\ <SID>check_back_space() ? "\<TAB>" :
-	\ coc#pum#visible() ? "\<C-n>" :
 	\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -516,6 +523,14 @@ vmap te <Plug>(coc-translator-ev)
 
 "nmap <silent> <Leader>t <Plug>TranslateW
 "vmap <silent> <Leader>t <Plug>TranslateWV
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-anyfold
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " 为所有文件类型激活
+" autocmd Filetype * AnyFoldActivate
+" " 启动时打开所有折叠
+" set foldlevel=99
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-which-key
