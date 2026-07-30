@@ -303,8 +303,10 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                     rm $REBUILD_OUT
                 fi
                 #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
-                cscope -bkq -i $refiles -f $REBUILD_OUT
+                # 文件列表写回 .files (而非 .out), 保证新增源文件能进入 tags/cscope 索引
+                REBUILD_FILES=`echo $REBUILD_OUT | sed "s#.out#.files#g"`
+                find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $REBUILD_FILES
+                cscope -bkq -i $REBUILD_FILES -f $REBUILD_OUT
             done
         fi
 
@@ -354,8 +356,10 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                         rm $REBUILD_OUT
                     fi
                     #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
-                    cscope -bkq -i $refiles -f $REBUILD_OUT
+                    # 文件列表写回 .files (而非 .out), 保证新增源文件能进入 tags/cscope 索引
+                    REBUILD_FILES=`echo $REBUILD_OUT | sed "s#.out#.files#g"`
+                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $REBUILD_FILES
+                    cscope -bkq -i $REBUILD_FILES -f $REBUILD_OUT
                 else
                     echo "not match"
                 fi
@@ -426,8 +430,10 @@ elif [ x"$CS_MODE" == x"-rb" ]; then
                         rm $REBUILD_OUT
                     fi
                     #find "$REBUILD_PATH" -name "*.c" -o -name  "*.cpp" -o -name ".cc" -o -name "*.h" -o -name "*.java" > $refiles
-                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $refiles
-                    cscope -bkq -i $refiles -f $REBUILD_OUT
+                    # 文件列表写回 .files (而非 .out), 保证新增源文件能进入 tags/cscope 索引
+                    REBUILD_FILES=`echo $REBUILD_OUT | sed "s#.out#.files#g"`
+                    find "$REBUILD_PATH" -name "*.c"  -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.java" -o -name "*.mk" -o -name "Makefile" -o -name "*.config" -o -name "*.txt" -o -name "*.sh" -o -name "*.md" > $REBUILD_FILES
+                    cscope -bkq -i $REBUILD_FILES -f $REBUILD_OUT
                 fi
                 echo " "
             done

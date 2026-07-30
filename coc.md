@@ -191,10 +191,12 @@ const util = require('util')
 const readline = require('readline')
 
 // 本地补丁 (基于 coc-tag 1.2.5, 原文件备份为 index.js.bak):
-// 解析 tags 中的 signature 字段, 函数类标签 (f/p/m) 确认补全时插入完整函数原型
-// 原理: coc 对 createSource 源确认时只插入 word (见 pum.vim s:insert_word),
-//       insertText 不会自动应用; 需实现 onCompleteDone 回调,
-//       在确认后把 buffer 中已插入的 word 替换为完整原型
+// 1. 解析 tags 中的 signature 字段, 函数类标签 (f/p/m) 确认补全时插入完整函数原型
+//    原理: coc 对 createSource 源确认时只插入 word (见 pum.vim s:insert_word),
+//          insertText 不会自动应用; 需实现 onCompleteDone 回调,
+//          在确认后把 buffer 中已插入的 word 替换为完整原型
+// 2. readFileByLine 行数上限 50000 -> 500000 (大项目 tags 超 5 万行后
+//    超出部分的标签会被静默丢弃, 字母序靠后的函数无法补全)
 // 注意: 重新安装/更新 coc-tag 会覆盖本补丁
 
 const TAG_CACHE = {}
@@ -461,7 +463,8 @@ require("/path/to/coc-tag/index.js").activate({subscriptions: []});
 |---|---|
 | **补丁会被覆盖** | 执行 `:CocUpdate` 或重装 coc-tag 会覆盖补丁。恢复方法：按本文档"复刻步骤 5"重打（原文件备份为 `index.js.bak`） |
 | **tags 更新** | 代码改动后执行 `./cscope/create_csidx.sh -rb`，tags 与 cscope 索引一并重建 |
-| **tags 数量限制** | coc-tag 读 tags 文件有 50000 行上限 (`readFileByLine limit`)，超大项目注意只索引需要的模块 |
+| **新增源文件** | 新增的 .c/.h 文件必须 `-rb` 重建后才有原型补全（rebuild 模式已修复为同步刷新 .files，老版本脚本 rebuild 时文件列表写入 .out 导致 .files 不更新，新文件永远进不了 tags） |
+| **tags 数量限制** | coc-tag 原版读 tags 上限 50000 行，补丁已提高到 500000 行。超限部分会被**静默丢弃**（tags 按字母序排序，靠后的函数无法补全），项目再大需继续调高 |
 | **tags 路径** | tags 在项目根目录，`set tags=./tags;,tags` 保证子目录也能找到；tags 内相对路径基于 tags 文件位置解析（`'tagrelative'` 默认开启） |
 | **clangd 可选升级** | 想要"参数占位符填充 + 精确跳转定义"时：安装 bear → `bear -- make` 生成 compile_commands.json → clangd 即可工作（coc-settings.json 中已预留 `--query-driver` 宽匹配配置，多平台工具链通用），与 coc-tag 共存互不干扰 |
 
