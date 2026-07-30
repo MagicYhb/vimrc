@@ -626,6 +626,16 @@ else
     colorscheme blackboard
 endif
 
+" coc 补全窗口高亮修复: 配色方案未定义 CocMenuSel/CocFloating, coc 自动计算的
+" 默认色被清空 (cleared), 导致补全窗口看不到当前选中项。
+" 链接到 PmenuSel/Pmenu 跟随配色方案; ColorScheme 自动命令保证切换配色后仍生效
+augroup coc_hl_fix
+    autocmd!
+    autocmd ColorScheme * hi! link CocMenuSel PmenuSel | hi! link CocFloating Pmenu
+augroup END
+hi! link CocMenuSel PmenuSel
+hi! link CocFloating Pmenu
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickfix是vim内置插件，用于浏览命令执行结果信息。命令需要进行设定，才能把执行结果显示到quickfix中。
 " QuickFix

@@ -128,6 +128,15 @@ function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" ---- coc 补全窗口高亮修复 ----
+" 配色方案未定义 CocMenuSel/CocFloating 时, 补全窗口看不到当前选中项
+augroup coc_hl_fix
+    autocmd!
+    autocmd ColorScheme * hi! link CocMenuSel PmenuSel | hi! link CocFloating Pmenu
+augroup END
+hi! link CocMenuSel PmenuSel
+hi! link CocFloating Pmenu
 ```
 
 ### 3. coc-settings.json
