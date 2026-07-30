@@ -116,6 +116,9 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
 inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+" 上下方向键: 补全窗口打开时选择下/上一项, 未打开时保持光标移动
+inoremap <silent><expr> <Down> coc#pum#visible() ? coc#pum#next(1) : pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <silent><expr> <Up>   coc#pum#visible() ? coc#pum#prev(1) : pumvisible() ? "\<C-p>" : "\<Up>"
 
 " 确认补全: 必须走 coc 的确认通道 (coc#pum#confirm / coc#_select_confirm),
 " 原生 C-y 只会插入 word, 不会应用补全项的 insertText (函数参数会丢失)
