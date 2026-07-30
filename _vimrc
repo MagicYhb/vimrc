@@ -457,6 +457,7 @@ let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-sh',
     \ 'coc-clangd',
+    \ 'coc-tag',
     \ 'coc-vimlsp']
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -469,7 +470,12 @@ inoremap <silent><expr> <TAB>
 	\ <SID>check_back_space() ? "\<TAB>" :
 	\ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" coc 浮动补全窗口下, <C-n>/<C-p> 也走 coc 的选择导航 (窗口未打开时保持原生源生补全行为)
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+" 确认补全: 必须走 coc 的确认通道 (coc#pum#confirm / coc#_select_confirm),
+" 原生 C-y 只会插入 word, 不会应用补全项的 insertText (函数参数会丢失)
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
@@ -678,6 +684,9 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope
+" tags 文件向上搜索: 在任意子目录打开文件也能找到项目根目录的 tags
+" (配合 coc-tag 扩展实现全项目函数名模糊补全, tags 由 create_csidx.sh 生成)
+set tags=./tags;,tags
 if has("cscope")
     set csprg=/usr/bin/cscope
     set csto=0

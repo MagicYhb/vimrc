@@ -64,6 +64,10 @@ help_func()
     echo -e "${GRN}    remove module:${RES}   ${SKY_BLUE}./cscope/create_csidx.sh -rm module1 module2 module3 ... modulex ${RES}"
     echo " "
 
+    echo -e "${DYEL}注意: 每次 build/rebuild 索引后, 会自动在项目根目录生成 tags 文件${RES}"
+    echo -e "${DYEL}      (供 coc-tag 扩展做全项目函数名模糊补全, 含 --c-kinds=+p 头文件原型声明)${RES}"
+    echo " "
+
     exit -1
 }
 
@@ -582,6 +586,17 @@ if [ x"$1" != x"-ps" ]; then
     if [ -f cscope/load_list.vim ]; then
         rm cscope/load_list.vim
     fi
+
+    ## 生成 tags 文件 (供 coc-tag 扩展模糊补全, --c-kinds=+p 包含头文件中的函数原型声明)
+    echo -e "${DYEL}generate tags for coc-tag completion${RES}"
+    cat cscope/*.files 2> /dev/null | sort -u > cscope/all.files
+    if [ -s cscope/all.files ]; then
+        ctags --c-kinds=+p --fields=+iaS --extra=+q -L cscope/all.files -f tags
+        echo "tags generated: $(wc -l < tags) lines"
+    else
+        echo "there is no *.files, skip tags"
+    fi
+    rm -f cscope/all.files
 fi
 
 ## end
