@@ -195,12 +195,18 @@ const readline = require('readline')
 //    原理: coc 对 createSource 源确认时只插入 word (见 pum.vim s:insert_word),
 //          insertText 不会自动应用; 需实现 onCompleteDone 回调,
 //          在确认后把 buffer 中已插入的 word 替换为完整原型
-// 2. readFileByLine 行数上限 50000 -> 500000 (大项目 tags 超 5 万行后
-//    超出部分的标签会被静默丢弃, 字母序靠后的函数无法补全)
+// 2. readFileByLine 行数上限 50000 -> 5000000 (大项目/内核 tags 数百万行,
+//    超限部分会被静默丢弃, 字母序靠后的函数无法补全)
+// 3. 大 tags 性能优化: 首字母索引 + 前缀优先的两遍收集, 上限 MAX_TAG_ITEMS 条
+//    (原版每次补全遍历全部 tags 并构造所有同首字母项, 内核级 tags 下每次按键卡 ~180ms)
 // 注意: 重新安装/更新 coc-tag 会覆盖本补丁
 
 const TAG_CACHE = {}
 const {nvim} = workspace
+
+// 单次补全返回的最大候选项数: 超出时优先保留前缀匹配的项
+// (coc 自身有模糊过滤, 输入越长前缀匹配越精确, 截断影响越小)
+const MAX_TAG_ITEMS = 20000
 
 async function getTagFiles() {
   let files = await nvim.call('tagfiles')
@@ -222,7 +228,7 @@ async function getTagFiles() {
   return tagfiles
 }
 
-function readFileByLine(fullpath, onLine, limit = 50000) {
+function readFileByLine(fullpath, onLine, limit = 5000000) {
   const rl = readline.createInterface({
     input: fs.createReadStream(fullpath),
     crlfDelay: Infinity,
@@ -248,8 +254,9 @@ function readFileByLine(fullpath, onLine, limit = 50000) {
 
 async function loadTags(fullpath, mtime) {
   let item = TAG_CACHE[fullpath]
-  if (item && item.mtime >= mtime) return item.words
+  if (item && item.mtime >= mtime) return item
   let words = new Map()
+  let letterIndex = new Map()  // 首字母 -> word 数组, 避免每次补全遍历全部 tags
   await readFileByLine(fullpath, line => {
     if (line[0] == '!') return
     let ms = line.split(/\t\s*/)
@@ -264,17 +271,27 @@ async function loadTags(fullpath, mtime) {
         break
       }
     }
-    let wordItem = words.get(word) || {paths: [], signature: ''}
+    let wordItem = words.get(word)
+    if (!wordItem) {
+      wordItem = {paths: [], signature: ''}
+      words.set(word, wordItem)
+      let arr = letterIndex.get(word[0])
+      if (!arr) {
+        arr = []
+        letterIndex.set(word[0], arr)
+      }
+      arr.push(word)
+    }
     wordItem.paths.push(path)
     // 优先记录函数类标签的签名 (f/p/m)
     if (!wordItem.signature && signature && /^[fpm]$/.test(kind)) {
       wordItem.signature = signature
     }
-    words.set(word, wordItem)
   })
   // eslint-disable-next-line require-atomic-updates
-  TAG_CACHE[fullpath] = {words, mtime}
-  return words
+  item = {words, letterIndex, mtime}
+  TAG_CACHE[fullpath] = item
+  return item
 }
 
 exports.activate = context => {
@@ -287,26 +304,33 @@ exports.activate = context => {
       if (!tagfiles || tagfiles.length == 0) return null
       let list = await Promise.all(tagfiles.map(o => loadTags(o.file, o.mtime)))
       let items = []
-      for (let words of list) {
-        for (let [word, tagInfo] of words.entries()) {
-          if (word[0] !== input[0]) continue
-          let infoList = Array.from(new Set(tagInfo.paths))
-          let len = infoList.length
-          if (len > 10) {
-            infoList = infoList.slice(0, 10)
-            infoList.push(`${len - 10} more...`)
+      for (let {words, letterIndex} of list) {
+        let candidates = letterIndex.get(input[0])
+        if (!candidates) continue
+        // 两遍收集: 优先前缀匹配的项, 再用其他同首字母项补足 (总数限 MAX_TAG_ITEMS)
+        for (let pass = 0; pass < 2 && items.length < MAX_TAG_ITEMS; pass++) {
+          for (let word of candidates) {
+            if (items.length >= MAX_TAG_ITEMS) break
+            if (pass === 0 && !word.startsWith(input)) continue
+            let tagInfo = words.get(word)
+            let infoList = Array.from(new Set(tagInfo.paths))
+            let len = infoList.length
+            if (len > 10) {
+              infoList = infoList.slice(0, 10)
+              infoList.push(`${len - 10} more...`)
+            }
+            let item = {
+              word,
+              menu: this.menu,
+              info: infoList.join('\n')
+            }
+            // 有签名信息的函数: insertText 记录完整原型, 由 onCompleteDone 应用
+            if (tagInfo.signature) {
+              item.documentation = [{filetype: 'txt', content: `${word}${tagInfo.signature}`}]
+              item.insertText = `${word}${tagInfo.signature}`
+            }
+            items.push(item)
           }
-          let item = {
-            word,
-            menu: this.menu,
-            info: infoList.join('\n')
-          }
-          // 有签名信息的函数: insertText 记录完整原型, 由 onCompleteDone 应用
-          if (tagInfo.signature) {
-            item.documentation = [{filetype: 'txt', content: `${word}${tagInfo.signature}`}]
-            item.insertText = `${word}${tagInfo.signature}`
-          }
-          items.push(item)
         }
       }
 
