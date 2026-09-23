@@ -327,6 +327,22 @@ Plug 'vim-scripts/DoxygenToolkit.vim'
 " 快速注释和取消注释代码
 Plug 'scrooloose/nerdcommenter'
 
+" 快速注释/反注释插件 (toggle 风格, 按行当前状态自动切换)
+" 用法: gcc 切换当前行, gc{motion} 切换选中范围, 可视模式下 gc 切换选中行
+" 按关键词批量切换: :g/printk.*IQAPI/Commentary
+Plug 'tpope/vim-commentary'
+
+" 按关键词批量注释/反注释 (默认取光标下单词, 回车确认)
+" 提示: 关键词按正则匹配, 支持如 printk.*IQAPI 的写法
+nnoremap <leader>ck :call ToggleCommentByKeyword()<CR>
+function! ToggleCommentByKeyword() abort
+    let l:kw = input('Toggle comment on lines containing: ', expand('<cword>'))
+    if empty(l:kw)
+        return
+    endif
+    execute 'silent! g/' . escape(l:kw, '/\') . '/Commentary'
+endfunction
+
 "" Plug 'vim-scripts/pep8'
 
 " 代码片段库
